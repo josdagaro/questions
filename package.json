@@ -1,0 +1,31 @@
+{
+  "name": "questions",
+  "version": "1.0.0",
+  "description": "Encuentas de egresados",
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "jade": "jade --watch --pretty sources/*.jade --out views",
+    "babel": "babel --watch sources --out-dir client/js",
+    "serve": "http-server .",
+    "styl": "stylus --use nib --compress --watch sources/style.styl --out client/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidSeven/questions.git"
+  },
+  "author": "Jose David Garcia Rodriguez, Ivan Jose Diaz Morales, Argemiro Martilez, Ronald Fuentes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidSeven/questions/issues"
+  },
+  "homepage": "https://github.com/DavidSeven/questions#readme",
+  "dependencies":{
+    "jade": "^1.11.0",
+    "stylus": "^0.54.5",
+    "babel": "^6.5.2",
+    "nib": "^1.1.0"
+  },
+  "devDependencies": {
+      "babel-cli": "^6.0.0"
+    }
+}
