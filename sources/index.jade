@@ -18,7 +18,7 @@ html(lang='es' ng-app='Questions')
               div(ng-controller='Part_A')        
                 div(layout='row')
                   div(flex='') 
-                    h4 1. Estado Civil actual:
+                    h4 1. Estado civil actual:
                     md-radio-group(ng-model="civil_state")
                       md-radio-button(value='Soltero(a)') Soltero(a)
                       md-radio-button(value='Casado(a)/ Unión libre') Casado(a)/ Unión libre
@@ -32,9 +32,7 @@ html(lang='es' ng-app='Questions')
                     md-input-container
                       label Vivienda
                       md-select(ng-model="housing")
-                        md-option(ng-repeat="option in housingOptions" value="{{option}}")
-                          {{option}}
-                                
+                        md-option(ng-repeat="option in housingOptions" value="{{option}}") {{option}}
                 div(layout='row')
                   div(flex='')
                     h4 4. ¿Tiene usted alguna de las siguientes limitaciones permanentes? (múltiple respuesta)
@@ -42,10 +40,7 @@ html(lang='es' ng-app='Questions')
                     div(ng-repeat="item in limitationsOptions" ng-hide="exists('No Tengo', limitations)")
                       md-checkbox(ng-checked="exists(item, limitations)" ng-click="toggle(item, limitations)") {{ item }} 
                       span(ng-if="exists(item, limitations)") selected
-                  div(flex='')
-                    {{limitations}}
-                          
-              
+                  div(flex='') {{limitations}}              
           //Formulario Parte B
           md-tab(label='Competencias')
             md-content.md-padding              
