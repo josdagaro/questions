@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `questions` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `questions`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
 --
--- Host: 127.0.0.1    Database: questions
+-- Host: localhost    Database: questions
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.13-MariaDB
+-- Server version	5.5.5-10.1.9-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -426,6 +426,60 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'questions'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `setGraduate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setGraduate`(IN `pCardId` INT(11), IN `pFullName` VARCHAR(45), IN `pProgram` VARCHAR(45), IN `pBirthDate` DATE, IN `pCountry` VARCHAR(45), IN `pDepartament` VARCHAR(45), IN `pCity` VARCHAR(45), IN `pResPhone` VARCHAR(20), IN `pMobPhone` VARCHAR(20), IN `pEmail` VARCHAR(45), IN `pPin` INT(4))
+    NO SQL
+insert into graduate (card_id, full_name, program, birth_date, country, departament, city, res_phone, mob_phone, email, pin) values (pCardId, pFullName, pProgram, pBirthDate, pCountry, pDepartament, pCity, pResPhone, pMobPhone, pEmail, pPin) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `setPartA` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartA`(IN `pGraduateId` INT(11), IN `pCivilState` INT(1), IN `pChildrenNumb` INT(2), IN `pHousing` INT(1), IN `pLimitations` VARCHAR(100), IN `pPerformace` INT(1))
+    NO SQL
+insert into part_a (graduate_id, civil_state, children_numb, housing, limitations, performace) values (pGraduateId, pCivilState, pChildrenNumb, pHousing, pLimitations, pPerformace) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `setPartB` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartB`(IN `pGraduateId` INT(11), IN `pLanguages` VARCHAR(200), IN `pPresentIdeas` INT(1), IN `pComOrally` INT(1), IN `pPersConvince` INT(1), IN `pIdenSymb` INT(1), IN `pAcceptDif` INT(1), IN `pUseTools` INT(1), IN `pLearnUpdate` INT(1), IN `pCreativeInnovate` INT(1), IN `pSearchAnalyzeManageShare` INT(1), IN `pDesignImplement` INT(1), IN `pSolveProblem` INT(1), IN `pAbstraction` INT(1), IN `pUnderst` INT(1), IN `pTakeCulture` INT(1), IN `pAssumeResp` INT(1), IN `pPlanningTime` INT(1), IN `pComputerTools` INT(1), IN `pImpProjects` INT(1), IN `pTeamWork` INT(1), IN `pIndepWork` INT(1), IN `pApplyVal` INT(1), IN `pAdaptChanges` INT(1), IN `pPressureWork` INT(1), IN `pStrongComp` INT(2), IN `pWeakComp` INT(2), IN `pUsefulComp` INT(2), IN `pUselessComp` INT(2))
+    NO SQL
+insert into part_b (graduate_id, languages, present_ideas, com_orally, pers_convince, iden_symb, accpet_dif, use_tools, learn_update, creative_innovate, search_analyze_manage_share, design_implement, solve_problem, abstraction, underst, take_culture, assume_resp, planning_time, computer_tools, imp_projects, team_work, indep_work, apply_val, adapt_changes, pressure_work, strong_comp, weak_comp, useful_comp, useless_comp) values (pGraduateId, pLanguages, pPresentIdeas, pComOrally, pPersConvince, pIdenSymb, pAcceptDif, pUseTools, pLearnUpdate, pCreativeInnovate, pSearchAnalyzeManageShare, pDesignImplement, pSolveProblem, pAbstraction, pUnderst, pTakeCulture, pAssumeResp, pPlanningTime, pComputerTools, pImpProjects, pTeamWork, pIndepWork, pApplyVal, pAdaptChanges, pPressureWork, pStrongComp, pWeakComp, pUsefulComp, pUselessComp) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -436,4 +490,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-30 17:21:34
+-- Dump completed on 2016-06-01  1:09:56
