@@ -20,8 +20,8 @@ gulp.task('js', function() {
   })
   .bundle()
   .pipe(source('app.js')) // archivo destino
-  .pipe(buffer())
-  .pipe(uglify())
+  // .pipe(buffer())
+  // .pipe(uglify())
   .pipe(gulp.dest('./client/js/')) // en dónde va a estar el archivo destino
 })
 

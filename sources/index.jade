@@ -18,28 +18,39 @@ html(lang='es' ng-app='Questions')
               div(ng-controller='Part_A')        
                 div(layout='row')
                   div(flex='') 
-                    h4 1. Estado civil actual:
-                    md-radio-group(ng-model="civil_state")
-                      md-radio-button(value='Soltero(a)') Soltero(a)
-                      md-radio-button(value='Casado(a)/ Unión libre') Casado(a)/ Unión libre
+                    md-card
+                      md-card-title
+                        span 1. Estado civil actual:
+                      md-card-content
+                        md-radio-group(ng-model="civil_state")
+                          md-radio-button(value='Soltero(a)') Soltero(a)
+                          md-radio-button(value='Casado(a)/ Unión libre') Casado(a)/ Unión libre
                   div(flex='')
-                    h4 2. Número de hijos:
-                    md-input-container
-                      label Numero
-                      input(ng-model="children_num" type="number" step="1")
+                    md-card
+                      md-card-title
+                        span 2. Número de hijos:
+                      md-card-content
+                        md-input-container
+                          label Numero
+                          input(ng-model="children_num" type="number" step="1")
                   div(flex='')
-                    h4 3. La vivienda donde vive actualmente es:
-                    md-input-container
-                      label Vivienda
-                      md-select(ng-model="housing")
-                        md-option(ng-repeat="option in housingOptions" value="{{option}}") {{option}}
+                    md-card
+                      md-card-title
+                        span 3. La vivienda donde vive actualmente es:
+                      md-card-content
+                        md-input-container
+                          label Vivienda
+                          md-select(ng-model="housing")
+                            md-option(ng-repeat="option in housingOptions" value="{{option}}") {{option}}
                 div(layout='row')
                   div(flex='')
-                    h4 4. ¿Tiene usted alguna de las siguientes limitaciones permanentes? (múltiple respuesta)
-                    md-checkbox(ng-click="toggle('No Tengo', limitations)") No Tengo 
-                    div(ng-repeat="item in limitationsOptions" ng-hide="exists('No Tengo', limitations)")
-                      md-checkbox(ng-checked="exists(item, limitations)" ng-click="toggle(item, limitations)") {{ item }} 
-                      span(ng-if="exists(item, limitations)") selected
+                    md-card
+                      md-card-title
+                        span 4. ¿Tiene usted alguna de las siguientes limitaciones permanentes? (múltiple respuesta)
+                      md-card-content
+                        md-checkbox(ng-click="toggle('No Tengo', limitations)") No Tengo 
+                        div(ng-repeat="item in limitationsOptions" ng-hide="exists('No Tengo', limitations)")
+                          md-checkbox(ng-checked="exists(item, limitations)" ng-click="toggle(item, limitations)") {{ item }}                 
                   div(flex='') {{limitations}}              
           //Formulario Parte B
           md-tab(label='Competencias')
