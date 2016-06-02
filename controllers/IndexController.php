@@ -1,7 +1,9 @@
 <?php
     class IndexController {
-        public function __construct () {}
+    	private $config;
 
-        public function index () {readfile ('views/index.html');}
+        public function __construct () {$this->config = Config::singleton ();}
+
+        public function index () {readfile ($this->config->get ('viewsF').'index.html');}
     }
 ?>

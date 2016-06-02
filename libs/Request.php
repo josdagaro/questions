@@ -15,7 +15,7 @@
             }
 
             if (!$this->controller) $this->controller = 'Index';
-            if (!$this->action) $this->action = 'index';
+            if (!$this->action && $this->controller == 'Index') $this->action = 'index';
             if (!isset ($this->arguments)) $this->arguments = array ();
         }
 

@@ -5,9 +5,6 @@
         public function __construct () {$this->database = SPDO::singleton ();}
 
         public function setData ($cardId, $fullName, $program, $birthDate, $country, $departament, $city, $resPhone, $mobPhone, $email, $pin) {
-        	/*$query = $this->database->prepare (
-        		'CALL setGraduate ('.$cardId.', "'.$fullName.'", "'.$program.'", "'.$birthDate.'", "'.$country.'", "'.$departament.'", "'.$city.'", "'.$resPhone.'", "'.$mobPhone.'", "'.$email.'", '.$pin.')'
-        	);*/
         	$query = $this->database->prepare ('CALL setGraduate (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
         	$query->bindParam (1, $cardId);
         	$query->bindParam (2, $fullName);
