@@ -3,6 +3,17 @@
 
 var app = angular.module('Questions', ['ngMaterial']);
 
+app.controller("main", function ($scope) {
+  $scope.selectedIndex = 1;
+  $scope.next = function () {
+    $scope.selectedIndex = Math.min($scope.selectedIndex + 1, 5);
+  };
+
+  $scope.previous = function () {
+    $scope.selectedIndex = Math.max($scope.selectedIndex - 1, 0);
+  };
+});
+
 app.controller("Part_A", function ($scope) {
   $scope.civil_state = "";
   $scope.children_num;
@@ -47,8 +58,10 @@ app.controller("Part_A", function ($scope) {
   };
 
   $scope.enviar = function () {
-    alert('Soy famoso');
+    $scope.next();
   };
 });
+
+app.controller("Part_B", function ($scope) {});
 
 },{}]},{},[1]);
