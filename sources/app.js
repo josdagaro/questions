@@ -57,5 +57,15 @@ app.controller("Part_A", function($scope){
 });
 
 app.controller("Part_B", function ($scope) {
-
+ $scope.nivel;
+ $scope.lenguages = {
+   ingles: [false, 0, 0, 0, 0],
+   frances: [false, 0, 0, 0, 0],
+   italiano: [false, 0, 0, 0, 0],
+   portugues: [false, 0, 0, 0, 0],
+   mandarin: [false, 0, 0, 0, 0],
+   aleman: [false, 0, 0, 0, 0],
+   japones: [false, 0, 0, 0, 0],
+   arabe: [false, 0, 0, 0, 0],
+ }
 });
