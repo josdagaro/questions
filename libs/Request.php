@@ -5,8 +5,8 @@
         private $arguments;
 
         public function __construct () {
-            if (isset ($_GET ['address']) != null) {
-                $url = filter_input (INPUT_GET, 'address', FILTER_SANITIZE_URL);
+            if (isset ($_GET ['action']) != null) {
+                $url = filter_input (INPUT_GET, 'action', FILTER_SANITIZE_URL);
                 $url = explode ('/', $url);
                 $url = array_filter ($url);
                 $this->controller = array_shift ($url);
