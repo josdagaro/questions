@@ -60,10 +60,10 @@ DROP TABLE IF EXISTS `part_a`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_a` (
   `graduate_id` int(11) NOT NULL,
-  `civil_state` int(1) DEFAULT NULL,
-  `children_numb` int(2) DEFAULT NULL,
-  `housing` int(1) DEFAULT NULL,
-  `limitations` varchar(100) DEFAULT NULL COMMENT 'Multiple answers.',
+  `civil_state` int(1) NOT NULL,
+  `children_numb` int(2) NOT NULL,
+  `housing` int(1) NOT NULL,
+  `limitations` varchar(100) NOT NULL COMMENT 'Multiple answers.',
   `performace` int(1) DEFAULT NULL,
   KEY `graduate_id_foreign_key_a_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_a` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -88,34 +88,34 @@ DROP TABLE IF EXISTS `part_b`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_b` (
   `graduate_id` int(11) NOT NULL,
-  `languages` varchar(200) DEFAULT NULL COMMENT 'Multiple answers.',
-  `present_ideas` int(1) DEFAULT NULL,
-  `com_orally` int(1) DEFAULT NULL,
-  `pers_convince` int(1) DEFAULT NULL,
-  `iden_symb` int(1) DEFAULT NULL,
-  `accept_dif` int(1) DEFAULT NULL,
-  `use_tools` int(1) DEFAULT NULL,
-  `learn_update` int(1) DEFAULT NULL,
-  `creative_innovative` int(1) DEFAULT NULL,
-  `search_analyze_manage_share` int(1) DEFAULT NULL,
-  `design_implement` int(1) DEFAULT NULL,
-  `solve_problem` int(1) DEFAULT NULL,
-  `abstraction` int(1) DEFAULT NULL,
-  `underst` int(1) DEFAULT NULL,
-  `take_culture` int(1) DEFAULT NULL,
-  `assume_resp` int(1) DEFAULT NULL,
-  `planning_time` int(1) DEFAULT NULL,
-  `computer_tools` int(1) DEFAULT NULL,
-  `imp_projects` int(1) DEFAULT NULL,
-  `team_work` int(1) DEFAULT NULL,
-  `indep_work` int(1) DEFAULT NULL,
-  `apply_val` int(1) DEFAULT NULL,
-  `adapt_changes` int(1) DEFAULT NULL,
-  `pressure_work` int(1) DEFAULT NULL,
-  `strong_comp` int(2) DEFAULT NULL,
-  `weak_comp` int(2) DEFAULT NULL,
-  `useful_comp` int(2) DEFAULT NULL,
-  `useless_comp` int(2) DEFAULT NULL,
+  `languages` varchar(200) NOT NULL COMMENT 'Multiple answers.',
+  `present_ideas` int(1) NOT NULL,
+  `com_orally` int(1) NOT NULL,
+  `pers_convince` int(1) NOT NULL,
+  `iden_symb` int(1) NOT NULL,
+  `accept_dif` int(1) NOT NULL,
+  `use_tools` int(1) NOT NULL,
+  `learn_update` int(1) NOT NULL,
+  `creative_innovative` int(1) NOT NULL,
+  `search_analyze_manage_share` int(1) NOT NULL,
+  `design_implement` int(1) NOT NULL,
+  `solve_problem` int(1) NOT NULL,
+  `abstraction` int(1) NOT NULL,
+  `underst` int(1) NOT NULL,
+  `take_culture` int(1) NOT NULL,
+  `assume_resp` int(1) NOT NULL,
+  `planning_time` int(1) NOT NULL,
+  `computer_tools` int(1) NOT NULL,
+  `imp_projects` int(1) NOT NULL,
+  `team_work` int(1) NOT NULL,
+  `indep_work` int(1) NOT NULL,
+  `apply_val` int(1) NOT NULL,
+  `adapt_changes` int(1) NOT NULL,
+  `pressure_work` int(1) NOT NULL,
+  `strong_comp` int(2) NOT NULL,
+  `weak_comp` int(2) NOT NULL,
+  `useful_comp` int(2) NOT NULL,
+  `useless_comp` int(2) NOT NULL,
   KEY `graduate_id_foreign_key_b_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_b` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -139,8 +139,8 @@ DROP TABLE IF EXISTS `part_c`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_c` (
   `graduate_id` int(11) NOT NULL,
-  `long_term` varchar(100) DEFAULT NULL COMMENT 'Multiple answers.',
-  `activity` varchar(100) DEFAULT NULL COMMENT 'Multiple answers.',
+  `long_term` varchar(100) NOT NULL COMMENT 'Multiple answers.',
+  `activity` varchar(100) NOT NULL COMMENT 'Multiple answers.',
   KEY `graduate_id_foreign_key_c_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_c` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -216,7 +216,7 @@ DROP TABLE IF EXISTS `part_d_one`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_d_one` (
   `graduate_id` int(11) NOT NULL,
-  `more_time_activity` int(1) DEFAULT NULL,
+  `more_time_activity` int(1) NOT NULL,
   `remunerated_activity` int(1) DEFAULT NULL,
   `diligence_work` int(1) DEFAULT NULL,
   `after_dilig_work` int(1) DEFAULT NULL,
@@ -367,14 +367,14 @@ DROP TABLE IF EXISTS `part_e`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_e` (
   `graduate_id` int(11) NOT NULL,
-  `classify_sense_belong` int(1) DEFAULT NULL,
-  `eval_work_possib` int(1) DEFAULT NULL,
-  `study_again` int(1) DEFAULT NULL,
+  `classify_sense_belong` int(1) NOT NULL,
+  `eval_work_possib` int(1) NOT NULL,
+  `study_again` int(1) NOT NULL,
   `reason_study_again` varchar(100) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
   `reason_no_study_again` varchar(100) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
-  `want_other_study` int(1) DEFAULT NULL,
+  `want_other_study` int(1) NOT NULL,
   `other_study` int(1) DEFAULT NULL,
-  `recommend` int(1) DEFAULT NULL,
+  `recommend` int(1) NOT NULL,
   KEY `graduate_id_foreign_key_e_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_e` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -426,6 +426,24 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'questions'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartA` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartA`()
+    NO SQL
+select * from part_a ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `setGraduate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -634,4 +652,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-02  0:41:17
+-- Dump completed on 2016-06-03 18:08:31

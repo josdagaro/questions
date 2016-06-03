@@ -1,8 +1,6 @@
 <?php
-	class PartDFiveModel {
-        protected $database;
-        
-        public function __construct () {$this->database = SPDO::singleton ();}
+	class PartDFiveModel extends Model {
+        public function __construct () {parent::__construct ();}
 
         public function setData ($graduateId, $timeCompany, $careerRelat, $ecoActivityCompany, $companyMonthlyAvg) {
         	$query = $this->database->prepare ('CALL setPartDFive (?, ?, ?, ?, ?)');
