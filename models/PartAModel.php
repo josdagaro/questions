@@ -18,8 +18,7 @@
 		public function getData () {
 			$query = $this->database->prepare ('CALL getAllPartA ()');
 			$query->execute ();
-			$dataset = $query->fetchAll ();
-			return $dataset;
+			return $query->fetchAll ();		
 		}
 	}
 ?>
