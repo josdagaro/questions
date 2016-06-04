@@ -1,8 +1,6 @@
 <?php
-	class PartCModel {
-        protected $database;
-        
-        public function __construct () {$this->database = SPDO::singleton ();}
+	class PartCModel extends Model {
+        public function __construct () {parent::__construct ();}
 
         public function setData ($graduateId, $longTerm, $activity) {
         	$query = $this->database->prepare ('CALL setPartC (?, ?, ?)');

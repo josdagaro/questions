@@ -2,7 +2,11 @@
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
     class GraduateController extends Controller {
-        public function __construct () {parent::__construct ();}
+        public function __construct () {
+          parent::__construct ();
+          require $this->config->get ('modelsF').'GraduateModel.php';
+          $this->model = new GraduateModel;
+        }
 
         public function saveData () {
           	header ('Content-type: application/json; charset=utf-8');
@@ -10,9 +14,7 @@
 
           	if (isset ($_POST ['cardId']) && isset ($_POST ['fullName']) && isset ($_POST ['country']) && isset ($_POST ['email']) &&
             isset ($_POST ['pin'])) {
-  	          require $this->config->get ('modelsF').'GraduateModel.php';
               require 'libs'.ds.'Validator.php';
-  	          $graduateModel = new GraduateModel;
 
               $vars = array (
                 'cardId' => $_POST ['cardId'], 'fullName' => $_POST ['fullName'], 'country' => $_POST ['country'], 'email' => $_POST ['email'],
@@ -30,7 +32,7 @@
                   else $vars [$secondaryVars [$i]] = null;
                 }
 
-      	        $graduateModel->setData (
+      	        $this->model->setData (
       	         $vars ['cardId'], $vars ['fullName'], $vars ['program'], $vars ['birthDate'], $vars ['country'], $vars ['departament'],
                  $vars ['city'], $vars ['resPhone'], $vars ['mobPhone'], $vars ['email'], $vars ['pin']
       	        );

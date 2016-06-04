@@ -1,8 +1,8 @@
 <?php
-	class GraduateModel {
-  	protected $database;
+	require Config::singleton ()->get ('modelsF').'Model.php';
 
-    public function __construct () {$this->database = SPDO::singleton ();}
+	class GraduateModel extends Model {
+    public function __construct () {parent::__construct ();}
 
     public function setData ($cardId, $fullName, $program, $birthDate, $country, $departament, $city, $resPhone, $mobPhone, $email, $pin) {
 	  	$query = $this->database->prepare ('CALL setGraduate (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');

@@ -3,7 +3,7 @@
         public static function main (Request $petition) {
             require 'libs/Config.php';
             require 'libs/SPDO.php';
-            require 'config.php';            
+            require 'config.php';
             if (!$petition->getController ()) $controllerName = $config->get ('defaultController');
             else $controllerName = $petition->getController ();
             $controllerName = $controllerName.'Controller';
@@ -17,7 +17,7 @@
 
             $controller = new $controllerName ();
 
-            if ($petition->getArguments () != null) 
+            if ($petition->getArguments () != null)
                 call_user_func (array ($controller, $actionName), $petition->getArguments ());
             else call_user_func (array ($controller, $actionName));
         }

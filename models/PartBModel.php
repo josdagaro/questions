@@ -1,8 +1,6 @@
 <?php
-    class PartBModel {
-        protected $database;
-        
-        public function __construct () {$this->database = SPDO::singleton ();}
+    class PartBModel extends Model {
+        public function __construct () {parent::__construct ();}
 
         public function setData ($graduateId, $languages, $presentIdeas, $comOrally, $persConvince, $idenSymb, $acceptDif, $useTools, $learnUpdate, $creativeInnovative, $searchAnalyzeManageShare, $designImplement, $solveProblem, $abstraction, $underst, $takeCulture, $assumeResp, $planningTime, $computerTools, $impProjects, $teamWork, $indepWork, $applyVal, $adaptChanges, $pressureWork, $strongComp, $weakComp, $usefulComp, $uselessComp) {
             $query = $this->database->prepare (

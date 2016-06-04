@@ -1,8 +1,8 @@
 <?php
-	class PartAModel {
-  	protected $database;
+	require Config::singleton ()->get ('modelsF').'Model.php';
 
-    public function __construct () {$this->database = SPDO::singleton ();}
+	class PartAModel extends Model {
+    public function __construct () {parent::__construct ();}
 
     public function setData ($graduateId, $civilState, $childrenNumb, $housing, $limitations, $performace) {
 	    $query = $this->database->prepare ('CALL setPartA (?, ?, ?, ?, ?, ?)');
@@ -14,5 +14,12 @@
 	    $query->bindParam (6, $performace);
 	    $query->execute ();
     }
+
+		public function getData () {
+			$query = $this->database->prepare ('CALL getAllPartA ()');
+			$query->execute ();
+			$dataset = $query->fetchAll ();
+			return $dataset;
+		}
 	}
 ?>
