@@ -5,5 +5,56 @@ md-content.md-padding(ng-controller='Part_B')
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='previous()') Regresar
       md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
-    div
-      h4 Nivel de dominio de un segundo idioma
+  md-card
+    md-card-content
+      h3 Nivel de dominio de un segundo idioma 
+      md-checkbox(ng-model='not_lenguage' ng-click="clean()") Ninguno
+      div(layout='row' layout-align="center center")
+        div(flex='')
+          p 1. ¿Cuál(es) idioma(s) ha estudiado?
+        div(flex='' layout='column' layout-align="center center" ng-repeat='(key, data) in lenguages')
+          md-checkbox(ng-model='data[0]' style='text-transform:capitalize' ng-click='toogle()') {{key}}
+
+      div(layout='row' layout-align="center center" ng-hide='not_lenguage')
+        div(flex='' layout='column' layout-align="center center")
+          p 2. ¿Cómo califica su nivel de competencia en HABLA?
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+          md-input-container
+            label Nivel
+            md-select(ng-model='lenguage[1]' ng-disabled='!lenguage[0] || not_lenguage')
+              md-option(value="1") Bajo
+              md-option(value="2") Medio
+              md-option(value="3") Alto
+    
+      div(layout='row' layout-align="center center" ng-hide='not_lenguage')
+        div(flex='' layout='column' layout-align="center center")
+          p 3. ¿Cómo califica su nivel de competencia en ESCUCHA?
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+          md-input-container
+            label Nivel
+            md-select(ng-model='lenguage[2]' ng-disabled='!lenguage[0]')
+              md-option(value="1") Bajo
+              md-option(value="2") Medio
+              md-option(value="3") Alto
+  
+      div(layout='row' layout-align="center center" ng-hide='not_lenguage')
+        div(flex='' layout='column' layout-align="center center")
+          p 4. ¿Cómo califica su nivel de competencia en LECTURA?
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+          md-input-container
+            label Nivel
+            md-select(ng-model='lenguage[3]' ng-disabled='!lenguage[0]')
+              md-option(value="1") Bajo
+              md-option(value="2") Medio
+              md-option(value="3") Alto
+    
+      div(layout='row' layout-align="center center" ng-hide='not_lenguage')
+        div(flex='' layout='column' layout-align="center center")
+          p 5. ¿Cómo califica su nivel de competencia en ESCRITURA?
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+          md-input-container
+            label Nivel
+            md-select(ng-model='lenguage[4]' ng-disabled='!lenguage[0]')
+              md-option(value="1") Bajo
+              md-option(value="2") Medio
+              md-option(value="3") Alto
