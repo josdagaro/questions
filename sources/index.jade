@@ -1,0 +1,135 @@
+html(lang='es' ng-app='Questions')
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Angular Material style sheet
+    link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css')
+    link(rel="stylesheet", href="/client/css/style.css")
+  body()
+    div(layout='row')
+      md-toolbar
+        .md-toolbar-tools Bienvenidos a Seguimiento de graduados 
+    div(layout='row')
+      md-content(style='width:100%' ng-controller='main')
+        md-tabs(md-dynamic-height='', md-border-bottom='' md-selected='selectedIndex')
+          //Formulario Parte A
+          md-tab(label='Personal y Familiar')
+            include parts/part_a.jade
+          //Formulario Parte B
+          md-tab(label='Competencias')
+            //- include parts/part_b.jade
+            md-content.md-padding(ng-controller='Part_B')
+              div(layout='row' layout-align="end center")
+                div(flex='')   
+                  h2 Competencias
+                div(flex='row' layout='row' layout-align="end center")
+                  md-button(class="md-raised md-primary" ng-click='previous()') Regresar
+                  md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
+              md-card
+                md-card-content
+                  h3 Nivel de dominio de un segundo idioma 
+                  md-checkbox Ninguno
+                  div(layout='row' layout-align="center center")
+                    div(flex='')
+                      p 1. ¿Cuál(es) idioma(s) ha estudiado?
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.ingles[0]') Inglés
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.frances[0]') Francés
+                    div(flex='' layout='column' layout-align="center center") 
+                      md-checkbox(ng-model='lenguages.italiano[0]') Italiano
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.portugues[0]') Portugués
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.mandarin[0]') Mandarín
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.aleman[0]') Alemán
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.japones[0]') Japonés
+                    div(flex='' layout='column' layout-align="center center")
+                      md-checkbox(ng-model='lenguages.arabe[0]') Árabe
+    
+                  div(layout='row' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center")
+                      p 2. ¿Cómo califica su nivel de competencia en HABLA?
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+                      md-input-container
+                        label Nivel
+                        md-select(ng-model='lenguage[1]' ng-disabled='!lenguage[0]')
+                          md-option(value="1") Bajo
+                          md-option(value="2") Medio
+                          md-option(value="3") Alto
+                
+                  div(layout='row' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center")
+                      p 3. ¿Cómo califica su nivel de competencia en ESCUCHA?
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+                      md-input-container
+                        label Nivel
+                        md-select(ng-model='lenguage[2]' ng-disabled='!lenguage[0]')
+                          md-option(value="1") Bajo
+                          md-option(value="2") Medio
+                          md-option(value="3") Alto
+              
+                  div(layout='row' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center")
+                      p 4. ¿Cómo califica su nivel de competencia en LECTURA?
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+                      md-input-container
+                        label Nivel
+                        md-select(ng-model='lenguage[3]' ng-disabled='!lenguage[0]')
+                          md-option(value="1") Bajo
+                          md-option(value="2") Medio
+                          md-option(value="3") Alto
+                
+                  div(layout='row' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center")
+                      p 5. ¿Cómo califica su nivel de competencia en ESCRITURA?
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+                      md-input-container
+                        label Nivel
+                        md-select(ng-model='lenguage[4]' ng-disabled='!lenguage[0]')
+                          md-option(value="1") Bajo
+                          md-option(value="2") Medio
+                          md-option(value="3") Alto
+                  {{lenguages}}
+                  
+                    
+                 
+          //Formulario Parte C
+          md-tab(label='Plan de Vida')
+            md-content.md-padding              
+              p Aqui Va el lindo conteido
+              md-button(class="md-raised md-primary" ng-click='next()') Continuar
+              md-button(class="md-raised md-primary" ng-click='previous()') Regresar
+              
+          //Formulario Parte D    
+          md-tab(label='Situacion Laboral')
+            md-content.md-padding              
+              p Aqui Va el lindo conteido
+              md-button(class="md-raised md-primary" ng-click='next()') Continuar
+              md-button(class="md-raised md-primary" ng-click='previous()') REgresar
+              
+          //Formulario Parte E
+          md-tab(label='Institucion Educativa')
+            md-content.md-padding              
+              p Aqui Va el lindo conteido
+              md-button(class="md-raised md-primary" ng-click='next()') Continuar
+              md-button(class="md-raised md-primary" ng-click='previous()') REgresar
+              
+          //Formulario Parte F
+          md-tab(label='Contacto')
+            md-content.md-padding              
+              p Aqui Va el lindo conteido
+              md-button(class="md-raised md-primary" ng-click='next()') Continuar
+              md-button(class="md-raised md-primary" ng-click='previous()') REgresar
+              
+              
+    // Angular Material requires Angular.js Libraries
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js')
+    // Angular Material Library
+    script(src='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js')
+    // Your application bootstrap
+    script(src='/client/js/app.js')
