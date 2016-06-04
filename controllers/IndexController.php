@@ -1,7 +1,9 @@
 <?php
-    class IndexController {
-        public function __construct () {}
+    require Config::singleton ()->get ('controllersF').'Controller.php';
 
-        public function index () {readfile ('views/index.html');}
+    class IndexController extends Controller {
+        public function __construct () {parent::__construct ();}
+
+        public function index () {readfile ($this->config->get ('viewsF').'index.html');}
     }
 ?>
