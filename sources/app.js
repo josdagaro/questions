@@ -67,5 +67,5 @@ app.controller("Part_B", function ($scope) {
    aleman: [false, 0, 0, 0, 0],
    japones: [false, 0, 0, 0, 0],
    arabe: [false, 0, 0, 0, 0],
- }
+ };
 });

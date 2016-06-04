@@ -47,63 +47,14 @@ html(lang='es' ng-app='Questions')
                       md-checkbox(ng-model='lenguages.japones[0]') Japonés
                     div(flex='' layout='column' layout-align="center center")
                       md-checkbox(ng-model='lenguages.arabe[0]') Árabe
-      
+    
                   div(layout='row' layout-align="center center")
                     div(flex='' layout='column' layout-align="center center")
                       p 2. ¿Cómo califica su nivel de competencia en HABLA?
-                    div(flex='' layout='column' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
                       md-input-container
                         label Nivel
-                        md-select(ng-model='lenguages.ingles[1]' ng-disabled='!lenguages.ingles[0]')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
+                        md-select(ng-model='lenguage[1]' ng-disabled='!lenguage[0]')
                           md-option(value="1") Bajo
                           md-option(value="2") Medio
                           md-option(value="3") Alto
@@ -111,59 +62,10 @@ html(lang='es' ng-app='Questions')
                   div(layout='row' layout-align="center center")
                     div(flex='' layout='column' layout-align="center center")
                       p 3. ¿Cómo califica su nivel de competencia en ESCUCHA?
-                    div(flex='' layout='column' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
                       md-input-container
                         label Nivel
-                        md-select(ng-model='lenguages.ingles[2]' ng-disabled='!lenguages.ingles[0]')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
+                        md-select(ng-model='lenguage[2]' ng-disabled='!lenguage[0]')
                           md-option(value="1") Bajo
                           md-option(value="2") Medio
                           md-option(value="3") Alto
@@ -171,59 +73,10 @@ html(lang='es' ng-app='Questions')
                   div(layout='row' layout-align="center center")
                     div(flex='' layout='column' layout-align="center center")
                       p 4. ¿Cómo califica su nivel de competencia en LECTURA?
-                    div(flex='' layout='column' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
                       md-input-container
                         label Nivel
-                        md-select(ng-model='lenguages.ingles[3]' ng-disabled='!lenguages.ingles[0]')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
+                        md-select(ng-model='lenguage[3]' ng-disabled='!lenguage[0]')
                           md-option(value="1") Bajo
                           md-option(value="2") Medio
                           md-option(value="3") Alto
@@ -231,59 +84,10 @@ html(lang='es' ng-app='Questions')
                   div(layout='row' layout-align="center center")
                     div(flex='' layout='column' layout-align="center center")
                       p 5. ¿Cómo califica su nivel de competencia en ESCRITURA?
-                    div(flex='' layout='column' layout-align="center center")
+                    div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
                       md-input-container
                         label Nivel
-                        md-select(ng-model='lenguages.ingles[4]' ng-disabled='!lenguages.ingles[0]')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
-                          md-option(value="1") Bajo
-                          md-option(value="2") Medio
-                          md-option(value="3") Alto
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='nivel')
+                        md-select(ng-model='lenguage[4]' ng-disabled='!lenguage[0]')
                           md-option(value="1") Bajo
                           md-option(value="2") Medio
                           md-option(value="3") Alto
