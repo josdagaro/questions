@@ -58,3 +58,32 @@ md-content.md-padding(ng-controller='Part_B')
               md-option(value="1") Bajo
               md-option(value="2") Medio
               md-option(value="3") Alto
+  md-card
+    md-card-content
+      h3 Competencias Desarrolladas
+      md-grid-list(md-cols="4" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height="3:4" md-gutter="1px")
+        md-grid-tile(md-colspan='{{competence[2]}}' md-rowspan='1' ng-repeat='competence in competences')   
+          md-card
+            md-card-title
+              span {{$index + 1}} . {{competence[0]}}
+            md-card-content
+              md-input-container
+                label Nivel
+                md-select(ng-model='competence[1]')
+                  md-option(value="1") Muy Insatisfecho
+                  md-option(value="2") Insatisfecho
+                  md-option(value="3") Satisfecho
+                  md-option(value="4") Muy Satisfecho
+  md-card
+    md-card-content
+      h3 De acuerdo a la contribución de la Institución que lo formó,
+      md-grid-list(md-cols="4" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height="3:4" md-gutter="1px")
+        md-grid-tile(md-colspan='4' md-rowspan='1' ng-repeat='outstanding in outstandings')   
+          md-card
+            md-card-title
+              span {{$index + 25}} . {{outstanding[0]}}
+            md-card-content
+              md-input-container
+                label Numero de la Competencia
+                md-select(ng-model='outstanding[1]')
+                    md-option(value='{{$index + 1}}' ng-repeat='competence in competences') {{$index + 1}}

@@ -17,24 +17,7 @@ html(lang='en' ng-app='Questions')
             include parts/part_a.jade
           //Formulario Parte B
           md-tab(label='Competencias')
-            //- include parts/part_b.jade
-            md-content.md-padding(ng-controller='Part_B')
-              md-card
-                md-card-content
-                  h3 Competencias Desarrolladas
-                  div(layout='row' layout-align="center center" ng-repeat='competence in competences')
-                    div(flex='' layout='column' layout-align="center center")
-                      p {{competence[0]}}
-                    div(flex='' layout='column' layout-align="center center")
-                      md-input-container
-                        label Nivel
-                        md-select(ng-model='competence[1]')
-                          md-option(value="1") Muy Insatisfecho
-                          md-option(value="2") Insatisfecho
-                          md-option(value="3") Satisfecho
-                          md-option(value="4") Muy Satisfecho
-              
-                          
+            include parts/part_b.jade            
           //Formulario Parte C
           md-tab(label='Plan de Vida')
             md-content.md-padding              
