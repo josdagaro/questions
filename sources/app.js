@@ -3,7 +3,7 @@
 var app = angular.module('Questions', ['ngMaterial']);
 
 app.controller("main", function ($scope) {
-  $scope.selectedIndex = 2;
+  $scope.selectedIndex = 4;
   $scope.next = function() {
       $scope.selectedIndex = Math.min($scope.selectedIndex + 1, 5) ;
     };
@@ -125,5 +125,24 @@ app.controller("Part_B", function ($scope) {
 });
 
 app.controller("Part_C", function ($scope) {
+  $scope.long_term;
+  $scope.activity;
+});
 
+app.controller("Part_D", function ($scope) {
+
+});
+
+app.controller("Part_E", function ($scope) {
+
+});
+
+app.controller("Part_F", function ($scope) {
+  $scope.full_name;
+  $scope.relationship;
+  $scope.contry;
+  $scope.departament;
+  $scope.city;
+  $scope.res_phone;
+  $scope.mob_phone;
 });
