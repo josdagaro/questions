@@ -1,0 +1,36 @@
+md-content.md-padding(ng-controller='Part_C')
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Plan de vida
+    div(flex='row' layout='row' layout-align="end center")
+      md-button(class="md-raised md-primary" ng-click='previous()') Regresar
+      md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 1. ¿Qué ha pensado hacer en el largo plazo? (múltiple respuesta)
+        md-card-content(layout='column')
+          md-checkbox(ng-model='long_term' value='Iniciar una nueva carrera técnica') Iniciar una nueva carrera técnica
+          md-checkbox(ng-model='long_term' value='Iniciar una nueva carrera tecnológica') Iniciar una nueva carrera tecnológica
+          md-checkbox(ng-model='long_term' value='Iniciar una nueva carrera universitaria') Iniciar una nueva carrera universitaria
+          md-checkbox(ng-model='long_term' value='Estudiar un posgrado en Colombia') Estudiar un posgrado en Colombia
+          md-checkbox(ng-model='long_term' value='Estudiar un posgrado fuera de Colombia') Estudiar un posgrado fuera de Colombia
+          md-checkbox(ng-model='long_term' value='Trabajar en Colombia') Trabajar en Colombia
+          md-checkbox(ng-model='long_term' value='Trabajar fuera de Colombia') Trabajar fuera de Colombia
+          md-checkbox(ng-model='long_term' value='Crear una empresa') Crear una empresa
+          md-checkbox(ng-model='long_term' value='Otro') Otro
+    div(flex='')
+      md-card
+        md-card-title
+          span 2. ¿Desde el momento del primer grado de Educación Superior, cuáles actividades de formación ha realizado? (múltiple respuesta)
+        md-card-content(layout='column')
+          md-checkbox(ng-model='activity' value='Seminarios/Cursos') Seminarios/Cursos
+          md-checkbox(ng-model='activity' value='Diplomados') Diplomados
+          md-checkbox(ng-model='activity' value='Técnicos') Técnicos
+          md-checkbox(ng-model='activity' value='Tecnológicos') Tecnológicos
+          md-checkbox(ng-model='activity' value='Universitarios') Universitarios
+          md-checkbox(ng-model='activity' value='Especialización') Especialización
+          md-checkbox(ng-model='activity' value='Maestría') Maestría
+          md-checkbox(ng-model='activity' value='Doctorado') Doctorado
+          md-checkbox(ng-model='activity' value='Ninguna') Ninguna

@@ -30,6 +30,7 @@
     "gulp": "^3.9.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
+    "event-stream": "^3.3.2",
 
     "gulp-stylus": "2.0.1",
     "gulp-concat-css": "2.2.0",

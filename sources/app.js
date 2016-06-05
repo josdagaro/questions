@@ -3,7 +3,7 @@
 var app = angular.module('Questions', ['ngMaterial']);
 
 app.controller("main", function ($scope) {
-  $scope.selectedIndex = 1;
+  $scope.selectedIndex = 2;
   $scope.next = function() {
       $scope.selectedIndex = Math.min($scope.selectedIndex + 1, 5) ;
     };
@@ -118,5 +118,12 @@ app.controller("Part_B", function ($scope) {
    useful_comp: ['¿cuál considera que ha sido la más útil en su trayectoria laboral?', 0],
    useless_comp: ['¿cuál considera que ha sido la menos útil en su trayectoria laboral?', 0]
  };
+
+ $scope.enviar = function() {
+   $scope.next();
+ };
+});
+
+app.controller("Part_C", function ($scope) {
 
 });

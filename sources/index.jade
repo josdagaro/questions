@@ -20,11 +20,8 @@ html(lang='en' ng-app='Questions')
             include parts/part_b.jade            
           //Formulario Parte C
           md-tab(label='Plan de Vida')
-            md-content.md-padding              
-              p Aqui Va el lindo conteido
-              md-button(class="md-raised md-primary" ng-click='next()') Continuar
-              md-button(class="md-raised md-primary" ng-click='previous()') Regresar
-              
+            include parts/part_c.jade
+                
           //Formulario Parte D    
           md-tab(label='Situacion Laboral')
             md-content.md-padding              
