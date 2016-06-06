@@ -20,6 +20,8 @@
 		  $query->execute ();
     }
 
+		public function getData () {}
+
 		public function getSpecificData ($cardId, $pin) {
 			$query = $this->database->prepare ('CALL getSpecificGraduate (?, ?)');
 			$query->bindParam (1, $cardId);

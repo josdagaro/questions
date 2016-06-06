@@ -6,6 +6,9 @@
           parent::__construct ();
           require $this->config->get ('modelsF').'PartAModel.php';
           $this->model = new PartAModel;
+          $data = array ('civilState', 'childrenNumb', 'housing', 'limitations', 'performace');
+          $size = sizeof ($data);
+          for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
         }
 
         public function saveData () {
@@ -16,12 +19,9 @@
             	if (isset ($_POST ['graduateId']) && isset ($_POST ['civilState']) && isset ($_POST ['childrenNumb']) &&
               isset ($_POST ['housing']) && isset ($_POST ['limitations'])) {
                 require 'libs'.ds.'Validator.php';
-
-                $vars = array (
-                  'graduateId' => $_POST ['graduateId'], 'civilState' => $_POST ['civilState'], 'childrenNumb' => $_POST ['childrenNumb'],
-                  'housing' => $_POST ['housing'], 'limitations' => $_POST ['limitations']
-                );
-
+                $vars = array ();
+                $size = sizeof ($this->items);
+                for ($i = 0; $i < $size; $i ++) $vars [$this->items [$i]] = $_POST [$this->items];
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {

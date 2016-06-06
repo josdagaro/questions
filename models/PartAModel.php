@@ -18,7 +18,9 @@
 		public function getData () {
 			$query = $this->database->prepare ('CALL getAllPartA ()');
 			$query->execute ();
-			return $query->fetchAll ();		
+			return $query->fetchAll ();
 		}
+
+		public function getSpecificData () {}
 	}
 ?>
