@@ -27,15 +27,12 @@ html(lang='en' ng-app='Questions')
             md-content.md-padding              
               p Aqui Va el lindo conteido
               md-button(class="md-raised md-primary" ng-click='next()') Continuar
-              md-button(class="md-raised md-primary" ng-click='previous()') REgresar
+              md-button(class="md-raised md-primary" ng-click='previous()') Regresar
               
           //Formulario Parte E
           md-tab(label='Institucion Educativa')
-            md-content.md-padding              
-              p Aqui Va el lindo conteido
-              md-button(class="md-raised md-primary" ng-click='next()') Continuar
-              md-button(class="md-raised md-primary" ng-click='previous()') REgresar
-              
+            include parts/part_e.jade
+            
           //Formulario Parte F
           md-tab(label='Contacto')
             include parts/part_f.jade

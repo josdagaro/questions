@@ -131,22 +131,31 @@ app.controller("Part_B", function ($scope) {
 });
 
 app.controller("Part_C", function ($scope) {
-  $scope.long_term;
-  $scope.activity;
+  $scope.long_term = "";
+  $scope.activity = "";
 });
 
 app.controller("Part_D", function ($scope) {});
 
-app.controller("Part_E", function ($scope) {});
+app.controller("Part_E", function ($scope) {
+  $scope.classify_sense_belong = 0;
+  $scope.eval_work_possib = 0;
+  $scope.study_again = 0;
+  $scope.reason_study_again = 0;
+  $scope.reason_no_study_again = 0;
+  $scope.want_other_study = 0;
+  $scope.other_study = 0;
+  $scope.recommend = 0;
+});
 
 app.controller("Part_F", function ($scope) {
-  $scope.full_name;
-  $scope.relationship;
-  $scope.contry;
-  $scope.departament;
-  $scope.city;
-  $scope.res_phone;
-  $scope.mob_phone;
+  $scope.full_name = "";
+  $scope.relationship = "";
+  $scope.contry = "";
+  $scope.departament = "";
+  $scope.city = "";
+  $scope.res_phone = "";
+  $scope.mob_phone = "";
 });
 
 },{}]},{},[1]);
