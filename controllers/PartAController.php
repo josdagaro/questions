@@ -29,7 +29,7 @@
                   else $vars ['performace'] = null;
 
         	        $this->model->setData (
-        	         $vars ['graduateId'], $vars ['civilState'], $vars ['childrenNumb'], $vars ['housing'], $vars ['limitations'], $vars ['performace']
+        	         $vars ['graduateId'], $vars ['civilState'], $vars ['childrenNumb'], $vars ['housing'], serialize ($vars ['limitations']), $vars ['performace']
         	        );
 
                   $json = array ('status' => true);
