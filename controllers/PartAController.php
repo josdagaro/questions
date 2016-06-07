@@ -6,7 +6,7 @@
           parent::__construct ();
           require $this->config->get ('modelsF').'PartAModel.php';
           $this->model = new PartAModel;
-          $data = array ('civilState', 'childrenNumb', 'housing', 'limitations', 'performace');
+          $data = array ('civil_state', 'children_numb', 'housing', 'limitations');
           $size = sizeof ($data);
           for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
         }
@@ -16,12 +16,20 @@
           	$json = null;
 
             if ($this->session->exists ()) {
-            	if (isset ($_POST ['graduateId']) && isset ($_POST ['civilState']) && isset ($_POST ['childrenNumb']) &&
-              isset ($_POST ['housing']) && isset ($_POST ['limitations'])) {
+              $size = sizeof ($this->items);
+              $check = false;
+              $vars = array ();
+
+              for ($i = 0; $i < $size; $i ++) {
+                if (!isset ($_POST [$this->items [$i]])) {
+                  $check = true;
+                  break;
+                }
+                else $vars [$this->items [$i]] = $_POST [$this->items];
+              }
+
+            	if (!$check) {
                 require 'libs'.ds.'Validator.php';
-                $vars = array ();
-                $size = sizeof ($this->items);
-                for ($i = 0; $i < $size; $i ++) $vars [$this->items [$i]] = $_POST [$this->items];
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
@@ -29,14 +37,14 @@
                   else $vars ['performace'] = null;
 
         	        $this->model->setData (
-        	         $vars ['graduateId'], $vars ['civilState'], $vars ['childrenNumb'], $vars ['housing'], serialize ($vars ['limitations']), $vars ['performace']
+        	         $vars ['graduate_id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'], serialize ($vars ['limitations']), $vars ['performace']
         	        );
 
                   $json = array ('status' => true);
                 }
-                else $json = array ('status' => false);
+                else $json = array ('status' => false, 'message' => 'Some field is null');
             	}
-              else $json = array ('status' => false);
+              else $json = array ('status' => false, 'message' => 'Some field does not exists');
             }
 
             echo json_encode ($json);
@@ -59,7 +67,7 @@
 
               $json = array ('status' => true, 'dataset' => $dataset);
             }
-            else $json = array ('status' => false);
+            else $json = array ('status' => false, 'message' => 'Data is null');
           }
 
           echo json_encode ($json);

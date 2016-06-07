@@ -12,7 +12,7 @@
           $this->session = new Session;
           $this->session->init ();
           $this->model = null;
-          $this->items [0] = 'graduateId';
+          $this->items [0] = 'graduate_id';
         }
     }
 ?>

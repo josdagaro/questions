@@ -20,7 +20,5 @@
 			$query->execute ();
 			return $query->fetchAll ();
 		}
-
-		public function getSpecificData () {}
 	}
 ?>

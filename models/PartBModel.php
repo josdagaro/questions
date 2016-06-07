@@ -1,4 +1,6 @@
 <?php
+    require Config::singleton ()->get ('modelsF').'Model.php';
+
     class PartBModel extends Model {
         public function __construct () {parent::__construct ();}
 
@@ -40,8 +42,10 @@
             $query->execute ();
         }
 
-        public function getData () {}
-
-        public function getSpecificData () {}
+        public function getData () {
+          $query = $this->database->prepare ('CALL getAllPartB ()');
+    			$query->execute ();
+    			return $query->fetchAll ();
+        }
     }
 ?>
