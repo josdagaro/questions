@@ -3,7 +3,7 @@
 var app = angular.module('Questions', ['ngMaterial']);
 
 app.controller("main", function ($scope) {
-  $scope.selectedIndex = 4;
+  $scope.selectedIndex = 3;
   $scope.next = function() {
       $scope.selectedIndex = Math.min($scope.selectedIndex + 1, 5) ;
     };
@@ -130,7 +130,61 @@ app.controller("Part_C", function ($scope) {
 });
 
 app.controller("Part_D", function ($scope) {
+  // Part 1
+  $scope.more_time_activity = 0;
+  $scope.remunerated_activity = 0;
+  $scope.diligence_work = 0;
+  $scope.after_dilig_work = 0;
+  $scope.reasons_not_dilig = 0;
+  $scope.work_availab = 0;
+  $scope.activity_role = 0;
 
+  // Part 2
+  $scope.first_work = 0;
+  $scope.search_ch = 0;
+  $scope.type_link = 0;
+  $scope.current_occup = 0;
+  $scope.eco_activity = 0;
+  $scope.employment_relat = 0;
+  $scope.last_entry = 0;
+  $scope.week_work_hours_avg = 0;
+  $scope.field_activity = 0;
+  $scope.inst_links = 0;
+
+  // Part 3
+  $scope.first_work = 0;
+  $scope.career_relat = 0;
+  $scope.labour_forms = 0;
+  $scope.eco_activity = 0;
+  $scope.monthly_income = 0;
+
+  // Part 4
+  $scope.create_company = 0;
+  $scope.main_difficulty = 0;
+
+  // Part 5
+  $scope.time_company = 0;
+  $scope.career_relat = 0;
+  $scope.eco_activity_company = 0;
+  $scope.company_monthly_avg = 0;
+
+  // Part 6
+  $scope.exp_months = 0;
+  $scope.study_exp_reality = 0;
+  $scope.useful_knowledge = 0;
+  $scope.work_contributes = 0;
+  $scope.work_satisfaction = 0;
+  $scope.study_level = 0;
+  $scope.additional_interest = 0;
+  $scope.other_work = 0;
+  $scope.should_earn_more = 0;
+
+  // Part 7
+  $scope.looking_first_job = 0;
+  $scope.months_looking_job = 0;
+  $scope.get_job = 0;
+  $scope.difficult_get_job = 0;
+  $scope.search_ch_job = 0;
 });
 
 app.controller("Part_E", function ($scope) {
