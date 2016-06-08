@@ -13,7 +13,7 @@ app.controller("main", function ($scope) {
     };
 });
 
-app.controller("Part_A", function($scope){
+app.controller("Part_A", function($scope, $http){
   $scope.civil_state = "";
   $scope.children_num;
 
@@ -54,7 +54,10 @@ app.controller("Part_A", function($scope){
   };
 
   $scope.enviar = function() {
-    $scope.next();
+    $http.post('http://192.168.0.18/questions/?action=PartA/saveData', {civil_state:$scope.civil_state, children_numb:$scope.children_num, housing:$scope.housing, limitations:$scope.limitations, performace:$scope.performans} ).then(function(res) {
+      console.log(res);
+    });
+    // $scope.next();
   };
 });
 
