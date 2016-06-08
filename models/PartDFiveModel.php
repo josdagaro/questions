@@ -1,4 +1,6 @@
 <?php
+	require Config::singleton ()->get ('modelsF').'Model.php';
+
 	class PartDFiveModel extends Model {
         public function __construct () {parent::__construct ();}
 
@@ -10,6 +12,12 @@
         	$query->bindParam (4, $ecoActivityCompany);
         	$query->bindParam (5, $companyMonthlyAvg);
         	$query->execute ();
+        }
+
+				public function getData () {
+          $query = $this->database->prepare ('CALL getAllPartDFive ()');
+    			$query->execute ();
+    			return $query->fetchAll ();
         }
     }
 ?>

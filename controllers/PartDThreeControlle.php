@@ -1,14 +1,11 @@
 <?php
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
-    class PartAController extends Controller {
+    class PartDThreeController extends Controller {
         public function __construct () {
           parent::__construct ();
-          require $this->config->get ('modelsF').'PartAModel.php';
-          $this->model = new PartAModel;
-          $data = array ('civil_state', 'children_numb', 'housing', 'limitations');
-          $size = sizeof ($data);
-          for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
+          require $this->config->get ('modelsF').'PartDThreeModel.php';
+          $this->model = new PartDThreeModel;
         }
 
         public function saveData () {
@@ -16,29 +13,29 @@
           	$json = null;
 
             if ($this->session->exists ()) {
-              $size = sizeof ($this->items);
-              $check = false;
               $vars = array ();
 
-              for ($i = 0; $i < $size; $i ++) {
-                if (!isset ($_POST [$this->items [$i]])) {
-                  $check = true;
-                  break;
-                }
-                else $vars [$this->items [$i]] = $_POST [$this->items];
-              }
-
-            	if (!$check) {
+            	if (isset ($_POST ['graduate_id'])) {
                 require 'libs'.ds.'Validator.php';
+                $vars ['graduate_id'] = $_POST ['graduate_id'];
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  if (isset ($_POST ['performace'])) $vars ['performace'] = $_POST ['performace'];
-                  else $vars ['performace'] = null;
+                  $secondaryVars = array (
+                    'first_work', 'career_relat', 'labour_forms', 'eco_activity', 'monthly_income'
+                  );
+
+                  $size = sizeof ($secondaryVars);
+
+                  for ($i = 0; $i < $size; $i ++) {
+                    if (isset ($_POST [$secondaryVars [$i]])) $vars [$secondaryVars [$i]] = $_POST [$secondaryVars [$i]];
+                    else $vars [$secondaryVars [$i]] = null;
+                  }
 
         	        $this->model->setData (
-        	         $vars ['graduate_id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'], serialize ($vars ['limitations']), $vars ['performace']
-        	        );
+                    $vars ['graduate_id'], $vars ['first_work'], $vars ['career_relat'], $vars ['labour_forms'],
+                    serialize ($vars ['eco_activity']), $vars ['monthly_income']
+                  );
 
                   $json = array ('status' => true);
                 }
@@ -59,10 +56,9 @@
 
             if ($minData) {
               $dataset = array ();
-
               foreach ($minData as $key => $value) {
                 $dataset [$key] = $value;
-                $dataset [$key]['limitations'] = unserialize ($value ['limitations']);
+                $dataset [$key]['eco_activity'] = unserialize ($value ['eco_activity']);
               }
 
               $json = array ('status' => true, 'dataset' => $dataset);

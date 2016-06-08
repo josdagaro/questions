@@ -1,4 +1,6 @@
 <?php
+	require Config::singleton ()->get ('modelsF').'Model.php';
+
 	class PartDOneModel extends Model {
         public function __construct () {parent::__construct ();}
 
@@ -10,9 +12,15 @@
         	$query->bindParam (4, $diligenceWork);
         	$query->bindParam (5, $afterDiligWork);
         	$query->bindParam (6, $reasonsNotDilig);
-            $query->bindParam (7, $workAvailab);
-            $query->bindParam (8, $activityRole);
+          $query->bindParam (7, $workAvailab);
+          $query->bindParam (8, $activityRole);
         	$query->execute ();
+        }
+
+				public function getData () {
+          $query = $this->database->prepare ('CALL getAllPartDOne ()');
+    			$query->execute ();
+    			return $query->fetchAll ();
         }
     }
 ?>

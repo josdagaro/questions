@@ -63,7 +63,7 @@ CREATE TABLE `part_a` (
   `civil_state` int(1) NOT NULL,
   `children_numb` int(2) NOT NULL,
   `housing` int(1) NOT NULL,
-  `limitations` varchar(100) NOT NULL COMMENT 'Multiple answers.',
+  `limitations` varchar(200) NOT NULL COMMENT 'Multiple answers.',
   `performace` int(1) DEFAULT NULL,
   KEY `graduate_id_foreign_key_a_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_a` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `part_b`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_b` (
   `graduate_id` int(11) NOT NULL,
-  `languages` varchar(200) NOT NULL COMMENT 'Multiple answers.',
+  `languages` varchar(300) NOT NULL COMMENT 'Multiple answers.',
   `present_ideas` int(1) NOT NULL,
   `com_orally` int(1) NOT NULL,
   `pers_convince` int(1) NOT NULL,
@@ -98,6 +98,7 @@ CREATE TABLE `part_b` (
   `learn_update` int(1) NOT NULL,
   `creative_innovative` int(1) NOT NULL,
   `search_analyze_manage_share` int(1) NOT NULL,
+  `create_innovate` int(1) NOT NULL,
   `design_implement` int(1) NOT NULL,
   `solve_problem` int(1) NOT NULL,
   `abstraction` int(1) NOT NULL,
@@ -139,8 +140,8 @@ DROP TABLE IF EXISTS `part_c`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `part_c` (
   `graduate_id` int(11) NOT NULL,
-  `long_term` varchar(100) NOT NULL COMMENT 'Multiple answers.',
-  `activity` varchar(100) NOT NULL COMMENT 'Multiple answers.',
+  `long_term` varchar(200) NOT NULL COMMENT 'Multiple answers.',
+  `activity` varchar(200) NOT NULL COMMENT 'Multiple answers.',
   KEY `graduate_id_foreign_key_c_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_c` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -166,7 +167,7 @@ CREATE TABLE `part_d_five` (
   `graduate_id` int(11) NOT NULL,
   `time_company` int(1) DEFAULT NULL,
   `career_relat` int(1) DEFAULT NULL,
-  `eco_activity_company` varchar(100) DEFAULT NULL,
+  `eco_activity_company` varchar(200) DEFAULT NULL,
   `company_monthly_avg` float DEFAULT NULL,
   KEY `graduate_id_foreign_key_five_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_five` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -249,7 +250,7 @@ CREATE TABLE `part_d_seven` (
   `looking_first_job` int(1) DEFAULT NULL,
   `months_looking_job` int(11) DEFAULT NULL,
   `get_job` int(1) DEFAULT NULL,
-  `difficult_get_job` varchar(100) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
+  `difficult_get_job` varchar(200) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
   `search_ch_job` int(1) DEFAULT NULL,
   KEY `graduate_id_foreign_key_d_seven_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_d_seven` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -276,7 +277,7 @@ CREATE TABLE `part_d_six` (
   `graduate_id` int(11) NOT NULL,
   `exp_months` int(11) DEFAULT NULL,
   `study_exp_reality` int(1) DEFAULT NULL,
-  `useful_knowledge` varchar(100) DEFAULT NULL,
+  `useful_knowledge` varchar(200) DEFAULT NULL,
   `work_contributes` int(1) DEFAULT NULL,
   `work_satisfaction` int(1) DEFAULT NULL,
   `study_level` int(1) DEFAULT NULL,
@@ -309,7 +310,7 @@ CREATE TABLE `part_d_three` (
   `first_work` int(1) DEFAULT NULL,
   `career_relat` int(1) DEFAULT NULL,
   `labour_forms` int(1) DEFAULT NULL,
-  `eco_activity` varchar(100) DEFAULT NULL,
+  `eco_activity` varchar(200) DEFAULT NULL,
   `monthly_income` float DEFAULT NULL,
   KEY `graduate_id_foreign_key_d_three_idx` (`graduate_id`),
   CONSTRAINT `graduate_id_foreign_key_d_three` FOREIGN KEY (`graduate_id`) REFERENCES `graduate` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -337,8 +338,8 @@ CREATE TABLE `part_d_two` (
   `first_work` int(1) DEFAULT NULL,
   `search_ch` int(1) DEFAULT NULL,
   `type_link` int(1) DEFAULT NULL,
-  `current_occup` varchar(100) DEFAULT NULL,
-  `eco_activity` varchar(100) DEFAULT NULL,
+  `current_occup` varchar(200) DEFAULT NULL,
+  `eco_activity` varchar(200) DEFAULT NULL,
   `employment_relat` int(1) DEFAULT NULL,
   `last_entry` float DEFAULT NULL,
   `week_work_hours_avg` float DEFAULT NULL,
@@ -370,8 +371,8 @@ CREATE TABLE `part_e` (
   `classify_sense_belong` int(1) NOT NULL,
   `eval_work_possib` int(1) NOT NULL,
   `study_again` int(1) NOT NULL,
-  `reason_study_again` varchar(100) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
-  `reason_no_study_again` varchar(100) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
+  `reason_study_again` varchar(200) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
+  `reason_no_study_again` varchar(200) DEFAULT NULL COMMENT 'Unique answer with comment (option "other").',
   `want_other_study` int(1) NOT NULL,
   `other_study` int(1) DEFAULT NULL,
   `recommend` int(1) NOT NULL,
@@ -444,6 +445,222 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartB` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartB`()
+    NO SQL
+select * from part_b ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartC` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartC`()
+    NO SQL
+select * from part_c ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDFive` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDFive`()
+    NO SQL
+select * from part_d_five ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDFour` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDFour`()
+    NO SQL
+select * from part_d_four ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDOne` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDOne`()
+    NO SQL
+select * from part_d_one ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDSeven` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDSeven`()
+    NO SQL
+select * from part_d_seven ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDSix` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDSix`()
+    NO SQL
+select * from part_d_six ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDThree` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDThree`()
+    NO SQL
+select * from part_d_three ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartDTwo` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartDTwo`()
+    NO SQL
+select * from part_d_two ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartE`()
+    NO SQL
+select * from part_e ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getAllPartF` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllPartF`()
+    NO SQL
+select * from part_f ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getSpecificGraduate` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getSpecificGraduate`(IN `pCardId` INT (11), IN `pPin` INT (4))
+    NO SQL
+select * from graduate where card_id = pCardId and pin = pPin ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `setGraduate` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -472,27 +689,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartA`(IN `pGraduateId` INT(11), IN `pCivilState` INT(1), IN `pChildrenNumb` INT(2), IN `pHousing` INT(1), IN `pLimitations` VARCHAR(100), IN `pPerformace` INT(1))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartA`(IN `pGraduateId` INT(11), IN `pCivilState` INT(1), IN `pChildrenNumb` INT(2), IN `pHousing` INT(1), IN `pLimitations` VARCHAR(200), IN `pPerformace` INT(1))
     NO SQL
 insert into part_a (graduate_id, civil_state, children_numb, housing, limitations, performace) values (pGraduateId, pCivilState, pChildrenNumb, pHousing, pLimitations, pPerformace) ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `setPartB` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartB`(IN `pGraduateId` INT(11), IN `pLanguages` VARCHAR(200), IN `pPresentIdeas` INT(1), IN `pComOrally` INT(1), IN `pPersConvince` INT(1), IN `pIdenSymb` INT(1), IN `pAcceptDif` INT(1), IN `pUseTools` INT(1), IN `pLearnUpdate` INT(1), IN `pCreativeInnovative` INT(1), IN `pSearchAnalyzeManageShare` INT(1), IN `pDesignImplement` INT(1), IN `pSolveProblem` INT(1), IN `pAbstraction` INT(1), IN `pUnderst` INT(1), IN `pTakeCulture` INT(1), IN `pAssumeResp` INT(1), IN `pPlanningTime` INT(1), IN `pComputerTools` INT(1), IN `pImpProjects` INT(1), IN `pTeamWork` INT(1), IN `pIndepWork` INT(1), IN `pApplyVal` INT(1), IN `pAdaptChanges` INT(1), IN `pPressureWork` INT(1), IN `pStrongComp` INT(2), IN `pWeakComp` INT(2), IN `pUsefulComp` INT(2), IN `pUselessComp` INT(2))
-    NO SQL
-insert into part_b (graduate_id, languages, present_ideas, com_orally, pers_convince, iden_symb, accpet_dif, use_tools, learn_update, creative_innovative, search_analyze_manage_share, design_implement, solve_problem, abstraction, underst, take_culture, assume_resp, planning_time, computer_tools, imp_projects, team_work, indep_work, apply_val, adapt_changes, pressure_work, strong_comp, weak_comp, useful_comp, useless_comp) values (pGraduateId, pLanguages, pPresentIdeas, pComOrally, pPersConvince, pIdenSymb, pAcceptDif, pUseTools, pLearnUpdate, pCreativeInnovative, pSearchAnalyzeManageShare, pDesignImplement, pSolveProblem, pAbstraction, pUnderst, pTakeCulture, pAssumeResp, pPlanningTime, pComputerTools, pImpProjects, pTeamWork, pIndepWork, pApplyVal, pAdaptChanges, pPressureWork, pStrongComp, pWeakComp, pUsefulComp, pUselessComp) ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -508,7 +707,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartC`(IN `pGraduateId` INT(11), IN `pLongTerm` VARCHAR(100), IN `pActivity` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartC`(IN `pGraduateId` INT(11), IN `pLongTerm` VARCHAR(200), IN `pActivity` VARCHAR(200))
     NO SQL
 insert into part_c (graduate_id, long_term, activity) values (pGraduateId, pLongTerm, pActivity) ;;
 DELIMITER ;
@@ -526,7 +725,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDFive`(IN `pGraduateId` INT(11), IN `pTimeCompany` INT(1), IN `pCareerRelat` INT(1), IN `pEcoActivityCompany` VARCHAR(100), IN `pCompanyMonthlyAvg` FLOAT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDFive`(IN `pGraduateId` INT(11), IN `pTimeCompany` INT(1), IN `pCareerRelat` INT(1), IN `pEcoActivityCompany` VARCHAR(200), IN `pCompanyMonthlyAvg` FLOAT)
     NO SQL
 insert into part_d_five (graduate_id, time_company, career_relat, eco_activity_company, company_monthly_avg) values (pGraduateId, pTimeCompany, pCareerRelat, pEcoActivityCompany, pCompanyMonthlyAvg) ;;
 DELIMITER ;
@@ -580,7 +779,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDSeven`(IN `pGraduateId` INT(11), IN `pLookingFirstJob` INT(1), IN `pMonthsLookingJob` INT(11), IN `pGetJob` INT(1), IN `pDifficultGetJob` VARCHAR(100), IN `pSearchChJob` INT(1))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDSeven`(IN `pGraduateId` INT(11), IN `pLookingFirstJob` INT(1), IN `pMonthsLookingJob` INT(11), IN `pGetJob` INT(1), IN `pDifficultGetJob` VARCHAR(200), IN `pSearchChJob` INT(1))
     NO SQL
 insert into part_d_seven (graduate_id, looking_first_job, months_looking_job, get_job, difficult_get_job, search_ch_job) values (pGraduateId, pLookingFirstJob, pMonthsLookingJob, pGetJob, pDifficultGetJob, pSearchChJob) ;;
 DELIMITER ;
@@ -598,9 +797,27 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDSix`(IN `pGraduateId` INT(11), IN `pExpMonths` INT(11), IN `pStudyExpReality` INT(1), IN `pUsefulKnowledge` VARCHAR(100), IN `pWorkContributes` INT(1), IN `pWorkSatisfaction` INT(1), IN `pStudyLevel` INT(1), IN `pAdditionalInterest` INT(1), IN `pOtherWork` INT(1), IN `pShouldEarnMore` INT(1))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDSix`(IN `pGraduateId` INT(11), IN `pExpMonths` INT(11), IN `pStudyExpReality` INT(1), IN `pUsefulKnowledge` VARCHAR(200), IN `pWorkContributes` INT(1), IN `pWorkSatisfaction` INT(1), IN `pStudyLevel` INT(1), IN `pAdditionalInterest` INT(1), IN `pOtherWork` INT(1), IN `pShouldEarnMore` INT(1))
     NO SQL
 insert into part_d_six (graduate_id, exp_months, study_exp_reality, useful_knowledge, work_contributes, work_satisfaction, study_level, additional_interest, other_work, should_earn_more) values (pGraduateId, pExpMonths, pStudyExpReality, pUsefulKnowledge, pWorkContributes, pWorkSatisfaction, pStudyLevel, pAdditionalInterest, pOtherWork, pShouldEarnMore) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `setPartB` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartB`(IN `pGraduateId` INT(11), IN `pLanguages` VARCHAR(300), IN `pPresentIdeas` INT(1), IN `pComOrally` INT(1), IN `pPersConvince` INT(1), IN `pIdenSymb` INT(1), IN `pAcceptDif` INT(1), IN `pUseTools` INT(1), IN `pLearnUpdate` INT(1), IN `pCreativeInnovative` INT(1), IN `pSearchAnalyzeManageShare` INT(1), IN `pDesignImplement` INT(1), IN `pSolveProblem` INT(1), IN `pAbstraction` INT(1), IN `pUnderst` INT(1), IN `pTakeCulture` INT(1), IN `pAssumeResp` INT(1), IN `pPlanningTime` INT(1), IN `pComputerTools` INT(1), IN `pImpProjects` INT(1), IN `pTeamWork` INT(1), IN `pIndepWork` INT(1), IN `pApplyVal` INT(1), IN `pAdaptChanges` INT(1), IN `pPressureWork` INT(1), IN `pStrongComp` INT(2), IN `pWeakComp` INT(2), IN `pUsefulComp` INT(2), IN `pUselessComp` INT(2))
+    NO SQL
+insert into part_b (graduate_id, languages, present_ideas, com_orally, pers_convince, iden_symb, accpet_dif, use_tools, learn_update, creative_innovative, search_analyze_manage_share, design_implement, solve_problem, abstraction, underst, take_culture, assume_resp, planning_time, computer_tools, imp_projects, team_work, indep_work, apply_val, adapt_changes, pressure_work, strong_comp, weak_comp, useful_comp, useless_comp) values (pGraduateId, pLanguages, pPresentIdeas, pComOrally, pPersConvince, pIdenSymb, pAcceptDif, pUseTools, pLearnUpdate, pCreativeInnovative, pSearchAnalyzeManageShare, pDesignImplement, pSolveProblem, pAbstraction, pUnderst, pTakeCulture, pAssumeResp, pPlanningTime, pComputerTools, pImpProjects, pTeamWork, pIndepWork, pApplyVal, pAdaptChanges, pPressureWork, pStrongComp, pWeakComp, pUsefulComp, pUselessComp) ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -616,7 +833,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDThree`(IN `pGraduateId` INT(11), IN `pFirstWork` INT(1), IN `pCareerRelat` INT(1), IN `pLabourForms` INT(1), IN `pEcoActivity` VARCHAR(100), IN `pMonthlyIncome` FLOAT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDThree`(IN `pGraduateId` INT(11), IN `pFirstWork` INT(1), IN `pCareerRelat` INT(1), IN `pLabourForms` INT(1), IN `pEcoActivity` VARCHAR(200), IN `pMonthlyIncome` FLOAT)
     NO SQL
 insert into part_d_three (graduate_id, first_work, career_relat, labour_forms, eco_activity, monthly_income) values (pGraduateId, pFirstWork, pCareerRelat, pLabourForms, pEcoActivity, pMonthlyIncome) ;;
 DELIMITER ;
@@ -634,9 +851,45 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDTwo`(IN `pGraduateId` INT(11), IN `pFirstWork` INT(1), IN `pSearchCh` INT(1), IN `pTypeLink` INT(1), IN `pCurrentOccup` VARCHAR(100), IN `pEcoActivity` VARCHAR(100), IN `pEmploymentRelat` INT(1), IN `pLastEntry` FLOAT, IN `pWeekWorkHoursAvg` FLOAT, IN `pFieldActivity` INT(1), IN `pInstLinks` INT(1))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartDTwo`(IN `pGraduateId` INT(11), IN `pFirstWork` INT(1), IN `pSearchCh` INT(1), IN `pTypeLink` INT(1), IN `pCurrentOccup` VARCHAR(200), IN `pEcoActivity` VARCHAR(200), IN `pEmploymentRelat` INT(1), IN `pLastEntry` FLOAT, IN `pWeekWorkHoursAvg` FLOAT, IN `pFieldActivity` INT(1), IN `pInstLinks` INT(1))
     NO SQL
 insert into part_d_two (graduate_id, first_work, search_ch, type_link, current_occup, eco_activity, employment_relat, last_entry, week_work_hours_avg, field_activity, inst_links) values (pGraduateId, pFirstWork, pSearchCh, pTypeLink, pCurrentOccup, pEcoActivity, pEmploymentRelat, pLastEntry, pWeekWorkHoursAvg, pFieldActivity, pInstLinks) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `setPartE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartE`(IN `pGraduateId` INT(11), IN `pClassifySenseBelong` INT(1), IN `pEvalWorkPossib` INT(1), IN `pStudyAgain` INT(1), IN `pReasonStudyAgain` VARCHAR(200), IN `pReasonNoStudyAgain` VARCHAR(200), IN `pWantOtherStudy` INT(1), IN `pOtherStudy` INT(1), IN `pRecommend` INT(1))
+    NO SQL
+insert into part_e (graduate_id, classify_sense_belong, eval_work_possib, study_again, reason_study_again, reason_no_study_again, want_other_study, other_study, recommend) values (pGraduateId, pClassifySenseBelong, pEvalWorkPossib, pStudyAgain, pReasonStudyAgain, pReasonNoStudyAgain, pWantOtherStudy, pOtherStudy, pRecommend) ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `setPartF` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setPartF`(IN `pGraduateId` INT(11), IN `pFullName` VARCHAR(45), IN `pRelationship` VARCHAR(45), IN `pCountry` VARCHAR(45), IN `pDepartament` VARCHAR(45), IN `pCity` VARCHAR(45), IN `pResPhone` VARCHAR(45), IN `pMobPhone` VARCHAR(45))
+    NO SQL
+insert into part_f (graduate_id, full_name, relationship, country, departament, city, res_phone, mob_phone) values (pGraduateId, pFullName, pRelationship, pCountry, pDepartament, pCity, pResPhone, pMobPhone) ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -652,4 +905,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-03 18:08:31
+-- Dump completed on 2016-06-07 13:30:46
