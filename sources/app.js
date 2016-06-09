@@ -26,8 +26,8 @@ app.controller("Part_A", function($scope, $http){
       var idx = list.indexOf(item);
       if (idx > -1) {
         list.splice(idx, 1);
-        if ($scope.performans == item) {
-          $scope.performans = "";
+        if ($scope.data.performans == item) {
+          $scope.data.performans = "";
         }
       } else if (item == 0) {
         $scope.data.limitations = [item];
@@ -66,8 +66,8 @@ app.controller("Part_B", function ($scope, $http) {
     arabe:      [false, 0, 0, 0, 0],
   };
   $scope.data ={
-    lenguages : $scope.lenguages_config,
-    competences : {
+    lenguages: $scope.lenguages_config,
+    competences: {
       present_ideas: ['Exponer las ideas por medios escritos', 0, 2],
       com_orally: ['Comunicarse oralmente con claridad', 0, 2],
       pers_convince: ['Persuadir y convencer a sus interlocutores', 0, 2],
@@ -93,7 +93,7 @@ app.controller("Part_B", function ($scope, $http) {
       adapt_changes: ['Adaptarse a los cambios (trabajar en contextos nuevos y diversos)', 0, 3],
       pressure_work: ['Trabajar bajo presión', 0, 2]
     },
-    outstandings : {
+    outstandings: {
       strong_comp: ['¿cuál de las competencias antes mencionadas considera que es la más fuerte?', 0],
       weak_comp: ['¿cuál de las competencias antes mencionadas considera que es la más débil?', 0],
       useful_comp: ['¿cuál considera que ha sido la más útil en su trayectoria laboral?', 0],
@@ -114,7 +114,7 @@ app.controller("Part_B", function ($scope, $http) {
 });
 
 app.controller("Part_C", function ($scope, $http) {
-  $scope.data = {long_term : [], activity : []};
+  $scope.data = {long_term: [], activity: []};
 
   $scope.toggle = function (item, list) {
     console.log(list);
@@ -137,60 +137,37 @@ app.controller("Part_C", function ($scope, $http) {
 
 app.controller("Part_D", function ($scope) {
   // Part 1
-  $scope.more_time_activity = 0;
-  $scope.remunerated_activity = 0;
-  $scope.diligence_work = 0;
-  $scope.after_dilig_work = 0;
-  $scope.reasons_not_dilig = 0;
-  $scope.work_availab = 0;
-  $scope.activity_role = 0;
+  $scope.data1 = {more_time_activity: 0,remunerated_activity: 0, diligence_work: 0, after_dilig_work: 0, reasons_not_dilig: 0, work_availab: 0, activity_role: 0};
 
   // Part 2
-  $scope.first_work = 0;
-  $scope.search_ch = 0;
-  $scope.type_link = 0;
-  $scope.current_occup = 0;
-  $scope.eco_activity = 0;
-  $scope.employment_relat = 0;
-  $scope.last_entry = 0;
-  $scope.week_work_hours_avg = 0;
-  $scope.field_activity = 0;
-  $scope.inst_links = 0;
+  $scope.data2 = {first_work: 0, search_ch: 0, type_link: 0, current_occup: 0, eco_activity: 0, employment_relat: 0, last_entry: 0, week_work_hours_avg: 0, field_activity: 0, inst_links: 0};
 
   // Part 3
-  $scope.first_work = 0;
-  $scope.career_relat = 0;
-  $scope.labour_forms = 0;
-  $scope.eco_activity_alumn = 0;
-  $scope.monthly_income = 0;
+  $scope.data3 = { first_work: 0, career_relat: 0, labour_forms: 0, eco_activity_alumn: 0, monthly_income: 0};
 
   // Part 4
-  $scope.create_company = 0;
-  $scope.main_difficulty = 0;
+  $scope.data4 = {create_company: 0, main_difficulty: 0};
 
   // Part 5
-  $scope.time_company = 0;
-  $scope.career_relat = 0;
-  $scope.eco_activity_company = 0;
-  $scope.company_monthly_avg = 0;
+  $scope.data5 = {time_company: 0, career_relat: 0, eco_activity_company: 0, company_monthly_avg: 0};
 
   // Part 6
-  $scope.exp_months = 0;
-  $scope.study_exp_reality = 0;
-  $scope.useful_knowledge = {work:0, life:0};
-  $scope.work_contributes = 0;
-  $scope.work_satisfaction = 0;
-  $scope.study_level = 0;
-  $scope.additional_interest = 0;
-  $scope.other_work = 0;
-  $scope.should_earn_more = 0;
+  $scope.data6 = {exp_months: 0, study_exp_reality: 0, useful_knowledge: {work:0, life:0}, work_contributes: 0, work_satisfaction: 0, study_level: 0, additional_interest: 0, other_work: 0, should_earn_more: 0};
 
   // Part 7
-  $scope.looking_first_job = 0;
-  $scope.months_looking_job = 0;
-  $scope.get_job = 0;
-  $scope.difficult_get_job = 0;
-  $scope.search_ch_job = 0;
+  $scope.data7 = {looking_first_job: 0, months_looking_job: 0, get_job: 0, difficult_get_job: 0, search_ch_job: 0};
+
+  $scope.enviar = function(data1,data2,data3,data4,data5,data6,data7) {
+    console.log(data1);
+    console.log(data2);
+    console.log(data3);
+    console.log(data4);
+    console.log(data5);
+    console.log(data6);
+    console.log(data7);
+    // $http.post('http://localhost/questions/?action=PartC/saveData', data ).then(function(res) {console.log(res);});
+    // $scope.next();
+  };
 });
 
 app.controller("Part_E", function ($scope) {
