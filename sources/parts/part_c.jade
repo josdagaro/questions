@@ -4,33 +4,33 @@ md-content.md-padding(ng-controller='Part_C')
       h2 Plan de vida
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='previous()') Regresar
-      md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
+      md-button(class="md-raised md-primary" ng-click='enviar(data)') Continuar
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
         md-card-title
           span 1. ¿Qué ha pensado hacer en el largo plazo? (múltiple respuesta)
         md-card-content(layout='column')
-          md-checkbox(ng-model='long_term') Iniciar una nueva carrera técnica
-          md-checkbox(ng-model='long_term') Iniciar una nueva carrera tecnológica
-          md-checkbox(ng-model='long_term') Iniciar una nueva carrera universitaria
-          md-checkbox(ng-model='long_term') Estudiar un posgrado en Colombia
-          md-checkbox(ng-model='long_term') Estudiar un posgrado fuera de Colombia
-          md-checkbox(ng-model='long_term') Trabajar en Colombia
-          md-checkbox(ng-model='long_term') Trabajar fuera de Colombia
-          md-checkbox(ng-model='long_term') Crear una empresa
-          md-checkbox(ng-model='long_term') Otro
+          md-checkbox(ng-checked="exists(1, data.long_term)" ng-click="toggle(1, data.long_term)") Iniciar una nueva carrera técnica
+          md-checkbox(ng-checked="exists(2, data.long_term)" ng-click="toggle(2, data.long_term)") Iniciar una nueva carrera tecnológica
+          md-checkbox(ng-checked="exists(3, data.long_term)" ng-click="toggle(3, data.long_term)") Iniciar una nueva carrera universitaria
+          md-checkbox(ng-checked="exists(4, data.long_term)" ng-click="toggle(4, data.long_term)") Estudiar un posgrado en Colombia
+          md-checkbox(ng-checked="exists(5, data.long_term)" ng-click="toggle(5, data.long_term)") Estudiar un posgrado fuera de Colombia
+          md-checkbox(ng-checked="exists(6, data.long_term)" ng-click="toggle(6, data.long_term)") Trabajar en Colombia
+          md-checkbox(ng-checked="exists(7, data.long_term)" ng-click="toggle(7, data.long_term)") Trabajar fuera de Colombia
+          md-checkbox(ng-checked="exists(8, data.long_term)" ng-click="toggle(8, data.long_term)") Crear una empresa
+          md-checkbox(ng-checked="exists(9, data.long_term)" ng-click="toggle(9, data.long_term)") Otro
     div(flex='')
       md-card
         md-card-title
           span 2. ¿Desde el momento del primer grado de Educación Superior, cuáles actividades de formación ha realizado? (múltiple respuesta)
         md-card-content(layout='column')
-          md-checkbox(ng-model='activity') Seminarios/Cursos
-          md-checkbox(ng-model='activity') Diplomados
-          md-checkbox(ng-model='activity') Técnicos
-          md-checkbox(ng-model='activity') Tecnológicos
-          md-checkbox(ng-model='activity') Universitarios
-          md-checkbox(ng-model='activity') Especialización
-          md-checkbox(ng-model='activity') Maestría
-          md-checkbox(ng-model='activity') Doctorado
-          md-checkbox(ng-model='activity') Ninguna
+          md-checkbox(ng-checked="exists(1, data.activity)" ng-click="toggle(1, data.activity)") Seminarios/Cursos
+          md-checkbox(ng-checked="exists(2, data.activity)" ng-click="toggle(2, data.activity)") Diplomados
+          md-checkbox(ng-checked="exists(3, data.activity)" ng-click="toggle(3, data.activity)") Técnicos
+          md-checkbox(ng-checked="exists(4, data.activity)" ng-click="toggle(4, data.activity)") Tecnológicos
+          md-checkbox(ng-checked="exists(5, data.activity)" ng-click="toggle(5, data.activity)") Universitarios
+          md-checkbox(ng-checked="exists(6, data.activity)" ng-click="toggle(6, data.activity)") Especialización
+          md-checkbox(ng-checked="exists(7, data.activity)" ng-click="toggle(7, data.activity)") Maestría
+          md-checkbox(ng-checked="exists(8, data.activity)" ng-click="toggle(8, data.activity)") Doctorado
+          md-checkbox(ng-checked="exists(9, data.activity)" ng-click="toggle(9, data.activity)") Ninguna
