@@ -1,95 +1,111 @@
-md-content.md-padding(ng-controller='Part_F')
+md-content.md-padding(ng-controller='Part_E')
   div(layout='row' layout-align="end center")
     div(flex='')   
       h2 Contacto
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='previous()') Regresar
-      md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
+      md-button(class="md-raised md-primary" ng-click='enviar(data)') Continuar
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
         md-card-title
           span 1. ¿Cómo calificaría su sentido de pertenencia con la Institución de Educación Superior donde estudió?
         md-card-content
-          md-select(ng-model="classify_sense_belong")
-            md-option(value="1") Bajo
-            md-option(value="2") Medio
-            md-option(value="3") Alto
+          md-input-container
+            label Calificación
+            md-select(ng-model="data.classify_sense_belong")
+              md-option(value="1") Bajo
+              md-option(value="2") Medio
+              md-option(value="3") Alto
     div(flex='')
       md-card
         md-card-title
           span 2. De acuerdo con su experiencia, ¿cómo evalúa sus posibilidades laborales derivadas de su condición de graduado de la Institución de educación superior que lo formó?
         md-card-content
-          md-select(ng-model="eval_work_possib")
-            md-option(value="1") Ninguna
-            md-option(value="2") Pocas
-            md-option(value="3") Moderadas
-            md-option(value="4") Buenas
+          md-input-container
+            label Oportunidades
+            md-select(ng-model="data.eval_work_possib")
+              md-option(value="1") Ninguna
+              md-option(value="2") Pocas
+              md-option(value="3") Moderadas
+              md-option(value="4") Buenas
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
         md-card-title
           span 3. Si tuviera la oportunidad de cursar de nuevo sus estudios de pregrado ¿volvería nuevamente a estudiar en esta institución?
         md-card-content
-          md-select(ng-model="study_again")
-            md-option(value="1") Si
-            md-option(value="2") No
+          md-input-container
+            label Si/No
+            md-select(ng-model="data.study_again")
+              md-option(value="1") Si
+              md-option(value="2") No
     div(flex='')
       md-card
         md-card-title
           span 4. ¿Cuál sería la principal razón para querer volver a esta Institución? (única respuesta)
         md-card-content
-          md-select(ng-model="reason_study_again")
-            md-option(value="1") Calidad de la formación
-            md-option(value="2") Calidad de los profesores
-            md-option(value="3") Reconocimiento de la institución
-            md-option(value="4") Fundamentación para crear empresa
-            md-option(value="5") Los recursos de apoyo al proceso de formación
-            md-option(value="6") Posibilidad de encontrar empleo rápidamente
-            md-option(value="7") Otras
+          md-input-container
+            label Razón
+            md-select(ng-model="data.reason_study_again")
+              md-option(value="1") Calidad de la formación
+              md-option(value="2") Calidad de los profesores
+              md-option(value="3") Reconocimiento de la institución
+              md-option(value="4") Fundamentación para crear empresa
+              md-option(value="5") Los recursos de apoyo al proceso de formación
+              md-option(value="6") Posibilidad de encontrar empleo rápidamente
+              md-option(value="7") Otras
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
         md-card-title
           span 5. ¿Cuál sería la principal razón para no querer volver a esta Institución? (única respuesta)
         md-card-content
-          md-select(ng-model="reason_no_study_again")
-            md-option(value="1") Baja calidad en la formación
-            md-option(value="2") Los docentes no cuentan con la preparación adecuada
-            md-option(value="3") Poco reconocimiento de la institución
-            md-option(value="4") Poca fundamentación para crear empresa
-            md-option(value="5") La institución no cuenta con los recursos necesarios para apoyar el proceso de formación
-            md-option(value="6") Valor de los programas supera la disponibilidad de recursos
-            md-option(value="7") Otra
+          md-input-container
+            label Razón
+            md-select(ng-model="data.reason_no_study_again")
+              md-option(value="1") Baja calidad en la formación
+              md-option(value="2") Los docentes no cuentan con la preparación adecuada
+              md-option(value="3") Poco reconocimiento de la institución
+              md-option(value="4") Poca fundamentación para crear empresa
+              md-option(value="5") La institución no cuenta con los recursos necesarios para apoyar el proceso de formación
+              md-option(value="6") Valor de los programas supera la disponibilidad de recursos
+              md-option(value="7") Otra
     div(flex='')
       md-card
         md-card-title
           span 6. ¿En el futuro, le gustaría cursar otros estudios en esta institución?
         md-card-content
-          md-select(ng-model="want_other_study")
-            md-option(value="1") Si me gustaría
-            md-option(value="2") No me gustaría
-            md-option(value="3") Ya estoy cursando otros estudios en esta Institución
+          md-input-container
+            label Si/No
+            md-select(ng-model="data.want_other_study")
+              md-option(value="1") Si me gustaría
+              md-option(value="2") No me gustaría
+              md-option(value="3") Ya estoy cursando otros estudios en esta Institución
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
         md-card-title
           span 7. ¿Principalmente, qué otros estudios le gustaría cursar en esta institución? (única respuesta)
         md-card-content
-          md-select(ng-model="other_study")
-            md-option(value="1") Seminarios/Cursos
-            md-option(value="2") Diplomados
-            md-option(value="3") Técnicos
-            md-option(value="4") Tecnológicos
-            md-option(value="5") Universitarios
-            md-option(value="6") Especialización
-            md-option(value="7") Maestría
-            md-option(value="8") Doctorado
+          md-input-container
+            label Estudios
+            md-select(ng-model="data.other_study")
+              md-option(value="1") Seminarios/Cursos
+              md-option(value="2") Diplomados
+              md-option(value="3") Técnicos
+              md-option(value="4") Tecnológicos
+              md-option(value="5") Universitarios
+              md-option(value="6") Especialización
+              md-option(value="7") Maestría
+              md-option(value="8") Doctorado
     div(flex='')
       md-card
         md-card-title
           span 8. ¿Recomendaría a un bachiller seleccionar el programa que estudió en esta Institución?
         md-card-content
-          md-select(ng-model="reason_study_again")
-            md-option(value="1") Si
-            md-option(value="2") No
+          md-input-container
+            label Si/No
+            md-select(ng-model="data.reason_study_again")
+              md-option(value="1") Si
+              md-option(value="2") No

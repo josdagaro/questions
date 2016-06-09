@@ -4,7 +4,7 @@ md-content.md-padding(ng-controller='Part_F')
       h2 Contacto
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='previous()') Regresar
-      md-button(class="md-raised md-primary" ng-click='enviar()') Finalizar
+      md-button(class="md-raised md-primary" ng-click='enviar(data)') Finalizar
   div(layout='row' layout-align="end center")
     div(flex='')
       md-card
@@ -14,22 +14,22 @@ md-content.md-padding(ng-controller='Part_F')
         md-card-content
           md-input-container
             label Nombre
-            input(type='text' ng-model='full_name')
+            input(type='text' ng-model='data.full_name')
           md-input-container
             label Relación
-            input(type='text' ng-model='relationship')
+            input(type='text' ng-model='data.relationship')
           md-input-container
             label País
-            input(type='text' ng-model='contry')
+            input(type='text' ng-model='data.contry')
           md-input-container
             label Departamento
-            input(type='text' ng-model='departament')
+            input(type='text' ng-model='data.departament')
           md-input-container
             label Ciudad
-            input(type='text' ng-model='city')
+            input(type='text' ng-model='data.city')
           md-input-container
             label Telefono Fijo
-            input(type='text' ng-model='res_phone')
+            input(type='text' ng-model='data.res_phone')
           md-input-container
             label Telefono Celular
-            input(type='text' ng-model='mob_phone')
+            input(type='text' ng-model='data.mob_phone')
