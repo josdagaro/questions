@@ -13,17 +13,17 @@
           	$json = null;
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
-
-            if ($this->session->exists ()) {
+            //if ($this->session->exists ()) {
+            if (true) {
               $check = false;
               $vars = array ();
 
               foreach ($request as $key => $value) {
-                if ($key != 'performace' && !isset ($value)) {
+                if ($key != 'performans' && !isset ($value)) {
                   $check = true;
                   break;
                 }
-                else if ($key != 'performace') $vars [$key] = $value;
+                else if ($key != 'performans') $vars [$key] = $value;
               }
 
             	if (!$check) {
@@ -31,22 +31,29 @@
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  if (isset ($request->performace)) $vars ['performace'] = $request->performace;
+                  if ($request->performans != "") $vars ['performace'] = intval ($request->performans);
                   else $vars ['performace'] = null;
 
-        	        $this->model->setData (
-        	         $this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
+                  $datica = array (
+        	         //$this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
+                   1, intval ($vars ['civil_state']), intval ($vars ['children_numb']), intval ($vars ['housing']),
                    serialize ($vars ['limitations']), $vars ['performace']
-        	        );
+                 );
 
-                  $json = array ('status' => true);
+        	        /*$this->model->setData (
+        	         //$this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
+                   1, intval ($vars ['civil_state']), intval ($vars ['children_numb']), intval ($vars ['housing']),
+                   serialize ($vars ['limitations']), $vars ['performace']
+                 );*/
+                 $json = array ('vars' => $datica);
+                  //$json = array ('status' => true);
                 }
                 else $json = array ('status' => false, 'message' => 'Some field is null');
             	}
               else $json = array ('status' => false, 'message' => 'Some field does not exists');
             }
 
-            echo json_encode ($json);
+            json_encode ($json);
         }
 
         public function loadData () {
