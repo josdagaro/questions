@@ -14,7 +14,7 @@ app.controller("main", function ($scope) {
 });
 
 app.controller("Part_A", function($scope, $http){
-  $scope.civil_state = "";
+  $scope.civil_state = "dfgdfg";
   $scope.children_num;
 
   $scope.housing = "";
@@ -52,9 +52,9 @@ app.controller("Part_A", function($scope, $http){
   $scope.on_performans = function() {
     return !$scope.exists('No Tengo', $scope.limitations) && $scope.limitations.length > 0;
   };
-
+  var vars = {civil_state:$scope.civil_state, children_numb:$scope.children_num, housing:$scope.housing, limitations:$scope.limitations, performace:$scope.performans};
   $scope.enviar = function() {
-    $http.post('http://192.168.0.18/questions/?action=PartA/saveData', {civil_state:$scope.civil_state, children_numb:$scope.children_num, housing:$scope.housing, limitations:$scope.limitations, performace:$scope.performans} ).then(function(res) {
+    $http.post('http://localhost/questions/?action=PartA/saveData', vars ).then(function(res) {
       console.log(res);
     });
     // $scope.next();

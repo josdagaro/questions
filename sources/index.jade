@@ -4,11 +4,11 @@ html(lang='en' ng-app='Questions')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     // Angular Material style sheet
     link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css')
-    link(rel="stylesheet", href="/client/css/style.css")
+    link(rel="stylesheet", href="/questions/client/css/style.css")
   body()
     div(layout='row')
       md-toolbar
-        .md-toolbar-tools Bienvenidos a Seguimiento de graduados 
+        .md-toolbar-tools Bienvenidos a Seguimiento de graduados
     div(layout='row')
       md-content(style='width:100%' ng-controller='main')
         md-tabs(md-dynamic-height='', md-border-bottom='' md-selected='selectedIndex')
@@ -17,16 +17,16 @@ html(lang='en' ng-app='Questions')
             include parts/part_a.jade
           //Formulario Parte B
           md-tab(label='Competencias')
-            include parts/part_b.jade            
+            include parts/part_b.jade
           //Formulario Parte C
           md-tab(label='Plan de Vida')
             include parts/part_c.jade
-                
-          //Formulario Parte D    
+
+          //Formulario Parte D
           md-tab(label='Situacion Laboral')
             md-content.md-padding(ng-controller='Part_C')
               div(layout='row' layout-align="end center")
-                div(flex='')   
+                div(flex='')
                   h2 Situación laboral
                 div(flex='row' layout='row' layout-align="end center")
                   md-button(class="md-raised md-primary" ng-click='previous()') Regresar
@@ -122,7 +122,7 @@ html(lang='en' ng-app='Questions')
                           md-option(value='4') Empresario/Empleador
                           md-option(value='5') Empleado de empresa familiar sin remuneración
               div(layout='row' layout-align="end center")
-                div(flex='')   
+                div(flex='')
                   h2 Graduados empleados – Empleo principal
               div(layout='row' layout-align="end center")
                 div(flex='')
@@ -161,7 +161,7 @@ html(lang='en' ng-app='Questions')
                           md-option(value='1') Contrato a término fijo
                           md-option(value='2') Contrato a término indefinido
                           md-option(value='3') Contrato de prestación de servicios
-                          md-option(value='4') Otro tipo de contrato                          
+                          md-option(value='4') Otro tipo de contrato
                 div(flex='')
                   md-card
                     md-card-title
@@ -205,7 +205,7 @@ html(lang='en' ng-app='Questions')
                           md-option(value='14')  Servicios Sociales y de Salud
                           md-option(value='15')  Otras Actividades de Servicios Comunitarios, Sociales y Personales
                           md-option(value='16')  Hogares Privados con Servicio Doméstico
-                          md-option(value='17')  Organizaciones y Órganos Extraterritoriales           
+                          md-option(value='17')  Organizaciones y Órganos Extraterritoriales
                 div(flex='')
                   md-card
                     md-card-title
@@ -224,7 +224,7 @@ html(lang='en' ng-app='Questions')
                       span 14. ¿Cuál fue su ingreso laboral en el mes pasado? (Incluya propinas y comisiones. No incluya horas extras, viáticos, ni ayudas en especie)
                     md-card-content
                       md-input-container
-                        label Ingreso 
+                        label Ingreso
                         input(type='number' ng-model='last_entry')
                 div(flex='')
                   md-card
@@ -241,7 +241,7 @@ html(lang='en' ng-app='Questions')
                       span 16. ¿Cómo clasificaría el ámbito de las actividades de la empresa donde labora?
                     md-card-content
                       md-input-container
-                        label Ambito 
+                        label Ambito
                         md-select(ng-model="field_activity")
                           md-option(value='1') Local (a nivel municipio)
                           md-option(value='2') Regional (a nivel departamento)
@@ -257,16 +257,16 @@ html(lang='en' ng-app='Questions')
                         md-select(ng-model="inst_links")
                           md-option(value='1') Si
                           md-option(value='2') NO
-                
+
           //Formulario Parte E
           md-tab(label='Institucion Educativa')
             include parts/part_e.jade
-            
+
           //Formulario Parte F
           md-tab(label='Contacto')
             include parts/part_f.jade
-              
-              
+
+
     // Angular Material requires Angular.js Libraries
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
@@ -275,4 +275,4 @@ html(lang='en' ng-app='Questions')
     // Angular Material Library
     script(src='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js')
     // Your application bootstrap
-    script(src='/client/js/app.js')
+    script(src='/questions/client/js/app.js')
