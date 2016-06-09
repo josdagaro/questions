@@ -4,21 +4,21 @@ md-content.md-padding(ng-controller='Part_B')
       h2 Competencias
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='previous()') Regresar
-      md-button(class="md-raised md-primary" ng-click='enviar()') Continuar
+      md-button(class="md-raised md-primary" ng-click='enviar(data)') Continuar
   md-card
     md-card-content
       h3 Nivel de dominio de un segundo idioma 
-      md-checkbox(ng-model='not_lenguage' ng-click="clean()") Ninguno
+      md-checkbox(ng-model='not_lenguage' ng-click="clean(lenguages_config)") Ninguno
       div(layout='row' layout-align="center center")
         div(flex='')
           p 1. ¿Cuál(es) idioma(s) ha estudiado?
-        div(flex='' layout='column' layout-align="center center" ng-repeat='(key, data) in lenguages')
-          md-checkbox(ng-model='data[0]' style='text-transform:capitalize' ng-click='toogle()') {{key}}
+        div(flex='' layout='column' layout-align="center center" ng-repeat='(key, item) in data.lenguages')
+          md-checkbox(ng-model='item[0]' style='text-transform:capitalize' ng-click='toogle()') {{key}}
 
       div(layout='row' layout-align="center center" ng-hide='not_lenguage')
         div(flex='' layout='column' layout-align="center center")
           p 2. ¿Cómo califica su nivel de competencia en HABLA?
-        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in data.lenguages")
           md-input-container
             label Nivel
             md-select(ng-model='lenguage[1]' ng-disabled='!lenguage[0] || not_lenguage')
@@ -29,7 +29,7 @@ md-content.md-padding(ng-controller='Part_B')
       div(layout='row' layout-align="center center" ng-hide='not_lenguage')
         div(flex='' layout='column' layout-align="center center")
           p 3. ¿Cómo califica su nivel de competencia en ESCUCHA?
-        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in data.lenguages")
           md-input-container
             label Nivel
             md-select(ng-model='lenguage[2]' ng-disabled='!lenguage[0]')
@@ -40,7 +40,7 @@ md-content.md-padding(ng-controller='Part_B')
       div(layout='row' layout-align="center center" ng-hide='not_lenguage')
         div(flex='' layout='column' layout-align="center center")
           p 4. ¿Cómo califica su nivel de competencia en LECTURA?
-        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in data.lenguages")
           md-input-container
             label Nivel
             md-select(ng-model='lenguage[3]' ng-disabled='!lenguage[0]')
@@ -51,7 +51,7 @@ md-content.md-padding(ng-controller='Part_B')
       div(layout='row' layout-align="center center" ng-hide='not_lenguage')
         div(flex='' layout='column' layout-align="center center")
           p 5. ¿Cómo califica su nivel de competencia en ESCRITURA?
-        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in lenguages")
+        div(flex='' layout='column' layout-align="center center" ng-repeat="lenguage in data.lenguages")
           md-input-container
             label Nivel
             md-select(ng-model='lenguage[4]' ng-disabled='!lenguage[0]')
@@ -62,7 +62,7 @@ md-content.md-padding(ng-controller='Part_B')
     md-card-content
       h3 Competencias Desarrolladas
       md-grid-list(md-cols="4" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height="3:4" md-gutter="1px")
-        md-grid-tile(md-colspan='{{competence[2]}}' md-rowspan='1' ng-repeat='competence in competences')   
+        md-grid-tile(md-colspan='{{competence[2]}}' md-rowspan='1' ng-repeat='competence in data.competences')   
           md-card
             md-card-title
               span {{$index + 1}} . {{competence[0]}}
@@ -78,7 +78,7 @@ md-content.md-padding(ng-controller='Part_B')
     md-card-content
       h3 De acuerdo a la contribución de la Institución que lo formó,
       md-grid-list(md-cols="4" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height="3:4" md-gutter="1px")
-        md-grid-tile(md-colspan='4' md-rowspan='1' ng-repeat='outstanding in outstandings')   
+        md-grid-tile(md-colspan='4' md-rowspan='1' ng-repeat='outstanding in data.outstandings')   
           md-card
             md-card-title
               span {{$index + 25}} . {{outstanding[0]}}
@@ -86,4 +86,4 @@ md-content.md-padding(ng-controller='Part_B')
               md-input-container
                 label Numero de la Competencia
                 md-select(ng-model='outstanding[1]')
-                    md-option(value='{{$index + 1}}' ng-repeat='competence in competences') {{$index + 1}}
+                    md-option(value='{{$index + 1}}' ng-repeat='competence in data.competences') {{$index + 1}}
