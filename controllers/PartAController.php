@@ -14,16 +14,17 @@
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
 
-            if ($this->session->exists ()) {
+            //if ($this->session->exists ()) {
+            if (true) {
               $check = false;
               $vars = array ();
 
               foreach ($request as $key => $value) {
-                if ($key != 'performace' && !isset ($value)) {
+                if ($key != 'performans' && !isset ($value)) {
                   $check = true;
                   break;
                 }
-                else if ($key != 'performace') $vars [$key] = $value;
+                else if ($key != 'performans') $vars [$key] = $value;
               }
 
             	if (!$check) {
@@ -31,13 +32,13 @@
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  if (isset ($request->performace)) $vars ['performace'] = $request->performace;
+                  if ($request->performans != "") $vars ['performace'] = $request->performans;
                   else $vars ['performace'] = null;
 
         	        $this->model->setData (
-        	         $this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
-                   serialize ($vars ['limitations']), $vars ['performace']
-        	        );
+        	         $this->session->getValue ('user')['id'], intval ($vars ['civil_state']), intval ($vars ['children_num']),
+                   intval ($vars ['housing']), serialize ($vars ['limitations']), intval ($vars ['performace'])
+                  );
 
                   $json = array ('status' => true);
                 }

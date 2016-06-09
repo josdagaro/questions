@@ -6,8 +6,8 @@
             $config = Config::singleton ();
 
             parent::__construct (
-                'mysql:host=' . $config->get ('databaseHost').';dbname=' . $config->get ('databaseName'),
-                $config->get ('databaseUser'), $config->get ('databasePassword')
+                'mysql:host=' . $config->get ('dbHost').';dbname=' . $config->get ('dbName'),
+                $config->get ('dbUser'), $config->get ('dbPassword')
             );
         }
 

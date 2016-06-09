@@ -32,13 +32,13 @@
 
               if ($validator->validate ()) {
                 $this->model->setData (
-                  $this->session->getValue ('user')['id'], serialize ($vars ['languages']), $vars ['present_ideas'], $vars ['com_orally'], $vars ['pers_convince'],
-                  $vars ['iden_symb'], $vars ['accept_dif'], $vars ['use_tools'], $vars ['learn_update'], $vars ['creative_innovative'],
-                  $vars ['search_analyze_manage_share'], $vars ['create_innovate'], $vars ['design_implement'], $vars ['solve_problem'],
-                  $vars ['abstraction'], $vars ['underst'], $vars ['take_culture'], $vars ['assume_resp'], $vars ['planning_time'],
-                  $vars ['computer_tools'], $vars ['imp_projects'], $vars ['team_work'], $vars ['indep_work'], $vars ['apply_val'],
-                  $vars ['adapt_changes'], $vars ['pressure_work'], $vars ['strong_comp'], $vars ['weak_comp'], $vars ['useful_comp'],
-                  $vars ['useless_comp']
+                  $this->session->getValue ('user')['id'], serialize ($vars ['languages']), intval ($vars ['present_ideas']), intval ($vars ['com_orally']), intval ($vars ['pers_convince']),
+                  intval ($vars ['iden_symb']), intval ($vars ['accept_dif']), intval ($vars ['use_tools']), intval ($vars ['learn_update']), intval ($vars ['creative_innovative']),
+                  intval ($vars ['search_analyze_manage_share']), intval ($vars ['create_innovate']), intval ($vars ['design_implement']), intval ($vars ['solve_problem']),
+                  intval ($vars ['abstraction']), intval ($vars ['underst']), intval ($vars ['take_culture']), intval ($vars ['assume_resp']), intval ($vars ['planning_time']),
+                  intval ($vars ['computer_tools']), intval ($vars ['imp_projects']), intval ($vars ['team_work']), intval ($vars ['indep_work']), intval ($vars ['apply_val']),
+                  intval ($vars ['adapt_changes']), intval ($vars ['pressure_work']), intval ($vars ['strong_comp']), intval ($vars ['weak_comp']), intval ($vars ['useful_comp']),
+                  intval ($vars ['useless_comp'])
                 );
 
                 $json = array ('status' => true);
