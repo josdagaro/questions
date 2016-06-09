@@ -4,7 +4,7 @@
 var app = angular.module('Questions', ['ngMaterial']);
 
 app.controller("main", function ($scope) {
-  $scope.selectedIndex = 3;
+  $scope.selectedIndex = 0;
   $scope.next = function () {
     $scope.selectedIndex = Math.min($scope.selectedIndex + 1, 5);
   };
@@ -15,37 +15,32 @@ app.controller("main", function ($scope) {
 });
 
 app.controller("Part_A", function ($scope, $http) {
-  $scope.civil_state = "dfgdfg";
-  $scope.children_num;
+  $scope.data = { civil_state: '', housing: '', children_num: '', performans: '', limitations: [] };
 
-  $scope.housing = "";
   $scope.housingOptions = 'En arriendo,Propia y la está pagando,Propia totalmente pagada,De un familiar sin pagar arriendo,De un tercero sin pagar arriendo,Otra'.split(',').map(function (option) {
     return option;
   });
 
-  $scope.limitations = [];
-  $scope.performans = "";
   $scope.limitationsOptions = 'Moverse o caminar,Usar sus brazos y manos,Ver a pesar de usar lentes o gafas,Oír aún con aparatos especiales,Hablar,Entender o aprender,Relacionarse con los demás por problemas mentales o emocionales,Otra limitación permanente'.split(',').map(function (option) {
     return option;
   });
 
   $scope.toggle = function (item, list) {
-    var not_have = $scope.exists('No Tengo', $scope.limitations);
+    var not_have = $scope.exists(0, $scope.data.limitations);
     if (!not_have) {
       var idx = list.indexOf(item);
       if (idx > -1) {
         list.splice(idx, 1);
         if ($scope.performans == item) {
-          console.log('debe ponerse blanco');
           $scope.performans = "";
         }
-      } else if (item == 'No Tengo') {
-        $scope.limitations = [item];
+      } else if (item == 0) {
+        $scope.data.limitations = [item];
       } else {
         list.push(item);
       }
-    } else if (not_have && item == 'No Tengo') {
-      $scope.limitations = [];
+    } else if (not_have && item == 0) {
+      $scope.data.limitations = [];
     }
   };
 
@@ -54,14 +49,14 @@ app.controller("Part_A", function ($scope, $http) {
   };
 
   $scope.on_performans = function () {
-    return !$scope.exists('No Tengo', $scope.limitations) && $scope.limitations.length > 0;
+    return !$scope.exists(0, $scope.data.limitations) && $scope.data.limitations.length > 0;
   };
-  var vars = { civil_state: $scope.civil_state, children_numb: $scope.children_num, housing: $scope.housing, limitations: $scope.limitations, performace: $scope.performans };
-  $scope.enviar = function () {
-    $http.post('http://localhost/questions/?action=PartA/saveData', vars).then(function (res) {
+
+  $scope.enviar = function (data) {
+    $http.post('http://localhost/questions/?action=PartA/saveData', data).then(function (res) {
       console.log(res);
     });
-    // $scope.next();
+    $scope.next();
   };
 });
 
@@ -164,7 +159,7 @@ app.controller("Part_D", function ($scope) {
   $scope.first_work = 0;
   $scope.career_relat = 0;
   $scope.labour_forms = 0;
-  $scope.eco_activity = 0;
+  $scope.eco_activity_alumn = 0;
   $scope.monthly_income = 0;
 
   // Part 4
@@ -180,7 +175,7 @@ app.controller("Part_D", function ($scope) {
   // Part 6
   $scope.exp_months = 0;
   $scope.study_exp_reality = 0;
-  $scope.useful_knowledge = 0;
+  $scope.useful_knowledge = { work: 0, life: 0 };
   $scope.work_contributes = 0;
   $scope.work_satisfaction = 0;
   $scope.study_level = 0;
