@@ -135,7 +135,7 @@ app.controller("Part_C", function ($scope, $http) {
   };
 });
 
-app.controller("Part_D", function ($scope) {
+app.controller("Part_D", function ($scope, $http) {
   // Part 1
   $scope.data1 = {more_time_activity: 0,remunerated_activity: 0, diligence_work: 0, after_dilig_work: 0, reasons_not_dilig: 0, work_availab: 0, activity_role: 0};
 
@@ -158,35 +158,29 @@ app.controller("Part_D", function ($scope) {
   $scope.data7 = {looking_first_job: 0, months_looking_job: 0, get_job: 0, difficult_get_job: 0, search_ch_job: 0};
 
   $scope.enviar = function(data1,data2,data3,data4,data5,data6,data7) {
-    console.log(data1);
-    console.log(data2);
-    console.log(data3);
-    console.log(data4);
-    console.log(data5);
-    console.log(data6);
-    console.log(data7);
-    // $http.post('http://localhost/questions/?action=PartC/saveData', data ).then(function(res) {console.log(res);});
-    // $scope.next();
+    $http.post('http://localhost/questions/?action=PartDOne/saveData', data1 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDTwo/saveData', data2 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDThree/saveData', data3 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDFour/saveData', data4 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDFive/saveData', data5 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDSix/saveData', data6 ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartDSeven/saveData', data7 ).then(function(res) {console.log(res);});
+    $scope.next();
   };
 });
 
-app.controller("Part_E", function ($scope) {
-  $scope.classify_sense_belong = 0;
-  $scope.eval_work_possib = 0;
-  $scope.study_again = 0;
-  $scope.reason_study_again = 0;
-  $scope.reason_no_study_again = 0;
-  $scope.want_other_study = 0;
-  $scope.other_study = 0;
-  $scope.recommend = 0;
+app.controller("Part_E", function ($scope, $http) {
+  $scope.data = {classify_sense_belong: 0, eval_work_possib: 0, study_again: 0, reason_study_again: 0, reason_no_study_again: 0, want_other_study: 0, other_study: 0, recommend: 0};
+  $scope.enviar = function(data) {
+    $http.post('http://localhost/questions/?action=PartE/saveData', data).then(function(res) {console.log(res);});
+    $scope.next();
+  };
 });
 
-app.controller("Part_F", function ($scope) {
-  $scope.full_name = "";
-  $scope.relationship = "";
-  $scope.contry = "";
-  $scope.departament = "";
-  $scope.city = "";
-  $scope.res_phone = "";
-  $scope.mob_phone = "";
+app.controller("Part_F", function ($scope, $http) {
+  $scope.data = {full_name: "", relationship: "", contry: "", departament: "", city: "", res_phone: "", mob_phone: ""};
+  $scope.enviar = function(data) {
+    $http.post('http://localhost/questions/?action=PartF/saveData', data).then(function(res) {console.log(res);});
+    $scope.next();
+  };
 });

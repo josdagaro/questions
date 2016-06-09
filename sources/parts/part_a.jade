@@ -11,7 +11,7 @@ md-content.md-padding(ng-controller='Part_A')
           md-card-title
             span 1. Estado civil actual:
           md-card-content
-            md-radio-group(ng-model="civil_state")
+            md-radio-group(ng-model="data.civil_state")
               md-radio-button(value='Soltero(a)') Soltero(a)
               md-radio-button(value='Casado(a)/ Unión libre') Casado(a)/ Unión libre
       md-grid-tile(md-colspan='1' md-rowspan='1')
@@ -38,7 +38,7 @@ md-content.md-padding(ng-controller='Part_A')
           md-card-content
             md-checkbox(ng-click="toggle(0, data.limitations)") No Tengo 
             div(ng-repeat="item in limitationsOptions")
-              md-checkbox(ng-checked="exists($index + 1, data.limitations)" ng-click="toggle($index +1, limitations)" ng-disabled="exists(0, data.limitations)") {{ item }}                 
+              md-checkbox(ng-checked="exists($index + 1, data.limitations)" ng-click="toggle($index +1, data.limitations)" ng-disabled="exists(0, data.limitations)") {{ item }}                 
       md-grid-tile(md-colspan='3' md-rowspan='1' ng-show='on_performans()')
         md-card
           md-card-title
