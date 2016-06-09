@@ -54,7 +54,7 @@ app.controller("Part_A", function ($scope, $http) {
 
   $scope.enviar = function (data) {
     $http.post('http://localhost/questions/?action=PartA/saveData', data).then(function (res) {
-      console.log(res);
+      console.log(JSON.parse(res));
     });
     $scope.next();
   };
@@ -117,14 +117,15 @@ app.controller("Part_B", function ($scope, $http) {
 
   $scope.enviar = function (data) {
     $http.post('http://localhost/questions/?action=PartB/saveData', data).then(function (res) {
-      console.log(res);
+      console.log(JSON.parse(res));
     });
     $scope.next();
   };
 });
 
-app.controller("Part_C", function ($scope) {
+app.controller("Part_C", function ($scope, $http) {
   $scope.data = { long_term: [], activity: [] };
+
   $scope.toggle = function (item, list) {
     console.log(list);
     var idx = list.indexOf(item);
@@ -139,8 +140,9 @@ app.controller("Part_C", function ($scope) {
     return list.indexOf(item) > -1;
   };
   $scope.enviar = function (data) {
-    console.log(data);
-    // $http.post('http://localhost/questions/?action=PartC/saveData', data ).then(function(res) {console.log(res);});
+    $http.post('http://localhost/questions/?action=PartC/saveData', data).then(function (res) {
+      console.log(res);
+    });
     $scope.next();
   };
 });
