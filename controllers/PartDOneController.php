@@ -1,14 +1,12 @@
 <?php
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
-    class PartAController extends Controller {
+    class PartDOneController extends Controller {
         public function __construct () {
           parent::__construct ();
-          require $this->config->get ('modelsF').'PartAModel.php';
-          $this->model = new PartAModel;
-          $data = array ('civil_state', 'children_numb', 'housing', 'limitations');
-          $size = sizeof ($data);
-          for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
+          require $this->config->get ('modelsF').'PartDOneModel.php';
+          $this->model = new PartDOneModel;
+          $this->items [1] = 'more_time_activity';
         }
 
         public function saveData () {
@@ -33,12 +31,22 @@
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  if (isset ($_POST ['performace'])) $vars ['performace'] = $_POST ['performace'];
-                  else $vars ['performace'] = null;
+                  $secondaryVars = array (
+                    'remunerated_activity', 'diligence_work', 'after_dilig_work', 'reasons_not_dilig', 'work_availab',
+                    'activity_role'
+                  );
+
+                  $size = sizeof ($secondaryVars);
+
+                  for ($i = 0; $i < $size; $i ++) {
+                    if (isset ($_POST [$secondaryVars [$i]])) $vars [$secondaryVars [$i]] = $_POST [$secondaryVars [$i]];
+                    else $vars [$secondaryVars [$i]] = null;
+                  }
 
         	        $this->model->setData (
-        	         $vars ['graduate_id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'], serialize ($vars ['limitations']), $vars ['performace']
-        	        );
+                    $vars ['graduate_id'], $vars ['more_time_activity'], $vars ['remunerated_activity'], $vars ['diligence_work'],
+                    $vars ['after_dilig_work'], $vars ['reasons_not_dilig'], $vars ['work_availab'], $vars ['activity_role']
+                  );
 
                   $json = array ('status' => true);
                 }
@@ -59,12 +67,7 @@
 
             if ($minData) {
               $dataset = array ();
-
-              foreach ($minData as $key => $value) {
-                $dataset [$key] = $value;
-                $dataset [$key]['limitations'] = unserialize ($value ['limitations']);
-              }
-
+              foreach ($minData as $key => $value) $dataset [$key] = $value;
               $json = array ('status' => true, 'dataset' => $dataset);
             }
             else $json = array ('status' => false, 'message' => 'Data is null');

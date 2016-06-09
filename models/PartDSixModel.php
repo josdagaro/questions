@@ -10,11 +10,17 @@
         	$query->bindParam (4, $usefulKnowledge);
         	$query->bindParam (5, $workContributes);
         	$query->bindParam (6, $workSatisfaction);
-            $query->bindParam (7, $studyLevel);
-            $query->bindParam (8, $additionalInterest);
-            $query->bindParam (9, $otherWork);
-            $query->bindParam (10, $shouldEarnMore);
+          $query->bindParam (7, $studyLevel);
+          $query->bindParam (8, $additionalInterest);
+          $query->bindParam (9, $otherWork);
+          $query->bindParam (10, $shouldEarnMore);
         	$query->execute ();
+        }
+
+				public function getData () {
+          $query = $this->database->prepare ('CALL getAllPartDSix ()');
+    			$query->execute ();
+    			return $query->fetchAll ();
         }
     }
 ?>

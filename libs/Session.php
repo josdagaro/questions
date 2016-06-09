@@ -10,9 +10,8 @@
         }
 
         static function exists () {
-            $check = false;
-            if (sizeof ($_SESSION) > 0) $check = true;
-            return $check;
+            if (sizeof ($_SESSION) > 0) return true;
+            else return false;
         }
     }
 ?>

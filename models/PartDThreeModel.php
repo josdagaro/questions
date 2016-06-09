@@ -1,4 +1,6 @@
 <?php
+	require Config::singleton ()->get ('modelsF').'Model.php';
+
 	class PartDThreeModel extends Model {
         public function __construct () {parent::__construct ();}
 
@@ -11,6 +13,12 @@
         	$query->bindParam (5, $ecoActivity);
         	$query->bindParam (6, $monthlyIncome);
         	$query->execute ();
+        }
+
+				public function getData () {
+          $query = $this->database->prepare ('CALL getAllPartDThree ()');
+    			$query->execute ();
+    			return $query->fetchAll ();
         }
     }
 ?>
