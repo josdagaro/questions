@@ -6,24 +6,35 @@
           parent::__construct ();
           require $this->config->get ('modelsF').'GraduateModel.php';
           $this->model = new GraduateModel;
-          $data = array ('card_id', 'full_name', 'country', 'email', 'pin');
-          $size = sizeof ($data);
-          for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
+        }
+
+        public function validate ($key, $vars) {
+          $size = sizeof ($vars);
+
+          for ($i = 0; $i < $size; $i ++) {
+            if ($key == $vars [$i]) return false;
+          }
+
+          return true;
         }
 
         public function saveData () {
           	header ('Content-type: application/json; charset=utf-8');
           	$json = null;
-            $size = sizeof ($this->items);
+            $postData = file_get_contents ("php://input");
+            $request = json_decode ($postData);
             $check = false;
             $vars = array ();
+            $secondaryVars = array ('program', 'birth_date', 'departament', 'city', 'res_phone', 'mob_phone');
 
-            for ($i = 0; $i < $size; $i ++) {
-              if (!isset ($_POST [$this->items [$i]])) {
+            foreach ($request as $key => $value) {
+              $validation = $this->validate ($key, $secondaryVars);
+
+              if ($validation && !isset ($value)) {
                 $check = true;
                 break;
               }
-              else $vars [$this->items [$i]] = $_POST [$this->items];
+              else if ($validation) $vars [$key] = $value;
             }
 
           	if (!$check) {
@@ -31,12 +42,8 @@
               $validator = new Validator ($vars);
 
               if ($validator->validate ()) {
-                $secondaryVars = array ('program', 'birth_date', 'departament', 'city', 'res_phone', 'mob_phone');
-                $size = sizeof ($secondaryVars);
-
-                for ($i = 0; $i < $size; $i ++) {
-                  if (isset ($_POST [$secondaryVars [$i]])) $vars [$secondaryVars [$i]] = $_POST [$secondaryVars [$i]];
-                  else $vars [$secondaryVars [$i]] = null;
+                foreach ($request as $key => $value) {
+                  if (!$this->validate ($key, $secondaryVars)) $vars [$key] = $value;
                 }
 
       	        $this->model->setData (
@@ -60,18 +67,22 @@
         public function sigin () {
           header ('Content-type: application/json; charset=utf-8');
           $json = null;
+          $postData = file_get_contents ("php://input");
+          $request = json_decode ($postData);
+          $check = false;
 
           if (!$this->session->exists ()) {
-            if (isset ($_POST ['card_id']) && isset ($_POST ['pin'])) {
+            if (isset ($request->card_id) && isset ($request->pin)) {
               require 'libs'.ds.'Validator.php';
-              $vars = array ('card_id' => $_POST ['card_id'], 'pin' => $_POST ['pin']);
+              $vars = array ('card_id' => $request->card_id, 'pin' => $request->pin);
               $validator = new Validator ($vars);
 
               if ($validator->validate ()) {
                 $minData = $this->model->getSpecificData ($vars ['card_id'], $vars ['pin']);
 
                 if ($minData) {
-                  foreach ($minData as $key => $value) {$dataset = $value;}
+                  foreach ($minData as $key => $value) $dataset = $value;
+                  $this->session->setValue ('user', $dataset);
                   unset ($dataset ['pin']);
                   $json = array ('status' => true, 'dataset' => $dataset);
                 }

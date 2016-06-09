@@ -4,11 +4,11 @@ html(lang='en' ng-app='Questions')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     // Angular Material style sheet
     link(rel='stylesheet', href='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css')
-    link(rel="stylesheet", href="/client/css/style.css")
+    link(rel="stylesheet", href="/questions/client/css/style.css")
   body()
     div(layout='row')
       md-toolbar
-        .md-toolbar-tools Bienvenidos a Seguimiento de graduados 
+        .md-toolbar-tools Bienvenidos a Seguimiento de graduados
     div(layout='row')
       md-content(style='width:100%' ng-controller='main')
         md-tabs(md-dynamic-height='', md-border-bottom='' md-selected='selectedIndex')
@@ -17,23 +17,23 @@ html(lang='en' ng-app='Questions')
             include parts/part_a.jade
           //Formulario Parte B
           md-tab(label='Competencias')
-            include parts/part_b.jade            
+            include parts/part_b.jade
           //Formulario Parte C
           md-tab(label='Plan de Vida')
             include parts/part_c.jade
-                
-          //Formulario Parte D    
+
+          //Formulario Parte D
           md-tab(label='Situacion Laboral')
             include parts/part_d.jade
           //Formulario Parte E
           md-tab(label='Institucion Educativa')
             include parts/part_e.jade
-            
+
           //Formulario Parte F
           md-tab(label='Contacto')
             include parts/part_f.jade
-              
-              
+
+
     // Angular Material requires Angular.js Libraries
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
@@ -42,4 +42,4 @@ html(lang='en' ng-app='Questions')
     // Angular Material Library
     script(src='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js')
     // Your application bootstrap
-    script(src='/client/js/app.js')
+    script(src='/questions/client/js/app.js')

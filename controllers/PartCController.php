@@ -6,25 +6,24 @@
           parent::__construct ();
           require $this->config->get ('modelsF').'PartCModel.php';
           $this->model = new PartCModel;
-          $this->items [1] = 'long_term';
-          $this->items [2] = 'activity';
         }
 
         public function saveData () {
           header ('Content-type: application/json; charset=utf-8');
           $json = null;
+          $postData = file_get_contents ("php://input");
+          $request = json_decode ($postData);
 
           if ($this->session->exists ()) {
-            $size = sizeof ($this->items);
             $check = false;
             $vars = array ();
 
-            for ($i = 0; $i < $size; $i ++) {
-              if (!isset ($_POST [$this->items [$i]])) {
+            foreach ($request as $key => $value) {
+              if (!isset ($value)) {
                 $check = true;
                 break;
               }
-              else $vars [$this->items [$i]] = $_POST [$this->items];
+              else $vars [$key] = $value;
             }
 
             if (!$check) {
@@ -33,7 +32,7 @@
 
               if ($validator->validate ()) {
                 $this->model->setData (
-                  $vars ['graduate_id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])
+                  $this->session->getValue ('user')['id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])
                 );
 
                 $json = array ('status' => true);

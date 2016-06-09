@@ -6,33 +6,24 @@
           parent::__construct ();
           require $this->config->get ('modelsF').'PartBModel.php';
           $this->model = new PartBModel;
-
-          $data = array (
-            'languages', 'present_ideas', 'com_orally', 'pers_convince', 'iden_symb', 'accept_dif', 'use_tools', 'learn_update',
-            'creative_innovative', 'search_analyze_manage_share', 'create_innovate', 'design_implement', 'solve_problem', 'abstraction',
-            'underst', 'take_culture', 'assume_resp', 'planning_time', 'computer_tools', 'imp_projects', 'team_work', 'indep_work',
-            'apply_val', 'adapt_changes', 'pressure_work', 'strong_comp', 'weak_comp', 'useful_comp', 'useless_comp'
-          );
-
-          $size = sizeof ($data);
-          for ($i = 0; $i < $size; $i ++) $this->items [$i + 1] = $data [$i];
         }
 
         public function saveData () {
           header ('Content-type: application/json; charset=utf-8');
           $json = null;
+          $postData = file_get_contents ("php://input");
+          $request = json_decode ($postData);
 
           if ($this->session->exists ()) {
-            $size = sizeof ($this->items);
             $check = false;
             $vars = array ();
 
-            for ($i = 0; $i < $size; $i ++) {
-              if (!isset ($_POST [$this->items [$i]])) {
+            foreach ($request as $key => $value) {
+              if (!isset ($value)) {
                 $check = true;
                 break;
               }
-              else $vars [$this->items [$i]] = $_POST [$this->items];
+              else $vars [$key] = $value;
             }
 
             if (!$check) {
@@ -41,7 +32,7 @@
 
               if ($validator->validate ()) {
                 $this->model->setData (
-                  $vars ['graduate_id'], serialize ($vars ['languages']), $vars ['present_ideas'], $vars ['com_orally'], $vars ['pers_convince'],
+                  $this->session->getValue ('user')['id'], serialize ($vars ['languages']), $vars ['present_ideas'], $vars ['com_orally'], $vars ['pers_convince'],
                   $vars ['iden_symb'], $vars ['accept_dif'], $vars ['use_tools'], $vars ['learn_update'], $vars ['creative_innovative'],
                   $vars ['search_analyze_manage_share'], $vars ['create_innovate'], $vars ['design_implement'], $vars ['solve_problem'],
                   $vars ['abstraction'], $vars ['underst'], $vars ['take_culture'], $vars ['assume_resp'], $vars ['planning_time'],
