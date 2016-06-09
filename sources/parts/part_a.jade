@@ -1,20 +1,19 @@
-
 md-content.md-padding(ng-controller='Part_A')
   div(layout='row' layout-align="end center")
-    div(flex='')   
+    div(flex='')
       h2 Información Personal y Familiar
     div(flex='row' layout='row' layout-align="end center")
       md-button(class="md-raised md-primary" ng-click='enviar(data)') Continuar
   div()        
     md-grid-list(md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3" md-gutter="8px" md-gutter-gt-sm="4px")
-      md-grid-tile(md-colspan='1' md-rowspan='1')       
+      md-grid-tile(md-colspan='1' md-rowspan='1')
         md-card
           md-card-title
             span 1. Estado civil actual:
           md-card-content
-            md-radio-group(ng-model="data.civil_state")
-              md-radio-button(value='1') Soltero(a)
-              md-radio-button(value='2') Casado(a)/ Unión libre
+            md-radio-group(ng-model="civil_state")
+              md-radio-button(value='Soltero(a)') Soltero(a)
+              md-radio-button(value='Casado(a)/ Unión libre') Casado(a)/ Unión libre
       md-grid-tile(md-colspan='1' md-rowspan='1')
         md-card
           md-card-title
@@ -37,13 +36,15 @@ md-content.md-padding(ng-controller='Part_A')
           md-card-title
             span 4. ¿Tiene usted alguna de las siguientes limitaciones permanentes? (múltiple respuesta)
           md-card-content
-            md-checkbox(ng-click="toggle(0, data.limitations)") No Tengo 
+            md-checkbox(ng-click="toggle('No Tengo', limitations)") No Tengo 
             div(ng-repeat="item in limitationsOptions")
-              md-checkbox(ng-checked="exists($index + 1, data.limitations)" ng-click="toggle($index + 1, data.limitations)" ng-disabled="exists(0, data.limitations)") {{ item }}                 
+              md-checkbox(ng-checked="exists(item, limitations)" ng-click="toggle(item, limitations)" ng-disabled="exists('No Tengo', limitations)") {{ item }}                 
       md-grid-tile(md-colspan='3' md-rowspan='1' ng-show='on_performans()')
         md-card
           md-card-title
             span 5. De las anteriores limitaciones, ¿cuál es la que más afecta su desempeño diario?:
           md-card-content
-            md-radio-group(ng-model="data.performans" )
-              md-radio-button(ng-repeat='limitation in data.limitations' value='{{limitation}}') {{limitationsOptions[limitation-1]}} 
+            md-radio-group(ng-model="performans" )
+              md-radio-button(ng-repeat='limitation in limitations' value='{{limitation}}') {{limitation}} 
+      md-grid-tile(md-colspan='2' md-rowspan='1')
+        md-card

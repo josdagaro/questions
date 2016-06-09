@@ -5,25 +5,42 @@
         public function __construct () {
           parent::__construct ();
           require $this->config->get ('modelsF').'PartDOneModel.php';
-          $this->model = new PartDOneModel;
-          $this->items [1] = 'more_time_activity';
+          $this->model = new PartDOneModel;;
+        }
+
+        public function validate ($key, $vars) {
+          $size = sizeof ($vars);
+
+          for ($i = 0; $i < $size; $i ++) {
+            if ($key == $vars [$i]) return false;
+          }
+
+          return true;
         }
 
         public function saveData () {
           	header ('Content-type: application/json; charset=utf-8');
           	$json = null;
+            $postData = file_get_contents ("php://input");
+            $request = json_decode ($postData);
+
+            $secondaryVars = array (
+              'remunerated_activity', 'diligence_work', 'after_dilig_work', 'reasons_not_dilig', 'work_availab',
+              'activity_role'
+            );
 
             if ($this->session->exists ()) {
-              $size = sizeof ($this->items);
               $check = false;
               $vars = array ();
 
-              for ($i = 0; $i < $size; $i ++) {
-                if (!isset ($_POST [$this->items [$i]])) {
+              foreach ($request as $key => $value) {
+                $validation = $this->validate ($key, $secondaryVars);
+
+                if ($validation && !isset ($value)) {
                   $check = true;
                   break;
                 }
-                else $vars [$this->items [$i]] = $_POST [$this->items];
+                else if ($validation) $vars [$key] = $value;
               }
 
             	if (!$check) {
@@ -31,21 +48,14 @@
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  $secondaryVars = array (
-                    'remunerated_activity', 'diligence_work', 'after_dilig_work', 'reasons_not_dilig', 'work_availab',
-                    'activity_role'
-                  );
-
-                  $size = sizeof ($secondaryVars);
-
-                  for ($i = 0; $i < $size; $i ++) {
-                    if (isset ($_POST [$secondaryVars [$i]])) $vars [$secondaryVars [$i]] = $_POST [$secondaryVars [$i]];
-                    else $vars [$secondaryVars [$i]] = null;
+                  foreach ($request as $key => $value) {
+                    if (!$this->validate ($key, $secondaryVars)) $vars [$key] = $value;
                   }
 
         	        $this->model->setData (
-                    $vars ['graduate_id'], $vars ['more_time_activity'], $vars ['remunerated_activity'], $vars ['diligence_work'],
-                    $vars ['after_dilig_work'], $vars ['reasons_not_dilig'], $vars ['work_availab'], $vars ['activity_role']
+                    $this->session->getValue ('user')['id'], $vars ['more_time_activity'], $vars ['remunerated_activity'],
+                    $vars ['diligence_work'], $vars ['after_dilig_work'], $vars ['reasons_not_dilig'], $vars ['work_availab'],
+                    $vars ['activity_role']
                   );
 
                   $json = array ('status' => true);

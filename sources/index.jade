@@ -8,7 +8,7 @@ html(lang='en' ng-app='Questions')
   body()
     div(layout='row')
       md-toolbar
-        .md-toolbar-tools Bienvenidos a Seguimiento de graduados 
+        .md-toolbar-tools Bienvenidos a Seguimiento de graduados
     div(layout='row')
       md-content(style='width:100%' ng-controller='main')
         md-tabs(md-dynamic-height='', md-border-bottom='' md-selected='selectedIndex')
@@ -17,7 +17,7 @@ html(lang='en' ng-app='Questions')
             include parts/part_a.jade
           //Formulario Parte B
           md-tab(label='Competencias')
-            include parts/part_b.jade            
+            include parts/part_b.jade
           //Formulario Parte C
           md-tab(label='Plan de Vida')
             include parts/part_c.jade  
@@ -27,11 +27,12 @@ html(lang='en' ng-app='Questions')
           //Formulario Parte E
           md-tab(label='Institucion Educativa')
             include parts/part_e.jade
+            
           //Formulario Parte F
           md-tab(label='Contacto')
             include parts/part_f.jade
-              
-              
+
+
     // Angular Material requires Angular.js Libraries
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js')
