@@ -49,13 +49,16 @@
 
                 if ($validator->validate ()) {
                   foreach ($request as $key => $value) {
-                    if (!$this->validate ($key, $secondaryVars)) $vars [$key] = $value;
+                    if (!$this->validate ($key, $secondaryVars)) {
+                      if ($value == "") $vars [$key] = null;
+                      else $vars [$key] = $value;
+                    }
                   }
 
         	        $this->model->setData (
-                    $this->session->getValue ('user')['id'], $vars ['more_time_activity'], $vars ['remunerated_activity'],
-                    $vars ['diligence_work'], $vars ['after_dilig_work'], $vars ['reasons_not_dilig'], $vars ['work_availab'],
-                    $vars ['activity_role']
+                    $this->session->getValue ('user')['id'], intval ($vars ['more_time_activity']), intval ($vars ['remunerated_activity']),
+                    intval ($vars ['diligence_work']), intval ($vars ['after_dilig_work']), intval ($vars ['reasons_not_dilig']),
+                    intval ($vars ['work_availab']), intval ($vars ['activity_role'])
                   );
 
                   $json = array ('status' => true);

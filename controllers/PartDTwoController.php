@@ -11,39 +11,24 @@
         public function saveData () {
           	header ('Content-type: application/json; charset=utf-8');
           	$json = null;
+            $postData = file_get_contents ("php://input");
+            $request = json_decode ($postData);
 
             if ($this->session->exists ()) {
               $vars = array ();
 
-            	if (isset ($_POST ['graduate_id'])) {
-                require 'libs'.ds.'Validator.php';
-                $vars ['graduate_id'] = $_POST ['graduate_id'];
-                $validator = new Validator ($vars);
+              foreach ($request as $key => $value) {
+                if ($value == "") $vars [$key] = null;
+                else $vars [$key] = $value;
+              }
 
-                if ($validator->validate ()) {
-                  $secondaryVars = array (
-                    'first_work', 'search_ch', 'type_link', 'current_occup', 'eco_activity', 'employment_relat', 'last_entry',
-                    'week_work_hours_avg', 'field_activity', 'inst_links'
-                  );
+        	    $this->model->setData (
+                $this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
+                serialize ($vars ['current_occup']), serialize ($vars ['eco_activity']), intval ($vars ['employment_relat']), floatval ($vars ['last_entry']),
+                floatval ($vars ['week_work_hours_avg']), intval ($vars ['field_activity']), intval ($vars ['inst_links'])
+              );
 
-                  $size = sizeof ($secondaryVars);
-
-                  for ($i = 0; $i < $size; $i ++) {
-                    if (isset ($_POST [$secondaryVars [$i]])) $vars [$secondaryVars [$i]] = $_POST [$secondaryVars [$i]];
-                    else $vars [$secondaryVars [$i]] = null;
-                  }
-
-        	        $this->model->setData (
-                    $vars ['graduate_id'], $vars ['first_work'], $vars ['search_ch'], $vars ['type_link'],
-                    $vars ['current_occup'], $vars ['eco_activity'], $vars ['employment_relat'], $vars ['last_entry'],
-                    $vars ['week_work_hours_avg'], $vars ['field_activity'], $vars ['inst_links']
-                  );
-
-                  $json = array ('status' => true);
-                }
-                else $json = array ('status' => false, 'message' => 'Some field is null');
-            	}
-              else $json = array ('status' => false, 'message' => 'Some field does not exists');
+              $json = array ('status' => true);
             }
 
             echo json_encode ($json);
@@ -58,7 +43,12 @@
 
             if ($minData) {
               $dataset = array ();
-              foreach ($minData as $key => $value) $dataset [$key] = $value;
+
+              foreach ($minData as $key => $value) {
+                $dataset [$key] = $value;
+                $dataset [$key]['current_occup'] = unserialize ($value ['current_occup']);
+                $dataset [$key]['eco_activity'] = unserialize ($value ['eco_activity']);
+              }
               $json = array ('status' => true, 'dataset' => $dataset);
             }
             else $json = array ('status' => false, 'message' => 'Data is null');

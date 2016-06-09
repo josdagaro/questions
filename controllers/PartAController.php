@@ -32,13 +32,12 @@
                 $validator = new Validator ($vars);
 
                 if ($validator->validate ()) {
-                  if ($request->performans != "") $vars ['performace'] = intval ($request->performans);
+                  if ($request->performans != "") $vars ['performace'] = $request->performans;
                   else $vars ['performace'] = null;
 
         	        $this->model->setData (
-        	         //$this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
-                   1, intval ($vars ['civil_state']), intval ($vars ['children_num']), intval ($vars ['housing']),
-                   serialize ($vars ['limitations']), $vars ['performace']
+        	         $this->session->getValue ('user')['id'], intval ($vars ['civil_state']), intval ($vars ['children_num']),
+                   intval ($vars ['housing']), serialize ($vars ['limitations']), intval ($vars ['performace'])
                   );
 
                   $json = array ('status' => true);
