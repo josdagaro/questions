@@ -13,6 +13,7 @@
           	$json = null;
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
+
             //if ($this->session->exists ()) {
             if (true) {
               $check = false;
@@ -34,26 +35,20 @@
                   if ($request->performans != "") $vars ['performace'] = intval ($request->performans);
                   else $vars ['performace'] = null;
 
-                  $datica = array (
+        	        $this->model->setData (
         	         //$this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
-                   1, intval ($vars ['civil_state']), intval ($vars ['children_numb']), intval ($vars ['housing']),
+                   1, intval ($vars ['civil_state']), intval ($vars ['children_num']), intval ($vars ['housing']),
                    serialize ($vars ['limitations']), $vars ['performace']
-                 );
+                  );
 
-        	        /*$this->model->setData (
-        	         //$this->session->getValue ('user')['id'], $vars ['civil_state'], $vars ['children_numb'], $vars ['housing'],
-                   1, intval ($vars ['civil_state']), intval ($vars ['children_numb']), intval ($vars ['housing']),
-                   serialize ($vars ['limitations']), $vars ['performace']
-                 );*/
-                 $json = array ('vars' => $datica);
-                  //$json = array ('status' => true);
+                  $json = array ('status' => true);
                 }
                 else $json = array ('status' => false, 'message' => 'Some field is null');
             	}
               else $json = array ('status' => false, 'message' => 'Some field does not exists');
             }
 
-            json_encode ($json);
+            echo json_encode ($json);
         }
 
         public function loadData () {
