@@ -13,7 +13,6 @@
           	$json = null;
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
-
             //if ($this->session->exists ()) {
             if (true) {
               $check = false;
@@ -36,7 +35,8 @@
                   else $vars ['performace'] = null;
 
         	        $this->model->setData (
-        	         $this->session->getValue ('user')['id'], intval ($vars ['civil_state']), intval ($vars ['children_num']),
+        	         //$this->session->getValue ('user')['id'], intval ($vars ['civil_state']), intval ($vars ['children_num']),
+                   1, intval ($vars ['civil_state']), intval ($vars ['children_num']),
                    intval ($vars ['housing']), serialize ($vars ['limitations']), intval ($vars ['performace'])
                   );
 
@@ -47,6 +47,8 @@
               else $json = array ('status' => false, 'message' => 'Some field does not exists');
             }
 
+            /*Testing*/
+            $this->session->setValue ('test', $vars);
             echo json_encode ($json);
         }
 
