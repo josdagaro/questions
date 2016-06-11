@@ -48,7 +48,7 @@
             }
 
             /*Testing*/
-            $this->session->setValue ('test', $vars);
+            //$this->session->setValue ('test', $vars);
             echo json_encode ($json);
         }
 
