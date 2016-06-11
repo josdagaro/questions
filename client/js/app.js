@@ -54,7 +54,7 @@ app.controller("Part_A", function ($scope, $http) {
 
   $scope.enviar = function (data) {
     $http.post('http://localhost/questions/?action=PartA/saveData', data).then(function (res) {
-      console.log(JSON.parse(res));
+      console.log(res);
     });
     $scope.next();
   };
@@ -117,7 +117,7 @@ app.controller("Part_B", function ($scope, $http) {
 
   $scope.enviar = function (data) {
     $http.post('http://localhost/questions/?action=PartB/saveData', data).then(function (res) {
-      console.log(JSON.parse(res));
+      console.log(res);
     });
     $scope.next();
   };

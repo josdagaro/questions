@@ -39,7 +39,7 @@ md-content.md-padding(ng-controller='Part_A')
             md-checkbox(ng-click="toggle(0, data.limitations)") No Tengo 
             div(ng-repeat="item in limitationsOptions")
               md-checkbox(ng-checked="exists($index + 1, data.limitations)" ng-click="toggle($index +1, data.limitations)" ng-disabled="exists(0, data.limitations)") {{ item }}                 
-      md-grid-tile(md-colspan='3' md-rowspan='1' ng-show='on_performans()')
+      md-grid-tile(md-colspan='3' md-rowspan='2' ng-show='on_performans()')
         md-card
           md-card-title
             span 5. De las anteriores limitaciones, ¿cuál es la que más afecta su desempeño diario?:
