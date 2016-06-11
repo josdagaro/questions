@@ -14,7 +14,11 @@
           $postData = file_get_contents ("php://input");
           $request = json_decode ($postData);
 
+          /* Testing */
+          $this->session->setValue ('test', $request);
+
           if ($this->session->exists ()) {
+            require 'libs'.ds.'Validator.php';
             $check = false;
             $vars = array ();
 
@@ -23,23 +27,26 @@
                 $check = true;
                 break;
               }
-              else $vars [$key] = $value;
+              else {
+                $vars [$key] = $value;
+                $validator = new Validator ($value);
+
+                if (!$validator->validate ()) {
+                  $check = true;
+                  break;
+                }
+              }
             }
 
             if (!$check) {
-              require 'libs'.ds.'Validator.php';
-              $validator = new Validator ($vars);
+              $this->model->setData (
+                //$this->session->getValue ('user')['id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])
+                1, serialize ($vars ['long_term']), serialize ($vars ['activity'])
+              );
 
-              if ($validator->validate ()) {
-                $this->model->setData (
-                  $this->session->getValue ('user')['id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])
-                );
-
-                $json = array ('status' => true);
-              }
-              else $json = array ('status' => false, 'message' => 'Some field is null');
+              $json = array ('status' => true);
             }
-            else $json = array ('status' => false, 'message' => 'Some field does not exists');
+            else $json = array ('status' => false, 'message' => 'Some field does not exists or is null');
           }
 
           echo json_encode ($json);
