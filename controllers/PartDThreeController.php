@@ -1,11 +1,11 @@
 <?php
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
-    class PartDTwoController extends Controller {
+    class PartDThreeController extends Controller {
         public function __construct () {
           parent::__construct ();
-          require $this->config->get ('modelsF').'PartDTwoModel.php';
-          $this->model = new PartDTwoModel;
+          require $this->config->get ('modelsF').'PartDThreeModel.php';
+          $this->model = new PartDThreeModel;
         }
 
         public function saveData () {
@@ -17,20 +17,25 @@
             //if ($this->session->exists ()) {
             if (true) {
               $vars = array ();
+              require 'libs'.ds.'Validator.php';
 
               foreach ($request as $key => $value) {
                 if ($value == "") $vars [$key] = null;
                 else $vars [$key] = $value;
               }
 
-        	    $this->model->setData (
-                //$this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
-                1, intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
-                serialize ($vars ['current_occup']), serialize ($vars ['eco_activity']), intval ($vars ['employment_relat']), floatval ($vars ['last_entry']),
-                floatval ($vars ['week_work_hours_avg']), intval ($vars ['field_activity']), intval ($vars ['inst_links'])
-              );
+              $validator = new Validator ($vars);
 
-              $json = array ('status' => true);
+              if ($validator->validate ($vars)) {
+        	      $this->model->setData (
+                  //$this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['career_relat']), intval ($vars ['labour_forms']),
+                  1, intval ($vars ['first_work']), intval ($vars ['career_relat']), intval ($vars ['labour_forms']),
+                  serialize ($vars ['eco_activity_alumn']), floatval ($vars ['monthly_income'])
+                );
+
+                $json = array ('status' => true);
+              }
+              else $json = array ('status' => false, 'message' => 'Some field is null or does not exists');
             }
 
             echo json_encode ($json);
@@ -45,12 +50,11 @@
 
             if ($minData) {
               $dataset = array ();
-
               foreach ($minData as $key => $value) {
                 $dataset [$key] = $value;
-                $dataset [$key]['current_occup'] = unserialize ($value ['current_occup']);
                 $dataset [$key]['eco_activity'] = unserialize ($value ['eco_activity']);
               }
+
               $json = array ('status' => true, 'dataset' => $dataset);
             }
             else $json = array ('status' => false, 'message' => 'Data is null');

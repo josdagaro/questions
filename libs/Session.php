@@ -10,7 +10,7 @@
         }
 
         static function exists () {
-            if (sizeof ($_SESSION) > 0) return true;
+            if (isset ($_SESSION ['user'])) return true;
             else return false;
         }
     }

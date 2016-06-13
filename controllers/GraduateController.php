@@ -51,13 +51,10 @@
 
       	        $this->model->setData (
       	         intval ($vars ['card_id']), $vars ['full_name'], $vars ['program'], $vars ['birth_date'], $vars ['country'], $vars ['departament'],
-                 $vars ['city'], $vars ['res_phone'], $vars ['mob_phone'], $vars ['email'], intval ($vars ['pin'])
+                 $vars ['city'], $vars ['res_phone'], $vars ['mob_phone'], $vars ['email'], intval ($vars ['pin']), intval ($vars ['role'])
       	        );
 
-                foreach ($vars as $key => $value) {if ($key != 'pin') $user [$key] = $value;} /*Creo el vector user para pasar todos los datos menos el pin, por seguridad.
-                                                                                              Como el foreach recorre el vector vars por sus llaves, entonces value va a cambiar en cada iteración
-                                                                                            */
-    	        	$json = array ('status' => true, 'user' => $user);
+    	        	$json = array ('status' => true);
               }
               else $json = array ('status' => false, 'message' => 'Some field is null');
           	}

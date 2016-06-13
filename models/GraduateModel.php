@@ -4,8 +4,8 @@
 	class GraduateModel extends Model {
     public function __construct () {parent::__construct ();}
 
-    public function setData ($cardId, $fullName, $program, $birthDate, $country, $departament, $city, $resPhone, $mobPhone, $email, $pin) {
-		  $query = $this->database->prepare ('CALL setGraduate (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    public function setData ($cardId, $fullName, $program, $birthDate, $country, $departament, $city, $resPhone, $mobPhone, $email, $pin, $role) {
+		  $query = $this->database->prepare ('CALL setGraduate (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
 		  $query->bindParam (1, $cardId);
 		  $query->bindParam (2, $fullName);
 		  $query->bindParam (3, $program);
@@ -17,6 +17,7 @@
 		  $query->bindParam (9, $mobPhone);
 		  $query->bindParam (10, $email);
 		  $query->bindParam (11, $pin);
+			$query->bindParam (12, $role);
 		  $query->execute ();
     }
 
