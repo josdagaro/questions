@@ -1,6 +1,52 @@
 'use strict';
 
-var app = angular.module('Questions', ['ngMaterial']);
+var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies']);
+
+app.config(function($routeProvider) {
+  $routeProvider
+    .when('/',{
+      controller: 'main',
+      templateUrl: "questions.html",
+      auth: 'graduate'
+    })
+    .when('/admin',{
+      controller: 'admin',
+      templateUrl: "admin.html",
+      auth: 'admin'
+    })
+    .when('/signin',{
+      controller: 'signin',
+      templateUrl: 'signin.html'
+    });
+
+});
+
+app.run(function($rootScope, $location, Auth) {
+  $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+    if (Auth.is_login()) {
+
+    }else {
+      $location.path('/signin')
+    }
+  });
+});
+
+app.service('Auth',function ($http) {
+  this.login = function (data) {
+    $http.post('http://localhost/questions/?action=Graduate/sigin', data ).then(function(res) {console.log(res);});
+  };
+  this.is_login = function () {
+    return false;
+  }
+});
+
+app.controller('signin', function ($scope, Auth) {
+  $scope.data = {user: '', pass:''};
+  $scope.signin = function(data){
+    $scope.data = {user: '', pass:''};
+    Auth.login(data);
+  };
+});
 
 app.controller("main", function ($scope) {
   $scope.selectedIndex = 0;

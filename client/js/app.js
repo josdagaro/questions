@@ -1,7 +1,49 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var app = angular.module('Questions', ['ngMaterial']);
+var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies']);
+
+app.config(function ($routeProvider) {
+  $routeProvider.when('/', {
+    controller: 'main',
+    templateUrl: "questions.html",
+    auth: 'graduate'
+  }).when('/admin', {
+    controller: 'admin',
+    templateUrl: "admin.html",
+    auth: 'admin'
+  }).when('/signin', {
+    controller: 'signin',
+    templateUrl: 'signin.html'
+  });
+});
+
+app.run(function ($rootScope, $location, Auth) {
+  $rootScope.$on("$routeChangeStart", function (evt, to, from) {
+    if (Auth.is_login()) {} else {
+      $location.path('/signin');
+    }
+  });
+});
+
+app.service('Auth', function ($http) {
+  this.login = function (data) {
+    $http.post('http://localhost/questions/?action=Graduate/sigin', data).then(function (res) {
+      console.log(res);
+    });
+  };
+  this.is_login = function () {
+    return false;
+  };
+});
+
+app.controller('signin', function ($scope, Auth) {
+  $scope.data = { user: '', pass: '' };
+  $scope.signin = function (data) {
+    $scope.data = { user: '', pass: '' };
+    Auth.login(data);
+  };
+});
 
 app.controller("main", function ($scope) {
   $scope.selectedIndex = 0;

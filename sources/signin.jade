@@ -1,0 +1,12 @@
+div(layout='row' layout-align="center center" class='login')
+  md-card
+    md-card-title
+      span Iniciar Sesión
+    md-card-content(layout='column')
+      md-input-container
+        label Usuario
+        input(ng-model='data.user' type='text')
+      md-input-container
+        label Contraseña
+        input(ng-model='data.pass' type='password')
+      md-button(class="md-raised md-primary" ng-click='signin(data.user, data.pass)') Acceder
