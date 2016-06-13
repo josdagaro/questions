@@ -40,7 +40,7 @@ app.run(function($rootScope, $location, Auth, $cookies) {
 
 app.service('Auth',function ($http, $cookies, $location) {
   this.login = function (data) {
-    $http.get('http://jsonplaceholder.typicode.com/posts/1', data ).then(function(res) {
+    $http.get('http://localhost/questions/?action=Graduate/sigin', data ).then(function(res) {
       $cookies.put('user', res.data.id);
       $cookies.put('rol', res.data.rol);
       if (res.data.rol == 0) {
