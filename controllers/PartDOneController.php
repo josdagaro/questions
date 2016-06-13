@@ -29,8 +29,7 @@
               'activity_role'
             );
 
-            //if ($this->session->exists ()) {
-            if (true) {
+            if ($this->session->exists ()) {
               $check = false;
               $vars = array ();
 
@@ -57,8 +56,7 @@
                   }
 
         	        $this->model->setData (
-                    //$this->session->getValue ('user')['id'], intval ($vars ['more_time_activity']), intval ($vars ['remunerated_activity']),
-                    1, intval ($vars ['more_time_activity']), intval ($vars ['remunerated_activity']),
+                    $this->session->getValue ('user')['id'], intval ($vars ['more_time_activity']), intval ($vars ['remunerated_activity']),
                     intval ($vars ['diligence_work']), intval ($vars ['after_dilig_work']), intval ($vars ['reasons_not_dilig']),
                     intval ($vars ['work_availab']), intval ($vars ['activity_role'])
                   );

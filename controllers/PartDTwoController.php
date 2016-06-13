@@ -14,8 +14,7 @@
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
 
-            //if ($this->session->exists ()) {
-            if (true) {
+            if ($this->session->exists ()) {
               $vars = array ();
 
               foreach ($request as $key => $value) {
@@ -24,8 +23,7 @@
               }
 
         	    $this->model->setData (
-                //$this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
-                1, intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
+                $this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['search_ch']), intval ($vars ['type_link']),
                 serialize ($vars ['current_occup']), serialize ($vars ['eco_activity']), intval ($vars ['employment_relat']), floatval ($vars ['last_entry']),
                 floatval ($vars ['week_work_hours_avg']), intval ($vars ['field_activity']), intval ($vars ['inst_links'])
               );

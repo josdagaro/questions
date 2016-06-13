@@ -15,8 +15,7 @@
           $request = json_decode ($postData);
           require 'libs'.ds.'Validator.php';
 
-          //if ($this->session->exists ()) {
-          if (true) {
+          if ($this->session->exists ()) {
             $check = false;
             $vars = array ();
 
@@ -42,11 +41,9 @@
             }
 
             if (!$check) {
-              // $this->session->getValue ('user')['id'], serialize ($vars ['lenguages']), serialize ($vars ['competences']),
-              // serialize ($vars ['outstandings'])
-
               $this->model->setData (
-                1, serialize ($vars ['lenguages']), serialize ($vars ['competences']), serialize ($vars ['outstandings'])
+                $this->session->getValue ('user')['id'], serialize ($vars ['lenguages']), serialize ($vars ['competences']),
+                serialize ($vars ['outstandings'])
               );
 
               $json = array ('status' => true);
