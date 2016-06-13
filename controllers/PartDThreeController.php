@@ -14,28 +14,20 @@
             $postData = file_get_contents ("php://input");
             $request = json_decode ($postData);
 
-            //if ($this->session->exists ()) {
-            if (true) {
+            if ($this->session->exists ()) {
               $vars = array ();
-              require 'libs'.ds.'Validator.php';
 
               foreach ($request as $key => $value) {
                 if ($value == "") $vars [$key] = null;
                 else $vars [$key] = $value;
               }
 
-              $validator = new Validator ($vars);
+        	    $this->model->setData (
+                $this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['career_relat']), intval ($vars ['labour_forms']),
+                serialize ($vars ['eco_activity_alumn']), floatval ($vars ['monthly_income'])
+              );
 
-              if ($validator->validate ($vars)) {
-        	      $this->model->setData (
-                  //$this->session->getValue ('user')['id'], intval ($vars ['first_work']), intval ($vars ['career_relat']), intval ($vars ['labour_forms']),
-                  1, intval ($vars ['first_work']), intval ($vars ['career_relat']), intval ($vars ['labour_forms']),
-                  serialize ($vars ['eco_activity_alumn']), floatval ($vars ['monthly_income'])
-                );
-
-                $json = array ('status' => true);
-              }
-              else $json = array ('status' => false, 'message' => 'Some field is null or does not exists');
+              $json = array ('status' => true);
             }
 
             echo json_encode ($json);

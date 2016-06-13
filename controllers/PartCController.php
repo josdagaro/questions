@@ -15,7 +15,7 @@
           $request = json_decode ($postData);
 
           /* Testing */
-          $this->session->setValue ('test', $request);
+          //$this->session->setValue ('test', $request);
 
           if ($this->session->exists ()) {
             require 'libs'.ds.'Validator.php';
@@ -40,8 +40,7 @@
 
             if (!$check) {
               $this->model->setData (
-                //$this->session->getValue ('user')['id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])
-                1, serialize ($vars ['long_term']), serialize ($vars ['activity'])
+                $this->session->getValue ('user')['id'], serialize ($vars ['long_term']), serialize ($vars ['activity'])                
               );
 
               $json = array ('status' => true);

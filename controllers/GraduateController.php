@@ -71,13 +71,13 @@
           $check = false;
 
           if (!$this->session->exists ()) {
-            if (isset ($request->card_id) && isset ($request->pin)) {
+            if (isset ($request->user) && isset ($request->pin)) {
               require 'libs'.ds.'Validator.php';
-              $vars = array ('card_id' => $request->card_id, 'pin' => $request->pin);
+              $vars = array ('user' => $request->user, 'pin' => $request->pin);
               $validator = new Validator ($vars);
 
               if ($validator->validate ()) {
-                $minData = $this->model->getSpecificData ($vars ['card_id'], $vars ['pin']);
+                $minData = $this->model->getSpecificData ($vars ['user'], $vars ['pin']);
 
                 if ($minData) {
                   foreach ($minData as $key => $value) $dataset = $value;
