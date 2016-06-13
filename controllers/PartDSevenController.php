@@ -1,11 +1,11 @@
 <?php
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
-    class PartDFiveController extends Controller {
+    class PartDSevenController extends Controller {
         public function __construct () {
           parent::__construct ();
-          require $this->config->get ('modelsF').'PartDFiveModel.php';
-          $this->model = new PartDFiveModel;
+          require $this->config->get ('modelsF').'PartDSevenModel.php';
+          $this->model = new PartDSevenModel;
         }
 
         public function saveData () {
@@ -14,7 +14,7 @@
           $postData = file_get_contents ("php://input");
           $request = json_decode ($postData);
 
-          if ($this->session->exists ()) {            
+          if ($this->session->exists ()) {
             $vars = array ();
 
             foreach ($request as $key => $value) {
@@ -23,8 +23,8 @@
             }
 
             $this->model->setData (
-              $this->session->getValue ('user')['id'], intval ($vars ['time_company']), intval ($vars ['career_relat']),
-              serialize ($vars ['eco_activity_company']), floatval ($vars ['company_monthly_avg'])
+              $this->session->getValue ('user')['id'], intval ($vars ['looking_first_job']), intval ($vars ['months_looking_job']),
+              intval ($vars ['get_job']), serialize ($vars ['difficult_get_job']), intval ($vars ['search_ch_job'])
             );
 
             $json = array ('status' => true);
@@ -45,7 +45,7 @@
 
               foreach ($minData as $key => $value) {
                 $dataset [$key] = $value;
-                $dataset [$key]['eco_activity_company'] = unserialize ($value ['eco_activity_company']);
+                $dataset [$key]['difficult_get_job'] = unserialize ($value ['difficult_get_job']);
               }
 
               $json = array ('status' => true, 'dataset' => $dataset);

@@ -15,7 +15,6 @@
           $request = json_decode ($postData);
 
           if ($this->session->exists ()) {
-            require 'libs'.ds.'Validator.php';
             $vars = array ();
 
             foreach ($request as $key => $value) {
