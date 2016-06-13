@@ -7,43 +7,59 @@ app.config(function($routeProvider) {
     .when('/',{
       controller: 'main',
       templateUrl: "questions.html",
-      auth: 'graduate'
+      auth: 0
     })
     .when('/admin',{
       controller: 'admin',
       templateUrl: "admin.html",
-      auth: 'admin'
+      auth: 1
     })
     .when('/signin',{
       controller: 'signin',
-      templateUrl: 'signin.html'
+      templateUrl: 'signin.html',
+      auth: 'public'
     });
 
 });
 
-app.run(function($rootScope, $location, Auth) {
+app.run(function($rootScope, $location, Auth, $cookies) {
   $rootScope.$on("$routeChangeStart", function(evt, to, from) {
-    if (Auth.is_login()) {
-
-    }else {
-      $location.path('/signin')
+    console.log(to);
+    if (to.$$route.auth != 'public') {
+      if (Auth.is_login()) {
+        console.log('Esta loggueado');
+        if (to.auth != $cookies.get('rol')) {
+          $location.path('/signin')
+        }
+      }else {
+        $location.path('/signin')
+      }
     }
   });
 });
 
-app.service('Auth',function ($http) {
+app.service('Auth',function ($http, $cookies, $location) {
   this.login = function (data) {
-    $http.post('http://localhost/questions/?action=Graduate/sigin', data ).then(function(res) {console.log(res);});
+    $http.get('http://jsonplaceholder.typicode.com/posts/1', data ).then(function(res) {
+      $cookies.put('user', res.data.id);
+      $cookies.put('rol', res.data.rol);
+      if (res.data.rol == 0) {
+        $location.path('/');
+      } else{
+        $location.path('/admin');
+      }
+
+    });
   };
   this.is_login = function () {
-    return false;
+    if ($cookies.get('user') != null) {return true;}else {return false;}
   }
 });
 
 app.controller('signin', function ($scope, Auth) {
-  $scope.data = {user: '', pass:''};
+  $scope.data = {user: '', pin:''};
   $scope.signin = function(data){
-    $scope.data = {user: '', pass:''};
+    $scope.data = {user: '', pin:''};
     Auth.login(data);
   };
 });
