@@ -1,6 +1,68 @@
 'use strict';
 
-var app = angular.module('Questions', ['ngMaterial']);
+var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies']);
+
+app.config(function($routeProvider) {
+  $routeProvider
+    .when('/',{
+      controller: 'main',
+      templateUrl: "questions.html",
+      auth: 0
+    })
+    .when('/admin',{
+      controller: 'admin',
+      templateUrl: "admin.html",
+      auth: 1
+    })
+    .when('/signin',{
+      controller: 'signin',
+      templateUrl: 'signin.html',
+      auth: 'public'
+    });
+
+});
+
+app.run(function($rootScope, $location, Auth, $cookies) {
+  $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+    console.log(to);
+    if (to.$$route.auth != 'public') {
+      if (Auth.is_login()) {
+        console.log('Esta loggueado');
+        if (to.auth != $cookies.get('rol')) {
+          $location.path('/signin')
+        }
+      }else {
+        $location.path('/signin')
+      }
+    }
+  });
+});
+
+app.service('Auth',function ($http, $cookies, $location) {
+  this.login = function (data) {
+    $http.get('http://localhost/questions/?action=Graduate/sigin', data ).then(function(res) {
+      $cookies.put('user', res.data.id);
+      $cookies.put('rol', res.data.rol);
+      if (res.data.rol == 0) {
+        $location.path('/');
+      } else{
+        $location.path('/admin');
+      }
+
+    });
+  };
+  this.is_login = function () {
+    if ($cookies.get('user') != null) {return true;}else {return false;}
+  }
+});
+
+app.controller('signin', function ($scope, Auth) {
+  $scope.data = {user: '', pin:''};
+  $scope.signin = function(data){
+    $scope.data = {user: '', pin:''};
+    Auth.login(data);
+  };
+});
 
 app.controller("main", function ($scope) {
   $scope.selectedIndex = 0;
@@ -49,7 +111,7 @@ app.controller("Part_A", function($scope, $http){
   };
 
   $scope.enviar = function (data) {
-    $http.post('http://localhost/questions/?action=PartA/saveData', data ).then(function(res) {console.log(JSON.parse(res));});
+    $http.post('http://localhost/questions/?action=PartA/saveData', data ).then(function(res) {console.log(res);});
     $scope.next();
   };
 });
@@ -108,7 +170,7 @@ app.controller("Part_B", function ($scope, $http) {
  $scope.toogle = function(){$scope.not_lenguage = false};
 
  $scope.enviar = function(data) {
-   $http.post('http://localhost/questions/?action=PartB/saveData', data ).then(function(res) {console.log(JSON.parse(res));});
+   $http.post('http://localhost/questions/?action=PartB/saveData', data ).then(function(res) {console.log(res);});
    $scope.next();
  };
 });
