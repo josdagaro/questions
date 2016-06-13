@@ -13,8 +13,10 @@
           $json = null;
           $postData = file_get_contents ("php://input");
           $request = json_decode ($postData);
+          require 'libs'.ds.'Validator.php';
 
-          if ($this->session->exists ()) {
+          //if ($this->session->exists ()) {
+          if (true) {
             $check = false;
             $vars = array ();
 
@@ -23,31 +25,37 @@
                 $check = true;
                 break;
               }
-              else $vars [$key] = $value;
+              else {
+                $vars [$key] = $value;
+
+                if ($key == 'competences' || $key == 'outstandings') {
+                  foreach ($value as $tKey => $tValue) {
+                      $validator = new Validator ($tValue);
+                      if (!$validator->validate ()) {
+                        $check = true;
+                        break;
+                      }
+
+                  }
+                }
+              }
             }
 
             if (!$check) {
-              require 'libs'.ds.'Validator.php';
-              $validator = new Validator ($vars);
+              // $this->session->getValue ('user')['id'], serialize ($vars ['lenguages']), serialize ($vars ['competences']),
+              // serialize ($vars ['outstandings'])
 
-              if ($validator->validate ()) {
-                $this->model->setData (
-                  $this->session->getValue ('user')['id'], serialize ($vars ['languages']), intval ($vars ['present_ideas']), intval ($vars ['com_orally']), intval ($vars ['pers_convince']),
-                  intval ($vars ['iden_symb']), intval ($vars ['accept_dif']), intval ($vars ['use_tools']), intval ($vars ['learn_update']), intval ($vars ['creative_innovative']),
-                  intval ($vars ['search_analyze_manage_share']), intval ($vars ['create_innovate']), intval ($vars ['design_implement']), intval ($vars ['solve_problem']),
-                  intval ($vars ['abstraction']), intval ($vars ['underst']), intval ($vars ['take_culture']), intval ($vars ['assume_resp']), intval ($vars ['planning_time']),
-                  intval ($vars ['computer_tools']), intval ($vars ['imp_projects']), intval ($vars ['team_work']), intval ($vars ['indep_work']), intval ($vars ['apply_val']),
-                  intval ($vars ['adapt_changes']), intval ($vars ['pressure_work']), intval ($vars ['strong_comp']), intval ($vars ['weak_comp']), intval ($vars ['useful_comp']),
-                  intval ($vars ['useless_comp'])
-                );
+              $this->model->setData (
+                1, serialize ($vars ['lenguages']), serialize ($vars ['competences']), serialize ($vars ['outstandings'])
+              );
 
-                $json = array ('status' => true);
-              }
-              else $json = array ('status' => false, 'message' => 'Some field is null');
+              $json = array ('status' => true);
             }
-            else $json = array ('status' => false, 'message' => 'Some field does not exists');
+            else $json = array ('status' => false, 'message' => 'Some field does not exists or is null');
           }
 
+          /* Testing */
+          // $this->session->setValue ('test', $request);
           echo json_encode ($json);
         }
 
@@ -64,6 +72,8 @@
               foreach ($minData as $key => $value) {
                 $dataset [$key] = $value;
                 $dataset [$key]['languages'] = unserialize ($value ['languages']);
+                $dataset [$key]['competences'] = unserialize ($value ['competences']);
+                $dataset [$key]['outstandings'] = unserialize ($value ['outstandings']);
               }
 
               $json = array ('status' => true, 'dataset' => $dataset);

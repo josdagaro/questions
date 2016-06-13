@@ -2,10 +2,10 @@
 -------
 
 Desarrolladores:
-* Argemiro Martinez Medrano (gráficas)
+* Argemiro Martinez Medrano (debe los perros calientes)
 * Ivan José Díaz Morales (frontend)
 * José David García Rodríguez (backend)
-* Ronald Fuentes (debe los Redbulls y los perros calientes)
+* Ronald Fuentes (debe los Redbulls)
 
 # Patrón de diseño, lenguajes, frameworks y demás
 -------
