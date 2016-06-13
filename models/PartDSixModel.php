@@ -1,4 +1,6 @@
 <?php
+	require Config::singleton ()->get ('modelsF').'Model.php';
+
 	class PartDSixModel extends Model {
         public function __construct () {parent::__construct ();}
 
