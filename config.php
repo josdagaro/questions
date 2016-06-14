@@ -9,5 +9,5 @@
     $config->set ('dbHost', 'localhost');
     $config->set ('dbName', 'questions');
     $config->set ('dbUser', 'root');
-    $config->set ('dbPassword', '');
+    $config->set ('dbPassword', 'base123');
 ?>
