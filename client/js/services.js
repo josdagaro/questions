@@ -3,7 +3,6 @@
 app.service('Auth',function ($http, $cookies, $location) {
   this.login = function (data) {
     $http.post('http://localhost/?action=Graduate/sigin', data ).then(function(res) {
-      console.log(res);
       $cookies.put('user', res.data.dataset.id);
       $cookies.put('rol', res.data.dataset.role);
       if (res.data.dataset.role == 0) {
