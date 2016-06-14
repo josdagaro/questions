@@ -37,6 +37,7 @@ CREATE TABLE `graduate` (
   `mob_phone` varchar(20) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
   `pin` int(4) NOT NULL,
+  `role` int(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `card_id_UNIQUE` (`card_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='Graduate dataset';
@@ -48,7 +49,7 @@ CREATE TABLE `graduate` (
 
 LOCK TABLES `graduate` WRITE;
 /*!40000 ALTER TABLE `graduate` DISABLE KEYS */;
-INSERT INTO `graduate` VALUES (1,123123,'José David',NULL,NULL,'Colombia',NULL,NULL,NULL,NULL,'josdagaro@gmail.com',1234);
+INSERT INTO `graduate` VALUES (1,123,'Jose David','Sistemas',NULL,'Colombia',NULL,NULL,NULL,NULL,'josdagaro@gmail.com',1234,0);
 /*!40000 ALTER TABLE `graduate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +78,6 @@ CREATE TABLE `part_a` (
 
 LOCK TABLES `part_a` WRITE;
 /*!40000 ALTER TABLE `part_a` DISABLE KEYS */;
-INSERT INTO `part_a` VALUES (1,1,7,3,'a:8:{i:0;i:8;i:1;i:7;i:2;i:6;i:3;i:5;i:4;i:4;i:5;i:3;i:6;i:2;i:7;i:1;}',3);
 /*!40000 ALTER TABLE `part_a` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,6 @@ CREATE TABLE `part_b` (
 
 LOCK TABLES `part_b` WRITE;
 /*!40000 ALTER TABLE `part_b` DISABLE KEYS */;
-INSERT INTO `part_b` VALUES (1,'O:8:\"stdClass\":8:{s:6:\"ingles\";a:5:{i:0;b:1;i:1;s:1:\"3\";i:2;s:1:\"2\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:7:\"frances\";a:5:{i:0;b:1;i:1;s:1:\"3\";i:2;s:1:\"3\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:8:\"italiano\";a:5:{i:0;b:1;i:1;s:1:\"2\";i:2;s:1:\"1\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:9:\"portugues\";a:5:{i:0;b:1;i:1;s:1:\"2\";i:2;s:1:\"2\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:8:\"mandarin\";a:5:{i:0;b:1;i:1;s:1:\"3\";i:2;s:1:\"3\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:6:\"aleman\";a:5:{i:0;b:1;i:1;s:1:\"3\";i:2;s:1:\"1\";i:3;s:1:\"2\";i:4;s:1:\"1\";}s:7:\"japones\";a:5:{i:0;b:1;i:1;s:1:\"1\";i:2;s:1:\"2\";i:3;s:1:\"1\";i:4;s:1:\"1\";}s:5:\"arabe\";a:5:{i:0;b:1;i:1;s:1:\"2\";i:2;s:1:\"2\";i:3;s:1:\"1\";i:4;s:1:\"1\";}}','O:8:\"stdClass\":24:{s:13:\"present_ideas\";a:3:{i:0;s:37:\"Exponer las ideas por medios escritos\";i:1;s:1:\"2\";i:2;i:2;}s:10:\"com_orally\";a:3:{i:0;s:34:\"Comunicarse oralmente con claridad\";i:1;s:1:\"2\";i:2;i:2;}s:13:\"pers_convince\";a:3:{i:0;s:42:\"Persuadir y convencer a sus interlocutores\";i:1;s:1:\"1\";i:2;i:2;}s:9:\"iden_symb\";a:3:{i:0;s:95:\"Identificar y utilizar sÃ­mbolos para comunicarse (lenguaje icÃ³nico, lenguaje no verbal, etc.)\";i:1;s:1:\"2\";i:2;i:2;}s:10:\"accpet_dif\";a:3:{i:0;s:62:\"Aceptar las diferencias y trabajar en contexto multiculturales\";i:1;s:1:\"2\";i:2;i:3;}s:9:\"use_tools\";a:3:{i:0;s:114:\"Utilizar herramientas informÃ¡ticas bÃ¡sicas (procesadores de texto, hojas de cÃ¡lculo, correo electrÃ³nico, etc.)\";i:1;s:1:\"3\";i:2;i:3;}s:12:\"learn_update\";a:3:{i:0;s:33:\"Aprender y mantenerse actualizado\";i:1;s:1:\"3\";i:2;i:2;}s:19:\"creative_innovative\";a:3:{i:0;s:24:\"Ser creativo e innovador\";i:1;s:1:\"2\";i:2;i:2;}s:27:\"search_analyze_manage_share\";a:3:{i:0;s:54:\"Buscar, analizar, administrar y compartir informaciÃ³n\";i:1;s:1:\"1\";i:2;i:2;}s:15:\"create_innovate\";a:3:{i:0;s:39:\"Crear, investigar y adoptar tecnologÃ­a\";i:1;s:1:\"2\";i:2;i:2;}s:16:\"design_implement\";a:3:{i:0;s:61:\"DiseÃ±ar e implementar soluciones con el apoyo de tecnologÃ­a\";i:1;s:1:\"2\";i:2;i:2;}s:13:\"solve_problem\";a:3:{i:0;s:43:\"Identificar , plantear y resolver problemas\";i:1;s:1:\"2\";i:2;i:2;}s:11:\"abstraction\";a:3:{i:0;s:47:\"Capacidad de abstracciÃ³n anÃ¡lisis y sÃ­ntesis\";i:1;s:1:\"1\";i:2;i:2;}s:7:\"underst\";a:3:{i:0;s:35:\"Comprender la realidad que lo rodea\";i:1;s:1:\"1\";i:2;i:2;}s:12:\"take_culture\";a:3:{i:0;s:33:\"Asumir una cultura de convivencia\";i:1;s:1:\"2\";i:2;i:2;}s:11:\"assume_resp\";a:3:{i:0;s:43:\"Asumir responsabilidades y tomar decisiones\";i:1;s:1:\"3\";i:2;i:2;}s:13:\"planning_time\";a:3:{i:0;s:103:\"Planificar y utilizar el tiempo de manera efectiva de tal forma que se logran los objetivos planteados.\";i:1;s:1:\"2\";i:2;i:3;}s:14:\"computer_tools\";a:3:{i:0;s:102:\"Utilizar herramientas informÃ¡ticas especializadas (paquetes estadÃ­sticos, software de diseÃ±o, etc.)\";i:1;s:1:\"1\";i:2;i:3;}s:12:\"imp_projects\";a:3:{i:0;s:29:\"Formular y ejecutar proyectos\";i:1;s:1:\"2\";i:2;i:2;}s:9:\"team_work\";a:3:{i:0;s:46:\"Trabajar en equipo para alcanzar metas comunes\";i:1;s:1:\"3\";i:2;i:3;}s:10:\"indep_work\";a:3:{i:0;s:60:\"Trabajar de manera independiente sin supervisiÃ³n permanente\";i:1;s:1:\"3\";i:2;i:3;}s:9:\"apply_val\";a:3:{i:0;s:61:\"Aplicar valores y Ã©tica profesional en el desempeÃ±o laboral\";i:1;s:1:\"4\";i:2;i:3;}s:13:\"adapt_changes\";a:3:{i:0;s:65:\"Adaptarse a los cambios (trabajar en contextos nuevos y diversos)\";i:1;s:1:\"3\";i:2;i:3;}s:13:\"pressure_work\";a:3:{i:0;s:22:\"Trabajar bajo presiÃ³n\";i:1;s:1:\"3\";i:2;i:2;}}','O:8:\"stdClass\":4:{s:11:\"strong_comp\";a:2:{i:0;s:78:\"Â¿cuÃ¡l de las competencias antes mencionadas considera que es la mÃ¡s fuerte?\";i:1;s:1:\"3\";}s:9:\"weak_comp\";a:2:{i:0;s:78:\"Â¿cuÃ¡l de las competencias antes mencionadas considera que es la mÃ¡s dÃ©bil?\";i:1;s:1:\"5\";}s:11:\"useful_comp\";a:2:{i:0;s:70:\"Â¿cuÃ¡l considera que ha sido la mÃ¡s Ãºtil en su trayectoria laboral?\";i:1;s:1:\"3\";}s:12:\"useless_comp\";a:2:{i:0;s:71:\"Â¿cuÃ¡l considera que ha sido la menos Ãºtil en su trayectoria laboral?\";i:1;s:1:\"4\";}}');
 /*!40000 ALTER TABLE `part_b` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +129,6 @@ CREATE TABLE `part_c` (
 
 LOCK TABLES `part_c` WRITE;
 /*!40000 ALTER TABLE `part_c` DISABLE KEYS */;
-INSERT INTO `part_c` VALUES (1,'a:8:{i:0;i:2;i:1;i:3;i:2;i:4;i:3;i:5;i:4;i:6;i:5;i:7;i:6;i:8;i:7;i:9;}','a:8:{i:0;i:3;i:1;i:1;i:2;i:4;i:3;i:5;i:4;i:6;i:5;i:7;i:6;i:8;i:7;i:9;}');
 /*!40000 ALTER TABLE `part_c` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,7 +664,6 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 ALTER DATABASE `questions` CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `setGraduate` */;
-ALTER DATABASE `questions` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -676,15 +673,14 @@ ALTER DATABASE `questions` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `setGraduate`(IN `pCardId` INT(11), IN `pFullName` VARCHAR(45), IN `pProgram` VARCHAR(45), IN `pBirthDate` DATE, IN `pCountry` VARCHAR(45), IN `pDepartament` VARCHAR(45), IN `pCity` VARCHAR(45), IN `pResPhone` VARCHAR(20), IN `pMobPhone` VARCHAR(20), IN `pEmail` VARCHAR(45), IN `pPin` INT(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `setGraduate`(IN `pCardId` INT(11), IN `pFullName` VARCHAR(45), IN `pProgram` VARCHAR(45), IN `pBirthDate` DATE, IN `pCountry` VARCHAR(45), IN `pDepartment` VARCHAR(45), IN `pCity` VARCHAR(45), IN `pResPhone` VARCHAR(20), IN `pMobPhone` VARCHAR(20), IN `pEmail` VARCHAR(45), IN `pPin` INT(4), IN `pRole` INT(1))
     NO SQL
-insert into graduate (card_id, full_name, program, birth_date, country, departament, city, res_phone, mob_phone, email, pin) values (pCardId, pFullName, pProgram, pBirthDate, pCountry, pDepartament, pCity, pResPhone, pMobPhone, pEmail, pPin) ;;
+insert into graduate (card_id, full_name, program, birth_date, country, department, city, res_phone, mob_phone, email, pin, role) values (pCardId, pFullName, pProgram, pBirthDate, pCountry, pDepartment, pCity, pResPhone, pMobPhone, pEmail, pPin, pRole) ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `questions` CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
 /*!50003 DROP PROCEDURE IF EXISTS `setPartA` */;
 ALTER DATABASE `questions` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -935,4 +931,4 @@ ALTER DATABASE `questions` CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-06-11 15:27:29
+-- Dump completed on 2016-06-13 20:15:45
