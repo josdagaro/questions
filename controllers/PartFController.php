@@ -1,5 +1,4 @@
 <?php
-<?php
     require Config::singleton ()->get ('controllersF').'Controller.php';
 
     class PartFController extends Controller {
