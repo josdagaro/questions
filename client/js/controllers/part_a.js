@@ -40,24 +40,21 @@ app.controller("Part_A", function($scope, $http){
     $scope.next();
   };
 });
-<<<<<<< HEAD
 
 
-app.controller("admin_Part_A", function($scope){
-  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.data = [300, 500, 100];
-   $scope.type = 'PolarArea';
-  // $http.post('http://localhost/?action=PartA/loadData').then(function(res) {
-  //   var data = res.data.dataset;
-  //   var counter = {'1':[0,0]};
-  //   for (var j in data) {
-  //     counter[1][data[j][1]-1] += 1;
-  //     console.log(counter);
-  //     $scope.data = counter[1];
-  //
-  //   }
-  // });
+app.controller("admin_Part_A", function($scope, $http){
+  $scope.labels1 = ["Soltero(a)", "Casado / Union Libre"];
+  $scope.labels3=  ['En arriendo,Propia y la está pagando', 'Propia totalmente pagada', 'De un familiar sin pagar arriendo', 'De un tercero sin pagar arriendo', 'Otra'];
+  $http.post('http://localhost/?action=PartA/loadData').then(function(res) {
+    var data = res.data.dataset;
+    var counter = {'1':[0,0], '3':[0,0,0,0,0,0]};
+    for (var j in data) {
+      counter[1][data[j][1]-1] += 1;
+      counter[3][data[j][3]-1] += 1;
+    }
+    console.log(counter[3]);
+    $scope.data1 = counter[1];
+    $scope.data3 = counter[3];
+  });
 
 });
-=======
->>>>>>> frontend

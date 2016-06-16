@@ -2,11 +2,8 @@
 
 var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies', 'chart.js']);
 
-<<<<<<< HEAD
-app.config(function($routeProvider, ChartJsProvider) {
-=======
+
 app.config(function($routeProvider) {
->>>>>>> frontend
   $routeProvider
     .when('/',{
       controller: 'main',
@@ -28,19 +25,6 @@ app.config(function($routeProvider) {
 
 app.run(function($rootScope, $location, Auth, $cookies) {
   $rootScope.$on("$routeChangeStart", function(evt, to, from) {
-    console.log(to);
-<<<<<<< HEAD
-    // if (to.$$route.auth != 'public') {
-    //   if (Auth.is_login()) {
-    //     console.log('Esta loggueado');
-    //     if (to.auth != $cookies.get('rol')) {
-    //       $location.path('/signin')
-    //     }
-    //   }else {
-    //     $location.path('/signin')
-    //   }
-    // }
-=======
     if (to.$$route.auth != 'public') {
       if (Auth.is_login()) {
         console.log('Esta loggueado');
@@ -51,6 +35,6 @@ app.run(function($rootScope, $location, Auth, $cookies) {
         $location.path('/signin')
       }
     }
->>>>>>> frontend
+
   });
 });

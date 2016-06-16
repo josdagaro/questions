@@ -10,8 +10,12 @@ html(lang='en' ng-app='Questions')
       title Questions
   body()
     div(layout='row')
-      md-toolbar
-        .md-toolbar-tools Bienvenidos a Seguimiento de graduados
+      md-toolbar(ng-controller='Bar')
+        .md-toolbar-tools 
+          h2
+            span Bienvenidos a Seguimiento de graduados
+          span(flex)
+          md-button(class="md-raised" aria-label="Learn More" ng-click='logout()') Cerrar Sesión
     div(ng-view)
     // Angular Material requires Angular.js Libraries
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js')
@@ -22,14 +26,12 @@ html(lang='en' ng-app='Questions')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-cookies.js')
     // Angular Material Library
     script(src='http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js')
-<<<<<<< HEAD
     script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js')
     script(src='http://jtblin.github.io/angular-chart.js/dist/angular-chart.js')
-=======
->>>>>>> frontend
     // Your application Config
     script(src='/client/js/app.js')
     // Your application Controllers
+    script(src='/client/js/controllers/bar.js')
     script(src='/client/js/controllers/admin.js')
     script(src='/client/js/controllers/main.js')
     script(src='/client/js/controllers/signin.js')
