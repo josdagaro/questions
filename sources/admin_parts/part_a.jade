@@ -1,0 +1,22 @@
+md-content.md-padding(ng-controller='admin_Part_A')
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      h2 Información Personal y Familiar
+  div(layout='row' layout-align="start center")
+    md-card
+      md-card-title
+        span 1. Estado civil actual:
+      md-card-content
+        canvas(id="pie" class="chart chart-pie" chart-data="data1" chart-labels="labels1")
+    md-card
+      md-card-title
+        span 3. La vivienda donde vive actualmente es:
+      md-card-content
+        canvas(id="doughnut" class="chart chart-doughnut" chart-data="data3" chart-labels="labels3")
+  div(layout='row' layout-align="start center")
+    md-card
+      md-card-title
+        span 5. De las anteriores limitaciones, ¿cuál es la que más afecta su desempeño diario?:
+      md-card-content
+        canvas(id="1" class="chart chart-doughnut" chart-data="data5" chart-labels="labels5")
+      

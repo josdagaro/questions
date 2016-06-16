@@ -1,0 +1,581 @@
+md-content.md-padding(ng-controller='Part_D')
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Situación laboral
+    div(flex='row' layout='row' layout-align="end center")
+      md-button(class="md-raised md-primary" ng-click='previous()') Regresar
+      md-button(class="md-raised md-primary" ng-click='enviar(data1,data2,data3,data4,data5,data6,data7)') Continuar
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 1. ¿En la actualidad, en qué actividad ocupa la mayor parte de su tiempo? (opción única)
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data1.more_time_activity")
+              md-option(value='1') Trabajando
+              md-option(value='2') Buscando trabajo
+              md-option(value='3') Estudiando
+              md-option(value='4') Oficios del hogar
+              md-option(value='5') Incapacitado permanente para trabajar
+              md-option(value='6') Otra actividad
+    div(flex='')
+      md-card
+        md-card-title
+          span 2. ¿Además de lo anterior, realiza alguna actividad remunerada? (opción única)
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data1.remunerated_activity")
+              md-option(value='1') Si, tengo una empresa/negocio/finca
+              md-option(value='2') Si, trabajo como empleado
+              md-option(value='3') Si, trabajo en un negocio familiar sin remuneración
+              md-option(value='4') No
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 3. ¿En el último mes ha hecho alguna diligencia para conseguir un trabajo o instalar un negocio?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data1.diligence_work")
+              md-option(value='1') Si
+              md-option(value='2') No
+    div(flex='')
+      md-card
+        md-card-title
+          span 4. ¿Desea conseguir un trabajo o instalar un negocio?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data1.after_dilig_work")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 5. ¿Aunque desea trabajar/instalar negocio por qué motivo no hizo diligencias durante el último mes? (opción única)
+        md-card-content
+          md-input-container
+            label Motivo
+            md-select(ng-model="data1.reasons_not_dilig")
+              md-option(value='1') Ya encontró trabajo
+              md-option(value='2') No hay trabajo disponible
+              md-option(value='3') Está esperando que lo llamen
+              md-option(value='4') Está cansado de buscar
+              md-option(value='5') No sabe cómo buscarlo
+              md-option(value='6') Los empleadores lo consideran muy joven
+              md-option(value='7') Responsabilidades familiares
+              md-option(value='8') Problemas de salud
+              md-option(value='9') Está estudiando
+    div(flex='')
+      md-card
+        md-card-title
+          span 6. Si le hubiera resultado algún trabajo remunerado, ¿estaba disponible la semana pasada para empezar a trabajar?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data1.work_availab")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 7. En esa actividad usted es: (opción única)
+        md-card-content
+          md-input-container
+            label Rol
+            md-select(ng-model="data1.activity_role")
+              md-option(value='1') Empleado de empresa particular
+              md-option(value='2') Empleado del gobierno
+              md-option(value='3') Trabajador independiente (sector público o privado)
+              md-option(value='4') Empresario/Empleador
+              md-option(value='5') Empleado de empresa familiar sin remuneración
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Graduados empleados – Empleo principal
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 8. ¿Es este su primer empleo?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data2.first_work")
+              md-option(value='1') Si
+              md-option(value='2') No
+    div(flex='')
+      md-card
+        md-card-title
+          span 9. ¿Qué canal de búsqueda le permitió conseguir el empleo actual? (opción única)
+        md-card-content
+          md-input-container
+            label Canal
+            md-select(ng-model="data2.search_ch")
+              md-option(value='1') Medios de comunicación
+              md-option(value='2') Bolsa de empleo de la institución
+              md-option(value='3') donde estudió
+              md-option(value='4') Otras bolsas de empleo (cajas de compensación, internet, head-hunters)
+              md-option(value='5') Redes sociales (familia, amigos, conocidos)
+              md-option(value='6') Servicio Público de Empleo (SPE) SENA
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 10. ¿Qué tipo de vinculación empresa/institución?
+        md-card-content
+          md-input-container
+            label Tipo
+            md-select(ng-model="data2.type_link")
+              md-option(value='1') Contrato a término fijo
+              md-option(value='2') Contrato a término indefinido
+              md-option(value='3') Contrato de prestación de servicios
+              md-option(value='4') Otro tipo de contrato                          
+    div(flex='')
+      md-card
+        md-card-title
+          span 11. Su ocupación actual es:
+        md-card-content
+          md-input-container
+            label Ocupación
+            md-select(ng-model="data2.current_occup")
+              md-option(value='1') Dirección y Gerencia
+              md-option(value='2') Ocupaciones en Finanzas y Administración
+              md-option(value='3') Ocupaciones en Ciencias Naturales, Aplicadas y relacionadas
+              md-option(value='4') Ocupaciones en Salud
+              md-option(value='5') Ocupaciones en Ciencias Sociales, Educación, Servicios Gubernamentales y Religión
+              md-option(value='6') Ocupaciones en Arte, Cultura, Esparcimiento y Deporte
+              md-option(value='7') Ocupaciones en Ventas y Servicios
+              md-option(value='8') Ocupaciones de la Explotación Primaria y Extractiva
+              md-option(value='9') Ocupaciones de la Operación de Equipos, del Transporte y Oficios
+              md-option(value='10') Ocupaciones de Procesamiento, Fabricación y Ensamble
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 12. Su actividad económica es:
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data2.eco_activity")
+              md-option(value='1') Agricultura, Ganadería, Caza y Silvicultura
+              md-option(value='2') Pesca
+              md-option(value='3') Explotación de Minas y Canteras
+              md-option(value='4') Industrias Manufactureras
+              md-option(value='5') Suministros de Electricidad, Gas y Agua
+              md-option(value='6') Construcción
+              md-option(value='7') Comercio; Reparación de Automotores, Motocicletas, Efectos Personales y Enseres Domésticos
+              md-option(value='8') Hoteles y Restaurantes
+              md-option(value='9') Transporte, Almacenamiento y Comunicaciones
+              md-option(value='10')  Intermediación Financiera
+              md-option(value='11')  Actividades Inmobiliarias de Alquiler y Empresariales y de Alquiler
+              md-option(value='12')  Administración Pública y Defensa; Seguridad Social de Afiliación Obligatoria
+              md-option(value='13')  Educación
+              md-option(value='14')  Servicios Sociales y de Salud
+              md-option(value='15')  Otras Actividades de Servicios Comunitarios, Sociales y Personales
+              md-option(value='16')  Hogares Privados con Servicio Doméstico
+              md-option(value='17')  Organizaciones y Órganos Extraterritoriales           
+    div(flex='')
+      md-card
+        md-card-title
+          span 13. ¿Qué tan relacionado está su empleo con la carrera que estudió?
+        md-card-content
+          md-input-container
+            label Relacion
+            md-select(ng-model="data2.employment_relat")
+              md-option(value='1') Directamente relacionado
+              md-option(value='2') Indirectamente relacionado
+              md-option(value='3') Nada relacionado
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 14. ¿Cuál fue su ingreso laboral en el mes pasado? (Incluya propinas y comisiones. No incluya horas extras, viáticos, ni ayudas en especie)
+        md-card-content
+          md-input-container
+            label Ingreso 
+            input(type='number' ng-model='data2.last_entry')
+    div(flex='')
+      md-card
+        md-card-title
+          span 15. ¿En promedio, cuántas horas a la semana le dedica a este empleo?
+        md-card-content
+          md-input-container
+            label Relacion
+            input(type='number' ng-model='data2.week_work_hours_avg')
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 16. ¿Cómo clasificaría el ámbito de las actividades de la empresa donde labora?
+        md-card-content
+          md-input-container
+            label Ambito 
+            md-select(ng-model="data2.field_activity")
+              md-option(value='1') Local (a nivel municipio)
+              md-option(value='2') Regional (a nivel departamento)
+              md-option(value='3') Nacional
+              md-option(value='4') Multinacional
+    div(flex='')
+      md-card
+        md-card-title
+          span 17. ¿Existen vínculos entre la Institución donde estudió y la organización en donde labora?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data2.inst_links")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Graduados que trabajan por cuenta propia:
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 18. ¿Es este su primer trabajo?
+        md-card-content
+          md-input-container
+            label Si/No 
+            md-select(ng-model="data3.first_work")
+              md-option(value='1') Si
+              md-option(value='2') No
+    div(flex='')
+      md-card
+        md-card-title
+          span 19. ¿Qué tan relacionadas están las actividades que realiza por cuenta propia con la carrera que estudió?
+        md-card-content
+          md-input-container
+            label Relacion
+            md-select(ng-model="data3.career_relat")
+              md-option(value='1') Directamente relacionado
+              md-option(value='2') Indirectamente relacionado
+              md-option(value='3') Nada relacionado
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 20. ¿Cuál de las siguientes formas de trabajo realiza en las actividades que desempeña por su cuenta? (opción única)
+        md-card-content
+          md-input-container
+            label Formas 
+            md-select(ng-model="data3.labour_forms")
+              md-option(value='1') Prestación de servicios
+              md-option(value='2') Trabajo por obra
+              md-option(value='3') Trabajo por piezas o a destajo
+              md-option(value='4') Trabajo por comisión
+              md-option(value='5') Venta por catálogo
+              md-option(value='6') Se dedica a un oficio
+    div(flex='')
+      md-card
+        md-card-title
+          span 21. ¿Qué tan relacionadas están las actividades que realiza por cuenta propia con la carrera que estudió?
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data3.eco_activity_alumn")
+              md-option(value='1') Agricultura, Ganadería, Caza y Silvicultura
+              md-option(value='2') Pesca
+              md-option(value='3') Explotación de Minas y Canteras
+              md-option(value='4') Industrias Manufactureras
+              md-option(value='5') Suministros de Electricidad, Gas y Agua
+              md-option(value='6') Construcción
+              md-option(value='7') Comercio; Reparación de Automotores, Motocicletas, Efectos Personales y Enseres Domésticos
+              md-option(value='8') Hoteles y Restaurantes
+              md-option(value='9') Transporte, Almacenamiento y Comunicaciones
+              md-option(value='10')  Intermediación Financiera
+              md-option(value='11')  Actividades Inmobiliarias de Alquiler y Empresariales y de Alquiler
+              md-option(value='12')  Administración Pública y Defensa; Seguridad Social de Afiliación Obligatoria
+              md-option(value='13')  Educación
+              md-option(value='14')  Servicios Sociales y de Salud
+              md-option(value='15')  Otras Actividades de Servicios Comunitarios, Sociales y Personales
+              md-option(value='16')  Hogares Privados con Servicio Doméstico
+              md-option(value='17')  Organizaciones y Órganos Extraterritoriales
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 22. ¿En promedio, cuál es el ingreso mensual que percibe por las actividades que realiza por cuenta propia?
+        md-card-content
+          md-input-container
+            label Ingresos
+            input(type='number' ng-model='data3.monthly_income')
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Interés de los graduados por crear empresa:
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 23. ¿Tiene interés por crear empresa?
+        md-card-content
+          md-input-container
+            label Si/No 
+            md-select(ng-model="data4.create_company")
+              md-option(value='1') Si
+              md-option(value='2') No
+    div(flex='')
+      md-card
+        md-card-title
+          span 24. ¿Cuál considera que es la principal dificultad en la creación de una empresa? (única respuesta)
+        md-card-content
+          md-input-container
+            label Dificultad
+            md-select(ng-model="data4.main_difficulty")
+              md-option(value='1') No estar seguro si la idea pueda convertirse en un negocio exitoso
+              md-option(value='2') Falta de recursos económicos propios
+              md-option(value='3') No poder encontrar socios de confianza
+              md-option(value='4') No tener conocimientos para la creación de una empresa
+              md-option(value='5') Difícil acceso a las entidades financieras
+              md-option(value='6') Falta de apoyo del gobierno
+              md-option(value='7') La costumbre de tener un salario fijo
+              md-option(value='8') Miedo para asumir el riesgo
+              md-option(value='9') Otros
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Graduados que son propietarios/socios de una empresa, finca o negocio particular:
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 25. ¿Hace cuánto tiempo tiene esta empresa?
+        md-card-content
+          md-input-container
+            label Tiempo 
+            md-select(ng-model="data5.time_company")
+              md-option(value='1') Menos de 1 mes
+              md-option(value='2') Entre 1 y 6 meses
+              md-option(value='3') Entre 7 meses y 1 año
+              md-option(value='4') Entre 1 y 2 años
+              md-option(value='5') Entre 2 y 3 años
+              md-option(value='6') Más de 3 años
+    div(flex='')
+      md-card
+        md-card-title
+          span 26. ¿Qué tan relacionadas están las actividades que realiza en su empresa con la carrera que estudió?
+        md-card-content
+          md-input-container
+            label Relacion
+            md-select(ng-model="data5.career_relat")
+              md-option(value='1') Directamente relacionado
+              md-option(value='2') Indirectamente relacionado
+              md-option(value='3') Nada relacionado
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 27. ¿Cuál es la actividad económica empresa?
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data5.eco_activity_company")
+              md-option(value='1') Agricultura, Ganadería, Caza y Silvicultura
+              md-option(value='2') Pesca
+              md-option(value='3') Explotación de Minas y Canteras
+              md-option(value='4') Industrias Manufactureras
+              md-option(value='5') Suministros de Electricidad, Gas y Agua
+              md-option(value='6') Construcción
+              md-option(value='7') Comercio; Reparación de Automotores, Motocicletas, Efectos Personales y Enseres Domésticos
+              md-option(value='8') Hoteles y Restaurantes
+              md-option(value='9') Transporte, Almacenamiento y Comunicaciones
+              md-option(value='10')  Intermediación Financiera
+              md-option(value='11')  Actividades Inmobiliarias de Alquiler y Empresariales y de Alquiler
+              md-option(value='12')  Administración Pública y Defensa; Seguridad Social de Afiliación Obligatoria
+              md-option(value='13')  Educación
+              md-option(value='14')  Servicios Sociales y de Salud
+              md-option(value='15')  Otras Actividades de Servicios Comunitarios, Sociales y Personales
+              md-option(value='16')  Hogares Privados con Servicio Doméstico
+              md-option(value='17')  Organizaciones y Órganos Extraterritoriales
+    div(flex='')
+      md-card
+        md-card-title
+          span 28. ¿Cuál es el ingreso promedio mensual que le corresponde por las actividades en su empresa? (Si no obtuvo ingreso, escriba $0)
+        md-card-content
+          md-input-container
+            label Ingresos
+            input(type='number' ng-model='data5.company_monthly_avg')
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Aspectos generales de las actividades laborales de los graduados:
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 29. ¿Cuántos meses de experiencia laboral profesional tiene?
+        md-card-content
+          md-input-container
+            label Meses
+            input(type='number' ng-model='data6.exp_months')
+    div(flex='')
+      md-card
+        md-card-title
+          span 30. Teniendo en cuenta todos los aspectos, hasta qué punto su actual situación laboral coincide con las expectativas que tenía cuando empezó sus estudios?
+        md-card-content
+          md-input-container
+            label Actividad
+            md-select(ng-model="data6.study_exp_reality")
+              md-option(value='1') Mejor de lo que me esperaba
+              md-option(value='2') Igual a lo que esperaba
+              md-option(value='3') Peor de lo que me esperaba
+              md-option(value='4') No tenía ninguna expectativa
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 31. ¿Qué tan útiles han sido los conocimientos, habilidades y destrezas aprendidas en su carrera en los siguientes dos aspectos?
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data6.useful_knowledge.work")
+              md-option(value='1') Muy útiles
+              md-option(value='2') Útiles
+              md-option(value='3') Poco útiles
+              md-option(value='4') Nada útiles
+          md-input-container
+            label En la vida
+            md-select(ng-model="data6.useful_knowledge.life")
+              md-option(value='1') Muy útiles
+              md-option(value='2') Útiles
+              md-option(value='3') Poco útiles
+              md-option(value='4') Nada útiles
+    div(flex='')
+      md-card
+        md-card-title
+          span 32. ¿Su trabajo actual está contribuyendo a su desarrollo y crecimiento personal?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data6.work_contributes")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 33. ¿Cómo calificaría su satisfacción con el trabajo actual?
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data6.work_satisfaction")
+              md-option(value='1') Muy Insatisfecho
+              md-option(value='2') Insatisfecho
+              md-option(value='3') Satisfecho
+              md-option(value='4') Muy Satisfecho                     
+    div(flex='')
+      md-card
+        md-card-title
+          span 34. ¿En su opinión, para el trabajo que está desempeñando, realmente qué nivel de estudios se requiere? (única respuesta)
+        md-card-content
+          md-input-container
+            label Estudio
+            md-select(ng-model="data6.study_level")
+              md-option(value='1') Básico
+              md-option(value='2') Bachiller
+              md-option(value='3') Técnico
+              md-option(value='4') Tecnológico
+              md-option(value='5') Universitario
+              md-option(value='6') Especialización
+              md-option(value='7') Maestría
+              md-option(value='8') Doctorado
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 35. ¿Está interesado en trabajar horas adicionales? (Contestar sólo si su jornada laboral principal es inferior a 48 horas, de lo contrario contestar “No aplica”)
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data6.additional_interest")
+              md-option(value='1') Si
+              md-option(value='2') No
+              md-option(value='3') No Aplica                                              
+    div(flex='')
+      md-card
+        md-card-title
+          span 36. ¿Ud. considera que debería estar en otro trabajo en donde pudiera desarrollar mejor sus competencias profesionales?
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data6.other_work")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 37. ¿Está interesado en trabajar horas adicionales? (Contestar sólo si su jornada laboral principal es inferior a 48 horas, de lo contrario contestar “No aplica”)
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data6.should_earn_more")
+              md-option(value='1') Si
+              md-option(value='2') No
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Graduados que están buscando empleo:
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 38. ¿Busca trabajo por primera vez o había trabajado antes por lo menos durante dos semanas consecutivas? 
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data7.looking_first_job")
+              md-option(value='1') Primera vez
+              md-option(value='2') Trabajó antes                                                                        
+    div(flex='')
+      md-card
+        md-card-title
+          span 39. ¿Ud. considera que debería estar en otro trabajo en donde pudiera desarrollar mejor sus competencias profesionales?
+        md-card-content
+          md-input-container
+            label Meses
+            input(type='number' ng-model='data7.months_looking_job')
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 40. ¿Considera que será fácil conseguir el empleo que busca?
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data7.get_job")
+              md-option(value='1') Si
+              md-option(value='2') No
+              md-option(value='3') No sabe                                              
+    div(flex='')
+      md-card
+        md-card-title
+          span 41. ¿Cuál considera la principal dificultad a la hora de conseguir el trabajo que busca? (única opción)
+        md-card-content
+          md-input-container
+            label Si/No
+            md-select(ng-model="data7.difficult_get_job")
+              md-option(value='1') No hay trabajo disponible en la ciudad en donde vive
+              md-option(value='2') No sabe cómo buscarlo
+              md-option(value='3') No encuentra el trabajo apropiado en su oficio o profesión
+              md-option(value='4') Carece de la experiencia necesaria
+              md-option(value='5') Los empleadores lo ven muy joven
+              md-option(value='6') Carece de las competencias requeridas
+              md-option(value='7') El salario que le ofrecen es muy bajo
+              md-option(value='8') Otro
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title
+          span 42. ¿Cuál es el canal de búsqueda de empleo que considera podría ser el más efectivo?
+        md-card-content
+          md-input-container
+            label En el Trabajo
+            md-select(ng-model="data7.search_ch_job")
+              md-option(value='1') Medios de comunicación
+              md-option(value='2') Bolsa de empleo de la institución donde estudió
+              md-option(value='3') Otras bolsas de empleo (cajas de compensación, internet, head-hunters)
+              md-option(value='4') Redes sociales (familia, amigos, conocidos)
+              md-option(value='5') Servicio Público de Empleo (SPE) SENA          

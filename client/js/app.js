@@ -1,18 +1,40 @@
 'use strict';
 
-var app = angular.module ('Questions', ['ngCookies', 'ui.router', 'ngMaterial', 'ngMessages', 'md.data.table']);
+var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies', 'chart.js']);
 
-app.config (function ($stateProvider, $urlRouterProvider, $locationProvider) {
-  $urlRouterProvider.otherwise ('/questions/user');
 
-  $stateProvider.state ('user', {    
-    url: '/questions/user',
-    templateUrl: '/questions/views/partials/user.html',
-    controller: 'UserCtrl'
+app.config(function($routeProvider) {
+  $routeProvider
+    .when('/',{
+      controller: 'main',
+      templateUrl: "views/questions.html",
+      auth: 0
+    })
+    .when('/admin',{
+      controller: 'admin',
+      templateUrl: "views/admin.html",
+      auth: 1
+    })
+    .when('/signin',{
+      controller: 'signin',
+      templateUrl: 'views/signin.html',
+      auth: 'public'
+    });
+
+});
+
+app.run(function($rootScope, $location, Auth, $cookies) {
+  $rootScope.$on("$routeChangeStart", function(evt, to, from) {
+    if (to.$$route.auth != 'public') {
+      if (Auth.is_login()) {
+        console.log('Esta loggueado');
+        if (to.auth != $cookies.get('rol')) {
+          $location.path('/signin')
+        }
+      }else {
+        $location.path('/signin')
+      }
+    }
+
   });
-
-  $locationProvider.html5Mode (true);
-}).run (function ($state) {
-    $state.go ('user');
-    event.preventDefault ();
 });
