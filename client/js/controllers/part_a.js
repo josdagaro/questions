@@ -40,6 +40,7 @@ app.controller("Part_A", function($scope, $http){
     $scope.next();
   };
 });
+<<<<<<< HEAD
 
 
 app.controller("admin_Part_A", function($scope){
@@ -58,3 +59,5 @@ app.controller("admin_Part_A", function($scope){
   // });
 
 });
+=======
+>>>>>>> frontend
