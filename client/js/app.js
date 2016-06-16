@@ -1,8 +1,8 @@
 'use strict';
 
-var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies']);
+var app = angular.module('Questions', ['ngMaterial', 'ngRoute', 'ngCookies', 'chart.js']);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, ChartJsProvider) {
   $routeProvider
     .when('/',{
       controller: 'main',
@@ -25,15 +25,15 @@ app.config(function($routeProvider) {
 app.run(function($rootScope, $location, Auth, $cookies) {
   $rootScope.$on("$routeChangeStart", function(evt, to, from) {
     console.log(to);
-    if (to.$$route.auth != 'public') {
-      if (Auth.is_login()) {
-        console.log('Esta loggueado');
-        if (to.auth != $cookies.get('rol')) {
-          $location.path('/signin')
-        }
-      }else {
-        $location.path('/signin')
-      }
-    }
+    // if (to.$$route.auth != 'public') {
+    //   if (Auth.is_login()) {
+    //     console.log('Esta loggueado');
+    //     if (to.auth != $cookies.get('rol')) {
+    //       $location.path('/signin')
+    //     }
+    //   }else {
+    //     $location.path('/signin')
+    //   }
+    // }
   });
 });

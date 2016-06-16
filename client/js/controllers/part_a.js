@@ -40,3 +40,21 @@ app.controller("Part_A", function($scope, $http){
     $scope.next();
   };
 });
+
+
+app.controller("admin_Part_A", function($scope){
+  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+  $scope.data = [300, 500, 100];
+   $scope.type = 'PolarArea';
+  // $http.post('http://localhost/?action=PartA/loadData').then(function(res) {
+  //   var data = res.data.dataset;
+  //   var counter = {'1':[0,0]};
+  //   for (var j in data) {
+  //     counter[1][data[j][1]-1] += 1;
+  //     console.log(counter);
+  //     $scope.data = counter[1];
+  //
+  //   }
+  // });
+
+});

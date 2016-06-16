@@ -1,0 +1,22 @@
+div(layout='row')
+  md-content(style='width:100%' ng-controller='main')
+    md-tabs(md-dynamic-height='', md-border-bottom='' md-selected='selectedIndex')
+      //Formulario Parte A
+      md-tab(label='Personal y Familiar')
+        include admin_parts/part_a.jade
+      //Formulario Parte B
+      md-tab(label='Competencias')
+        include admin_parts/part_b.jade            
+      //Formulario Parte C
+      md-tab(label='Plan de Vida')
+        include admin_parts/part_c.jade
+      //Formulario Parte D    
+      md-tab(label='Situacion Laboral')
+        include admin_parts/part_d.jade
+      //Formulario Parte E
+      md-tab(label='Institucion Educativa')
+        include admin_parts/part_e.jade
+      //Formulario Parte F
+      md-tab(label='Contacto')
+        include admin_parts/part_f.jade  
+  

@@ -1,0 +1,35 @@
+md-content.md-padding(ng-controller='Part_F')
+  div(layout='row' layout-align="end center")
+    div(flex='')   
+      h2 Contacto
+    div(flex='row' layout='row' layout-align="end center")
+      md-button(class="md-raised md-primary" ng-click='previous()') Regresar
+      md-button(class="md-raised md-primary" ng-click='enviar(data)') Finalizar
+  div(layout='row' layout-align="end center")
+    div(flex='')
+      md-card
+        md-card-title(layout='column')
+          span Teniendo en cuenta el interés del Observatorio Laboral para la Educación de hacer un seguimiento a los graduados de instituciones de educación superior, a continuación le solicitamos su colaboración para que nos suministre los datos de un familiar o amigo, que sólo se utilizarán en el evento en que se presenten dificultades para lograr el contacto con Ud.
+          span Los datos serán mantenidos bajo la promesa de confidencialidad.
+        md-card-content
+          md-input-container
+            label Nombre
+            input(type='text' ng-model='data.full_name')
+          md-input-container
+            label Relación
+            input(type='text' ng-model='data.relationship')
+          md-input-container
+            label País
+            input(type='text' ng-model='data.contry')
+          md-input-container
+            label Departamento
+            input(type='text' ng-model='data.departament')
+          md-input-container
+            label Ciudad
+            input(type='text' ng-model='data.city')
+          md-input-container
+            label Telefono Fijo
+            input(type='text' ng-model='data.res_phone')
+          md-input-container
+            label Telefono Celular
+            input(type='text' ng-model='data.mob_phone')
