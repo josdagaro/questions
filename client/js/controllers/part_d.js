@@ -23,13 +23,13 @@ app.controller("Part_D", function ($scope, $http) {
   $scope.data7 = {looking_first_job: 0, months_looking_job: 0, get_job: 0, difficult_get_job: 0, search_ch_job: 0};
 
   $scope.enviar = function(data1,data2,data3,data4,data5,data6,data7) {
-    $http.post('http://localhost/?action=PartDOne/saveData', data1 ).then(function(res) {console.log(res);});
-    $http.post('http://localhost/?action=PartDTwo/saveData', data2 ).then(function(res) {console.log(res);});
-    $http.post('http://localhost/?action=PartDThree/saveData', data3 ).then(function(res) {console.log(res);});
-    $http.post('http://localhost/?action=PartDFour/saveData', data4 ).then(function(res) {console.log(res);});
-    $http.post('http://localhost/?action=PartDFive/saveData', data5 ).then(function(res) {console.log(res);});
-    $http.post('http://localhost/?action=PartDSix/saveData', data6 ).then(function(res) {console.log(res);});
-    http.post('http://localhost/?action=PartDSeven/saveData', data7 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDOne/saveData', data1 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDTwo/saveData', data2 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDThree/saveData', data3 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDFour/saveData', data4 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDFive/saveData', data5 ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartDSix/saveData', data6 ).then(function(res) {console.log(res);});
+    http.post('/?action=PartDSeven/saveData', data7 ).then(function(res) {console.log(res);});
     $scope.next();
   };
 });

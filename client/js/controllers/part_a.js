@@ -36,7 +36,7 @@ app.controller("Part_A", function($scope, $http){
   };
 
   $scope.enviar = function (data) {
-    $http.post('http://localhost/?action=PartA/saveData', data ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartA/saveData', data ).then(function(res) {console.log(res);});
     $scope.next();
   };
 });
@@ -46,7 +46,7 @@ app.controller("admin_Part_A", function($scope, $http){
   $scope.labels1 = ["Soltero(a)", "Casado / Union Libre"];
   $scope.labels3=  ['En arriendo,Propia y la está pagando', 'Propia totalmente pagada', 'De un familiar sin pagar arriendo', 'De un tercero sin pagar arriendo', 'Otra'];
   $scope.labels5 = ['Ninguna','Moverse o caminar', 'Usar sus brazos y manos', 'Ver a pesar de usar lentes o gafas', 'Oír aún con aparatos especiales', 'Hablar', 'Entender o aprender', 'Relacionarse con los demás por problemas mentales o emocionales', 'Otra limitación permanente'];
-  $http.post('http://localhost/?action=PartA/loadData').then(function(res) {
+  $http.post('/?action=PartA/loadData').then(function(res) {
     var data = res.data.dataset;
     var counter = {'1':[0,0], '3':[0,0,0,0,0,0], '5':[0,0,0,0,0,0,0,0,0]};
     for (var j in data) {

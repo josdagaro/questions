@@ -54,7 +54,7 @@ app.controller("Part_B", function ($scope, $http) {
  $scope.toogle = function(){$scope.not_lenguage = false};
 
  $scope.enviar = function(data) {
-   $http.post('http://localhost/?action=PartB/saveData', data ).then(function(res) {console.log(res);});
+   $http.post('/?action=PartB/saveData', data ).then(function(res) {console.log(res);});
    $scope.next();
  };
 });
