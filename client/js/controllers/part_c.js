@@ -17,7 +17,7 @@ app.controller("Part_C", function ($scope, $http) {
     return list.indexOf(item) > -1;
   };
   $scope.enviar = function(data) {
-    $http.post('http://localhost/?action=PartC/saveData', data ).then(function(res) {console.log(res);});
+    $http.post('/?action=PartC/saveData', data ).then(function(res) {console.log(res);});
     $scope.next();
   };
 });

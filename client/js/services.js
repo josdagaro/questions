@@ -2,7 +2,7 @@
 
 app.service('Auth',function ($http, $cookies, $location) {
   this.login = function (data) {
-    $http.post('http://localhost/?action=Graduate/sigin', data ).then(function(res) {
+    $http.post('/?action=Graduate/sigin', data ).then(function(res) {
       console.log(res);
       console.log($cookies.get('rol'));
       $cookies.put('user', res.data.dataset.id);
@@ -21,7 +21,7 @@ app.service('Auth',function ($http, $cookies, $location) {
   };
 
   this.logout = function(){
-    $http.post('http://localhost/?action=Graduate/logout').then(function(res) {
+    $http.post('/?action=Graduate/logout').then(function(res) {
       console.log(res);
       $cookies.remove('user');
       $cookies.remove('rol');
